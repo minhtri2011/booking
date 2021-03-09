@@ -1,0 +1,124 @@
+@import "../../scss/main.scss";
+.showTimeMobile {
+  -webkit-tap-highlight-color: transparent;
+  width: 100%;
+  border: 1px solid rgb(228, 228, 228);
+  .cinema-list {
+    width: 100%;
+    .cinemaName {
+      width: 100%;
+      background-color: transparent;
+      border: none;
+      outline: none;
+      padding: 10px;
+      border-bottom: 1px solid rgb(228, 228, 228);
+      .MuiAccordionSummary-content {
+        margin: 0;
+        img {
+          width: 2rem;
+          margin-right: 1rem;
+        }
+        p {
+          display: flex;
+          align-items: center;
+        }
+      }
+      .MuiAccordionSummary-expandIcon {
+        margin-right: 0.3rem;
+      }
+    }
+    .list-branch-cinema {
+      display: block;
+      cursor: pointer;
+    }
+    .listBranch {
+      padding: 0.5rem 1rem;
+      border: 2px red !important;
+      box-shadow: lightcoral !important;
+      display: flex;
+      .img_cinema {
+        width: 2rem;
+        margin-right: 1rem;
+      }
+      .content_item_listBranch {
+        display: flex;
+        align-items: center;
+        .content {
+          .nameBranch {
+            .CGV {
+              color: #e71a0f;
+            }
+            .BHD {
+              color: #8bc541;
+            }
+            .CNS {
+              color: #df0d7a;
+            }
+            .GLX {
+              color: #f60;
+            }
+            .Lotte {
+              color: #ca4137;
+            }
+            .MegaGS {
+              color: #e5a813;
+            }
+          }
+          .address {
+            color: #949494;
+            font-size: 0.8rem;
+          }
+        }
+      }
+    }
+    .showListBranch {
+      max-height: 10000px !important;
+    }
+    .null_list {
+      text-align: center;
+      background-color: palegoldenrod;
+      margin: 0 1.5rem;
+      padding: 0.5rem;
+      border-radius: 5px;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      -ms-border-radius: 5px;
+      -o-border-radius: 5px;
+    }
+    .listMovie {
+      display: block;
+      .list {
+        padding: 0.5rem 1.5rem;
+      }
+      .listFilmInfo {
+        display: flex;
+        align-items: center;
+        .movie_img {
+          width: 3rem;
+        }
+        .movie_name {
+          padding-left: 1rem;
+        }
+      }
+      .showListTimeInfo {
+        display: flex;
+        flex-wrap: wrap;
+        .timeBooking {
+          font-size: 12px;
+          background-color: rgb(243, 243, 243);
+          margin: 0.2rem;
+          padding: 0.5rem;
+          text-decoration: none;
+          font-weight: 600;
+          border-radius: 5px;
+          &-start {
+            color: #108f3e;
+          }
+          &-end {
+            color: #9b9b9b;
+          }
+        }
+      }
+    }
+  }
+}

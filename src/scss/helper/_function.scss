@@ -1,0 +1,8 @@
+@function getBreakpoints($bk) {
+    @if (map-has-key($map: $breakpoints, $key: $bk)) {
+        @return map-get($map: $breakpoints, $key: $bk);
+    }
+    @else {
+        @warn "Your breakpoint isn't exist"
+    }
+}

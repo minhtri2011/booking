@@ -1,0 +1,208 @@
+@import "../../scss/main.scss";
+
+.showTime {
+  -webkit-tap-highlight-color: transparent;
+  display: grid;
+  grid-template-columns: 10% 30% 60%;
+  margin: 100px auto;
+  width: 70%;
+  border: 1px solid rgb(228, 228, 228);
+  .item_left {
+    height: 500px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    border-right: 1px solid rgb(228, 228, 228);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    button {
+      opacity: 0.5;
+      background-color: transparent;
+      border: none;
+      outline: none;
+      width: 5rem;
+      height: 5rem;
+      cursor: pointer;
+      padding: 0.5rem;
+      .logo_cinema {
+        width: 100%;
+        height: 100%;
+      }
+    }
+    .active {
+      opacity: 1 !important;
+    }
+  }
+  .item_center {
+    height: 500px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    border-right: 1px solid rgb(228, 228, 228);
+    .cinema_button {
+      padding: 1rem;
+      display: grid;
+      grid-template-columns: 20% 80%;
+      opacity: 0.5;
+      cursor: pointer;
+      .img_cinema {
+        height: 3rem;
+        width: 3rem;
+      }
+      .content_item_center {
+        padding-left: 0.3rem;
+        width: 100%;
+        vertical-align: middle;
+        position: relative;
+        .content {
+          width: 100%;
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          -webkit-transform: translateY(-50%);
+          -moz-transform: translateY(-50%);
+          -ms-transform: translateY(-50%);
+          -o-transform: translateY(-50%);
+          .nameBranch {
+            .CGV {
+              color: #e71a0f;
+            }
+            .BHD {
+              color: #8bc541;
+            }
+            .CNS {
+              color: #df0d7a;
+            }
+            .GLX {
+              color: #f60;
+            }
+            .Lotte {
+              color: #ca4137;
+            }
+            .MegaGS {
+              color: #e5a813;
+            }
+          }
+          .address {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            color: #949494;
+            font-size: 0.8rem;
+          }
+        }
+      }
+    }
+    .active {
+      opacity: 1;
+    }
+  }
+  .item_right {
+    height: 500px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 1rem;
+    scrollbar-width: thin; 
+    scrollbar-color: #c2bebe #e8e3e3;
+
+    /* Works on Chrome, Edge, and Safari */
+    &::-webkit-scrollbar {
+      width: 5px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: #e8e3e3;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: #c2bebe;
+    }
+    .null_list {
+      text-align: center;
+      font-weight: 400;
+      line-height: 50px;
+    }
+    .list {
+      // overflow: hidden;
+      .listFilmInfo {
+        .movie_img {
+          width: 50px;
+          height: 50px;
+          object-fit: cover;
+          border-radius: 10%;
+          -webkit-border-radius: 10%;
+          -moz-border-radius: 10%;
+          -ms-border-radius: 10%;
+          -o-border-radius: 10%;
+          vertical-align: middle;
+        }
+        .movie_name {
+          align-items: center;
+          display: flex;
+          padding: 1rem;
+        }
+      }
+      .showListTimeInfo {
+        display: flex;
+        flex-wrap: wrap;
+        .timeBooking {
+          font-size: 1rem;
+          font-weight: 600;
+          background-color: rgba(246, 246, 246, 0.6);
+          border: 1px solid #e4e4e4;
+          margin: 5px;
+          text-decoration: none;
+          padding: 0.5rem;
+          color: #9b9b9b;
+          border-radius: 5px;
+          -webkit-border-radius: 5px;
+          -moz-border-radius: 5px;
+          -ms-border-radius: 5px;
+          -o-border-radius: 5px;
+          &:hover {
+            color: rgb(255, 153, 0);
+          }
+          &-start {
+            color: #108f3e;
+          }
+        }
+      }
+    }
+  }
+}
+@include mediaQueryMax(getBreakpoints("extra-large")) {
+  .showTime {
+    width: 80%;
+    .item_center {
+      .cinema_button {
+        .content_item_center {
+          padding-left: 0.6rem;
+        }
+      }
+    }
+  }
+}
+@include mediaQueryMax(getBreakpoints("large")) {
+  .showTime {
+    width: 100%;
+    grid-template-columns: 10% 40% 50%;
+    .item_left {
+      button {
+        width: 4.5rem;
+        height: 4.5rem;
+      }
+    }
+    .item_right {
+      .list {
+        .listFilmInfo {
+          .movie_img {
+            width: 80px;
+          }
+        }
+      }
+    }
+  }
+}
+// else {
+//   if(window.screen.width <= 1280){
+//       return <Fragment>a</Fragment>
+//   }

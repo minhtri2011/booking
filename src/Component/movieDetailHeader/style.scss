@@ -1,0 +1,165 @@
+@import "../../scss/main.scss";
+.banner {
+  background: #005aa7; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to top,
+    #fffde4,
+    #005aa7
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to top,
+    #fffde4,
+    #005aa7
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  .MuiGrid-container {
+    padding: 50px 0;
+    width: 70%;
+    margin: 0 auto;
+    .bannerLeft {
+      img {
+        width: 70%;
+      }
+    }
+    .bannerRight {
+      justify-content: center;
+      align-items: center;
+      display: flex;
+      h3 {
+        padding: 20px 0;
+        font-size: 2rem;
+      }
+      p {
+        padding: 10px 0;
+      }
+      p.rate {
+        display: flex;
+        align-items: center;
+      }
+      a {
+        button {
+          margin-right: 0 !important;
+        }
+      }
+      button {
+        background-color: rgb(255, 40, 40);
+        color: white;
+        border: none;
+        margin-right: 10px;
+        cursor: pointer;
+        outline: none;
+        padding: 10px 25px;
+        border-radius: 5px;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        -ms-border-radius: 5px;
+        -o-border-radius: 5px;
+        transition: all 0.2s;
+        -webkit-transition: all 0.2s;
+        -moz-transition: all 0.2s;
+        -ms-transition: all 0.2s;
+        -o-transition: all 0.2s;
+        &:hover {
+          background-color: rgb(204, 35, 35);
+        }
+      }
+    }
+  }
+}
+@include mediaQueryMax(getBreakpoints("extra-large")) {
+  .banner {
+    .MuiGrid-container {
+      padding: 50px 0;
+      width: 70%;
+      margin: 0 auto;
+      align-items: center;
+      .bannerLeft {
+        img {
+          width: 80%;
+        }
+      }
+    }
+  }
+}
+@include mediaQueryMax(getBreakpoints("large")) {
+  .banner {
+    .MuiGrid-container {
+      width: 80%;
+    }
+  }
+}
+@include mediaQueryMax(getBreakpoints("medium")) {
+  .banner {
+    .MuiGrid-container {
+      .bannerLeft {
+        img {
+          width: 80%;
+        }
+      }
+    }
+  }
+}
+@include mediaQueryMax(getBreakpoints("small")) {
+  .banner {
+    .MuiGrid-container {
+      padding: 50px 0;
+      width: 90%;
+      margin: 0 auto;
+      .bannerLeft {
+        margin: auto;
+        text-align: center;
+        img {
+          width: 80%;
+        }
+      }
+      .bannerRight {
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        h3 {
+          text-align: center;
+        }
+        p {
+          text-align: center;
+        }
+        p {
+          span {
+            font-weight: 600;
+          }
+        }
+        p.rate {
+          padding: 0;
+          justify-content: center;
+        }
+        .btn {
+          display: flex;
+          margin-top: 10px;
+          justify-content: center;
+          button {
+            background-color: rgb(255, 40, 40);
+            color: white;
+            border: none;
+            margin-right: 10px;
+            cursor: pointer;
+            outline: none;
+            padding: 10px 25px;
+            border-radius: 5px;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            -ms-border-radius: 5px;
+            -o-border-radius: 5px;
+            transition: all 0.2s;
+            -webkit-transition: all 0.2s;
+            -moz-transition: all 0.2s;
+            -ms-transition: all 0.2s;
+            -o-transition: all 0.2s;
+            &:hover {
+              background-color: rgb(204, 35, 35);
+            }
+          }
+        }
+      }
+    }
+  }
+}

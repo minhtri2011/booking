@@ -1,0 +1,254 @@
+@import "../../scss/main.scss";
+.showTime {
+  margin: 100px auto;
+  width: 70%;
+  border: 1px solid rgb(228, 228, 228);
+  .MuiGrid-container {
+    .MuiGrid-item {
+      .showTimeLeft {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        img {
+          width: 60px;
+        }
+        button {
+          border-bottom: 1px solid rgb(228, 228, 228) !important;
+          padding: 10px;
+          margin: 10px;
+          background-color: transparent;
+          border: none;
+          outline: none;
+          cursor: pointer;
+          justify-content: center;
+          opacity: 0.5;
+          &:hover {
+            opacity: 1;
+          }
+          &:focus {
+            opacity: 1;
+          }
+        }
+      }
+      .miniShowTime {
+        .miniLeft {
+          overflow-y: auto;
+          height: 625px;
+          padding: 0;
+          border-left: 1px solid rgb(228, 228, 228);
+          text-align: center;
+          button {
+            margin: 10px 0;
+            padding-bottom: 10px;
+            background-color: transparent;
+            text-align: left;
+            border: none;
+            outline: none;
+            border-bottom: 1px solid rgb(228, 228, 228);
+            width: 80%;
+            cursor: pointer;
+            .nameBranch {
+              font-size: 1rem;
+              font-weight: bold;
+              color: rgb(106, 177, 0);
+            }
+            .address {
+              overflow: hidden;
+              text-overflow: ellipsis !important;
+              white-space: nowrap !important;
+              padding: 2px 0;
+            }
+            .link {
+              text-decoration: none;
+              color: red;
+            }
+          }
+        }
+        .miniRight {
+          padding: 0;
+          border-left: 1px solid rgb(219, 219, 219);
+          display: table-column;
+          overflow-y: auto;
+          height: 625px;
+          .nameMovie {
+            display: flex;
+            // justify-content: center;
+            margin: 10px;
+            align-items: center;
+            h5 {
+              padding-left: 10px;
+              font-size: 1.1rem;
+            }
+          }
+          .time {
+            display: flex;
+            flex-wrap: wrap;
+            font-weight: 600;
+            .timeItem {
+              background-color: rgba(246, 246, 246, 0.5);
+              text-decoration: none;
+              cursor: pointer;
+              color: grey;
+              margin: 5px;
+              padding: 8px;
+              border: 1px solid #e4e4e4;
+              border-radius: 5px;
+              -webkit-border-radius: 5px;
+              -moz-border-radius: 5px;
+              -ms-border-radius: 5px;
+              -o-border-radius: 5px;
+              &:hover {
+                color: orange;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@include mediaQueryMax(getBreakpoints("extra-large")) {
+  .showTime {
+    margin: 100px auto;
+    width: 80%;
+    border: 1px solid rgb(228, 228, 228);
+    .MuiGrid-container {
+      .MuiGrid-item {
+        .showTimeLeft {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          img {
+            width: 60px;
+          }
+          button {
+            border-bottom: 1px solid rgb(228, 228, 228) !important;
+            padding: 10px;
+            margin: 10px;
+            background-color: transparent;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            justify-content: center;
+            opacity: 0.5;
+            &:hover {
+              opacity: 1;
+            }
+            &:focus {
+              opacity: 1;
+            }
+          }
+        }
+        .miniShowTime {
+          .miniLeft {
+            overflow-y: auto;
+            height: 625px;
+            padding: 0;
+            border-left: 1px solid rgb(228, 228, 228);
+            text-align: center;
+            button {
+              margin: 10px 0;
+              padding-bottom: 10px;
+              background-color: transparent;
+              text-align: left;
+              border: none;
+              outline: none;
+              border-bottom: 1px solid rgb(228, 228, 228);
+              width: 80%;
+              cursor: pointer;
+              .nameBranch {
+                font-size: 1rem;
+                font-weight: bold;
+                color: rgb(106, 177, 0);
+              }
+              .address {
+                overflow: hidden;
+                text-overflow: ellipsis !important;
+                white-space: nowrap !important;
+                padding: 2px 0;
+              }
+              .link {
+                text-decoration: none;
+                color: red;
+              }
+            }
+          }
+          .miniRight {
+            padding: 0;
+            border-left: 1px solid rgb(219, 219, 219);
+            display: table-column;
+            overflow-y: auto;
+            height: 625px;
+            .nameMovie {
+              display: flex;
+              // justify-content: center;
+              margin: 10px;
+              align-items: center;
+              h5 {
+                padding-left: 10px;
+                font-size: 1.1rem;
+              }
+            }
+            .time {
+              display: flex;
+              flex-wrap: wrap;
+              font-weight: 600;
+              .timeItem {
+                background-color: rgba(246, 246, 246, 0.5);
+                text-decoration: none;
+                cursor: pointer;
+                color: grey;
+                margin: 5px;
+                padding: 8px;
+                border: 1px solid #e4e4e4;
+                border-radius: 5px;
+                -webkit-border-radius: 5px;
+                -moz-border-radius: 5px;
+                -ms-border-radius: 5px;
+                -o-border-radius: 5px;
+                &:hover {
+                  color: orange;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@include mediaQueryMax(getBreakpoints("large")) {
+  .showTime {
+    width: 90%;
+    .MuiGrid-container {
+      .MuiGrid-item {
+        .showTimeLeft {
+          width: 90vw;
+          img {
+            width: 50px;
+          }
+        }
+      }
+    }
+  }
+}
+@include mediaQueryMax(getBreakpoints("medium")) {
+  .showTime {
+    width: 100%;
+    .MuiGrid-container {
+      .MuiGrid-item {
+        .showTimeLeft {
+          width: 100vw;
+          img {
+            width: 50px;
+          }
+        }
+      }
+    }
+  }
+}
+@include mediaQueryMax(getBreakpoints("small")) {
+  .showTime {
+    display: none;
+  }
+}
