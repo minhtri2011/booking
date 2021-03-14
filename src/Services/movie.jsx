@@ -8,6 +8,12 @@ export class Movie {
             url: `${domain}/QuanLyPhim/LayDanhSachPhim?maNhom=${groupID}`
         })
     }
+    getMovieDetail = (id) => {
+        return axios({
+            method: 'GET',
+            url: `${domain}/QuanLyRap/LayThongTinLichChieuPhim?MaPhim=${id}`
+        })
+    }
     getCinemaInfo = () => {
         return axios({
             method: 'GET',
@@ -24,12 +30,6 @@ export class Movie {
         return axios({
             method: 'GET',
             url: `${domain}/QuanLyDatVe/LayDanhSachPhongVe?MaLichChieu=${id}`
-        })
-    }
-    getMovieDetail = (id) => {
-        return axios({
-            method: 'GET',
-            url: `${domain}/QuanLyRap/LayThongTinLichChieuPhim?MaPhim=${id}`
         })
     }
     getMovieSchedule = () => {

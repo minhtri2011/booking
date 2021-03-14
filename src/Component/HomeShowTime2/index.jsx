@@ -93,12 +93,6 @@ export default function HomeShowTime() {
         })
         return cinema;
     }
-    //function ẩn hiện nội dung thời gian chiếu film)
-    // let showHideContent = (value) => {
-    //     let domClass = document.getElementById(value);
-    //     domClass.classList.toggle("hideContent");
-    //     domClass.classList.add("showList");
-    // }
     //render list movie
     let renderListMovie = (todayList) => {
         if (todayList && todayList.length > 0) {
