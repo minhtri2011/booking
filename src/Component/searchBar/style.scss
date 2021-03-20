@@ -1,4 +1,5 @@
 .searchBar {
+    display: flex;
     width: 60%;
     height: 80px;
     background-color: #fff;
@@ -16,32 +17,33 @@
     -ms-transform: translate(-50%, -50%);
     -o-transform: translate(-50%, -50%);
     box-sizing: border-box;
-    &-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-    }
     .open {
         .searchBar__dropDown-option {
             visibility: visible;
             opacity: 1;
         }
     }
+    .selectFilm{
+        width: 30%;
+    }
     &__dropDown {
         user-select: none;
         position: relative;
-        height: 100%;
-        width: 100%;
+        width: calc(70%/4);
         display: flex;
         align-items: center;
         justify-content: center;
-        cursor: pointer;
         &-name {
+            cursor: pointer;
             position: relative;
             appearance: none;
             border: none;
             outline: none;
             padding: 1rem;
             width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
             //   top:0;
             //   left: 0;
             &::after {
@@ -67,7 +69,7 @@
             opacity: 0;
             background-color: #fff;
             cursor: pointer;
-            min-width: 190px !important;
+            min-width: 160px !important;
             white-space: nowrap;
             border-radius: 10px;
             -webkit-border-radius: 10px;
@@ -105,6 +107,13 @@
                         -moz-transition: all 0.2s;
                         -ms-transition: all 0.2s;
                         -o-transition: all 0.2s;
+                        span{
+                            color: white;
+                        }
+                    }
+                    span {
+                        font-size: .8rem;
+                        color: #aaa;
                     }
                 }
             }
@@ -128,10 +137,10 @@
         }
         .btn-buyTicket {
             background-color: #fb4226;
-            color: white;
             outline: none;
             border: none;
             text-transform: uppercase;
+            font-size: .8rem;
             font-weight: bold;
             height: 50%;
             width: 80%;
@@ -140,7 +149,16 @@
             -moz-border-radius: 5px;
             -ms-border-radius: 5px;
             -o-border-radius: 5px;
+            color: white;
             cursor: pointer;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .btn-disable{
+            background-color: gray;
+            pointer-events: none;
         }
         .active {
             display: block !important;
