@@ -146,7 +146,8 @@ export default function SearchBar() {
     // render danh sách phim searchbar
     const renderMovieList = () => {
         return movie
-            .filter(list => list.ngayKhoiChieu.slice(0, 10) >= today)
+            // .filter(list => list.ngayKhoiChieu.slice(0, 10) <= today)
+            .filter(list => new Date(list.ngayKhoiChieu) <= new Date())
             .sort((a, b) => a.tenPhim > b.tenPhim ? 1 : -1)
             .map((list, index) => {
                 return (
@@ -227,12 +228,12 @@ export default function SearchBar() {
     const renderBtnBuyTicket = () => {
         if (!getID || getID.length === 0) {
             return <button className="btn-buyTicket btn-disable">
-                    Mua vé ngay
+                Mua vé ngay
             </button>
         } else {
             // console.log(getID);
             return <Link className="btn-buyTicket" to={`/booking/${getID.maLichChieu}`}>
-                    Mua vé ngay
+                Mua vé ngay
             </Link>
         }
     }

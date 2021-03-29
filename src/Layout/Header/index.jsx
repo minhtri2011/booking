@@ -252,7 +252,7 @@ export default function Header(props) {
                             <Link className="textLink" to="/#showTime" smooth>Cụm rạp</Link>
                         </IconButton>
                         <IconButton disableRipple className={classes.button_mid}>
-                            <Link className="textLink" to="/#footer" smooth>Ứng dụng</Link>
+                            <Link className="textLink" to="/#apps" smooth>Ứng dụng</Link>
                         </IconButton>
                     </div>
                     <div className={classes.sectionDesktop + ' ' + classes.menuRight}>

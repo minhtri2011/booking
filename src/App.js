@@ -15,9 +15,10 @@ import { LoginAction } from './redux/action/user';
 // import Loading from './Pages/Loading';
 import Home from './Pages/Home'
 import Booking from './Pages/Booking'
-import Admin from './Pages/AdminUser'
+import AdminUser from './Pages/AdminUser'
+import AdminMovie from './Pages/AdminMovie'
 import Login from './Pages/Login'
-import HomeShowTimeMobile from './Component/homeShowTimeMobile';
+import ShowTimeMobile from './Component/ShowTimeMobile';
 // // lazyLoad page loading
 // const Home = lazy(() => {
 //   return new Promise((resolve) => {
@@ -109,9 +110,10 @@ function App() {
         <Switch>
           <HomeTemplate exact path="/" component={Home} />
           <HomeTemplate exact path="/booking/:id" component={Booking} />
-          <HomeTemplate exact path="/admin" component={Admin} />
+          <HomeTemplate exact path="/admin" component={AdminUser} />
+          <HomeTemplate exact path="/admin/movie" component={AdminMovie} />
           <HomeTemplate exact path="/login" component={Login} />
-          <HomeTemplate exact path="/HomeShowTimeMobile" component={HomeShowTimeMobile} />
+          <HomeTemplate exact path="/ShowTimeMobile" component={ShowTimeMobile} />
         </Switch>
       </Fragment>
     </BrowserRouter>

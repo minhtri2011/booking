@@ -1,0 +1,323 @@
+@import "../../scss/main.scss";
+#listMovie {
+  .appBarTabs {
+    padding: 5rem 0 1rem 0;
+    background-color: white !important;
+    .MuiTabs-root {
+      .MuiTabs-fixed {
+        .MuiTabs-flexContainer {
+          text-align: center;
+          justify-content: center;
+          box-shadow: none;
+          height: 2.5rem;
+          button {
+            font-weight: bold;
+            // padding: 1rem;
+            color: black;
+            font-size: 1.3rem;
+            span {
+              transition: all 0.3s;
+              -webkit-transition: all 0.3s;
+              -moz-transition: all 0.3s;
+              -ms-transition: all 0.3s;
+              -o-transition: all 0.3s;
+            }
+            &:hover span {
+              // background-color: lawngreen;
+              padding: 0 0.5rem;
+              font-size: 1.7rem;
+            }
+            &.Mui-selected span,
+            &.Mui-selected,
+            button {
+              padding: 0.5rem;
+              font-size: 1.7rem;
+              cursor: default;
+              font-weight: 400;
+              color: red;
+            }
+
+            &.MuiTab-root {
+              text-transform: none;
+            }
+          }
+        }
+
+        .MuiTabs-indicator {
+          visibility: hidden;
+          opacity: 0;
+        }
+      }
+    }
+
+    &.MuiPaper-elevation4 {
+      box-shadow: none;
+    }
+  }
+
+  .MuiBox-root {
+    width: 70%;
+    margin: auto;
+    padding-top: 0 !important;
+    box-sizing: border-box !important;
+    .alertMovieNull {
+      text-align: center;
+      color: #fff;
+      font-size: 1rem;
+      background-color: rgb(255, 172, 133);
+      padding: 1rem;
+      border-radius: 5px;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      -ms-border-radius: 5px;
+      -o-border-radius: 5px;
+    }
+    .slick-slider {
+      position: relative;
+      svg.MuiSvgIcon-root.btn_prev {
+        position: absolute;
+        top: 50%;
+        left: -5%;
+        transform: translate(-50%, -50%) !important;
+        -webkit-transform: translate(-50%, -50%) !important;
+        -moz-transform: translate(-50%, -50%) !important;
+        -ms-transform: translate(-50%, -50%) !important;
+        -o-transform: translate(-50%, -50%) !important;
+        display: block;
+        color: orangered;
+        font-size: 5rem;
+        cursor: pointer;
+      }
+      svg.MuiSvgIcon-root.btn_next {
+        transform: translate(50%, -50%) !important;
+        -webkit-transform: translate(50%, -50%) !important;
+        -moz-transform: translate(50%, -50%) !important;
+        -ms-transform: translate(50%, -50%) !important;
+        -o-transform: translate(50%, -50%) !important;
+        display: block;
+        color: orangered;
+        font-size: 5rem;
+        position: absolute;
+        top: 50%;
+        right: -5%;
+        cursor: pointer;
+      }
+      .slick-list {
+        .slick-track {
+          .slick-slide {
+            .card {
+              box-sizing: border-box;
+              padding: 20px 5px;
+              width: 100%;
+              outline: none;
+              &:hover {
+                .nameMovie {
+                  visibility: hidden;
+                }
+                .flexDate {
+                  visibility: hidden;
+                }
+                .btn-ticket {
+                  visibility: visible !important;
+                }
+              }
+              .imgMovie {
+                padding-bottom: 160%;
+                // padding: 10px;
+                position: relative;
+                width: 100% !important;
+                &:hover {
+                  .btn-play-bg {
+                    opacity: 1;
+                  }
+                }
+
+                img {
+                  // width: 100%;
+                  position: absolute;
+                  object-fit: cover;
+                  height: 100%;
+                  width: 100%;
+                  border-radius: 10px;
+                  -webkit-border-radius: 10px;
+                  -moz-border-radius: 10px;
+                  -ms-border-radius: 10px;
+                  -o-border-radius: 10px;
+                }
+
+                .btn-play-bg {
+                  position: absolute;
+                  opacity: 0;
+                  background-color: rgba(0, 0, 0, 0.404);
+                  top: 0;
+                  left: 0;
+                  width: 100%;
+                  height: 100%;
+                  border-radius: 10px;
+                  -webkit-border-radius: 10px;
+                  -moz-border-radius: 10px;
+                  -ms-border-radius: 10px;
+                  -o-border-radius: 10px;
+                  transition: all 0.2s;
+                  -webkit-transition: all 0.2s;
+                  -moz-transition: all 0.2s;
+                  -ms-transition: all 0.2s;
+                  -o-transition: all 0.2s;
+
+                  .btn-play {
+                    z-index: 999;
+                    color: white;
+                    font-size: 4rem;
+                    border: 1.5px solid white;
+                    border-radius: 50%;
+                    -webkit-border-radius: 50%;
+                    -moz-border-radius: 50%;
+                    -ms-border-radius: 50%;
+                    -o-border-radius: 50%;
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    -webkit-transform: translate(-50%, -50%);
+                    -moz-transform: translate(-50%, -50%);
+                    -ms-transform: translate(-50%, -50%);
+                    -o-transform: translate(-50%, -50%);
+                    cursor: pointer;
+                    &:hover {
+                      opacity: 0.6;
+                    }
+                  }
+                }
+              }
+
+              .hiddenButtonMovie {
+                position: relative;
+                padding: 1rem 0;
+                height: 100%;
+                .nameMovie {
+                  display: flex;
+                  justify-content: center;
+                  font-weight: bold;
+                  text-align: center;
+                  font-size: 1rem;
+                  padding-bottom: 1rem;
+                  height: 50px;
+                }
+                .flexDate {
+                  width: 100%;
+                  position: absolute;
+                  display: flex;
+                  justify-content: space-between;
+                }
+                .btn-ticket {
+                  position: absolute;
+                  top: 0;
+                  width: 100%;
+                  left: 0;
+                  visibility: hidden;
+                  button {
+                    height: 50px;
+                    width: 100%;
+                    padding: 10px 0;
+                    border-radius: 5px;
+                    -webkit-border-radius: 5px;
+                    -moz-border-radius: 5px;
+                    -ms-border-radius: 5px;
+                    -o-border-radius: 5px;
+                    outline: none;
+                    border: none;
+                    color: white;
+                    background-color: rgb(255, 60, 0);
+                    cursor: pointer;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.modalTrailer {
+  width: 960px;
+  height: 515px;
+}
+@include mediaQueryMax(getBreakpoints("extra-large")) {
+  .MuiBox-root {
+    width: 80%;
+  }
+}
+@include mediaQueryMax(getBreakpoints("large")) {
+  .appBarTabs {
+    padding: 1rem 0 1rem 0 !important;
+  }
+  .MuiBox-root {
+    width: 100%;
+    .slick-slider {
+      .btn_prev {
+        display: none !important;
+      }
+      .btn_next {
+        display: none !important;
+      }
+    }
+  }
+}
+@include mediaQueryMax(getBreakpoints("small")) {
+  .MuiBox-root {
+    width: 100%;
+    .slick-slider {
+      .slick-list {
+        .slick-track {
+          .slick-slide {
+            .card {
+              .imgMovie {
+                img {
+                  height: 300px;
+                }
+              }
+              .hiddenButtonMovie {
+                position: relative;
+                margin-top: 10px;
+                height: 30px;
+                .nameMovie {
+                  font-size: 0.9rem !important;
+                }
+                .flexDate {
+                  display: none;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@include mediaQueryMax(getBreakpoints("extra-small")) {
+  .MuiBox-root {
+    .slick-slider {
+      .slick-list {
+        .slick-track {
+          .slick-slide {
+            .card {
+              padding: 0 5px !important;
+              .hiddenButtonMovie {
+                padding-bottom: 0 !important;
+                .nameMovie {
+                  padding: 0 !important;
+                }
+                .flexDate {
+                  visibility: hidden;
+                  display: none;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,11 +1,14 @@
+@import "../../scss/main.scss";
 .searchBar {
+    z-index: 1;
     display: flex;
-    width: 60%;
+    width: 70%;
     height: 80px;
     background-color: #fff;
     position: absolute;
     left: 50%;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    box-sizing: border-box;
     border-radius: 5px;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
@@ -16,7 +19,6 @@
     -moz-transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
     -o-transform: translate(-50%, -50%);
-    box-sizing: border-box;
     .open {
         .searchBar__dropDown-option {
             visibility: visible;
@@ -168,5 +170,11 @@
     }
     .selectFilm {
         grid-column: 1 / span 2;
+    }
+}
+@include mediaQueryMax(getBreakpoints("large")){
+    .searchBar{
+        display: none;
+        visibility: hidden;
     }
 }

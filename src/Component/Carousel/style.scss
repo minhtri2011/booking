@@ -81,7 +81,7 @@
           button {
             &::before {
               color: rgba(255, 255, 255, 0.705) !important;
-              font-size: 15px !important;
+              font-size: 0.8rem !important;
               opacity: 1;
             }
           }
@@ -125,6 +125,13 @@
     height: 315px;
   }
 }
+@include mediaQueryMax(getBreakpoints("large")) {
+  .carousel__slider {
+    .slick-dots {
+      bottom: 10% !important;
+    }
+  }
+}
 @include mediaQueryMax(getBreakpoints("small")) {
   .carousel__slider {
     .slick-list {
@@ -145,17 +152,19 @@
       ul {
         li {
           button {
-            &::before {
-              color: white !important;
-              font-size: 0.5rem !important;
-              opacity: 1;
-            }
+            display: none;
+            // &::before {
+            //   color: white !important;
+            //   font-size: 0.5rem !important;
+            //   opacity: 1;
+            // }
           }
-          &.slick-active {
-            button::before {
-              color: orangered !important;
-            }
-          }
+          // &.slick-active {
+          //   button::before {
+          //     color: orangered !important;
+          //     ;
+          //   }
+          // }
         }
       }
     }

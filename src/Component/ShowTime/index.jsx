@@ -8,7 +8,7 @@ import AccordionDetails from '@material-ui/core/AccordionDetails';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 // import { object } from 'yup';
-export default function HomeShowTime() {
+export default function ShowTime() {
     let [movie, setMovie] = useState([]);
     let [cinemaInfo, setCinema] = useState([]);
     let [cinemaChoice, setCinemaChoice] = useState([]);
@@ -150,7 +150,7 @@ export default function HomeShowTime() {
     }
 
     return (
-        <div className="showTime">
+        <section className="showTime" id="showTime">
             <div className="item_left">
                 {cinemaInfo.map((cinema, index) => {
                     return (
@@ -203,6 +203,6 @@ export default function HomeShowTime() {
                     </div>
                 })}
             </div>
-        </div>
+        </section>
     )
 }

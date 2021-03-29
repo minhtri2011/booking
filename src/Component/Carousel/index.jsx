@@ -6,7 +6,7 @@ import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import Fade from '@material-ui/core/Fade';
-import SearchBar from '../searchBar';
+import SearchBar from '../SearchBar';
 const useStyles = makeStyles((theme) => ({
     modal: {
         display: 'flex',
@@ -37,7 +37,7 @@ function SamplePrevArrow(props) {
     );
 }
 
-const SimpleSlider = props => {
+const Carousel = props => {
 
     const settings = {
         className: 'carousel__slider',
@@ -128,4 +128,4 @@ const SimpleSlider = props => {
     );
 };
 
-export default SimpleSlider;
+export default Carousel;
