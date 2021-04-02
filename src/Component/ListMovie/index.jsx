@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -187,7 +187,7 @@ export default function ListMovie() {
         }
         return content;
     }
-    const renderListMovie = () => {
+    const renderListMovie = useCallback(() => {
         return (listMovie
             .filter(movie => new Date(movie.ngayKhoiChieu) < new Date())
             .map((movie, index) => {
@@ -223,24 +223,24 @@ export default function ListMovie() {
                     </div>
                 )
             }))
-    }
+    }, [listMovie])
     const renderAndCheckMovie = () => {
         let checkLength = 0;
         listMovie.forEach(movie => {
             if (new Date(movie.ngayKhoiChieu) > new Date()) {
                 checkLength += 1;
             }
-        })
+        });
         if (checkLength > 0) {
             return <Slider {...settings2}>
                 {renderListNewMovie()}
-            </Slider>
+            </Slider>;
         }
         else {
-            return <p className='alertMovieNull'>Hiện tại chưa có phim sắp công chiếu</p>
+            return <p className='alertMovieNull'>Hiện tại chưa có phim sắp công chiếu</p>;
         }
     }
-    const renderListNewMovie = () => {
+    const renderListNewMovie = useCallback(() => {
         return (listMovie
             .filter(movie => new Date(movie.ngayKhoiChieu) > new Date())
             .map((movie, index) => {
@@ -264,9 +264,7 @@ export default function ListMovie() {
                     </div>
                 )
             }))
-    }
-
-
+    }, [listMovie])
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
@@ -275,7 +273,6 @@ export default function ListMovie() {
     const handleClose = () => {
         setOpen(false);
     };
-
     return (
         <>
             <section className={classes.root} id="listMovie">

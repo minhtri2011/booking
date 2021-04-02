@@ -4,6 +4,8 @@ import React, { Fragment, useEffect, Suspense, lazy } from 'react';
 import './App.scss';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { HomeTemplate } from './Template/Home';
+// import { AdminTemplate } from './Template/Admin';
+import { BookingTemplate } from './Template/Booking';
 import { userLogin } from './Config/setting';
 import { useDispatch } from 'react-redux';
 import { LoginAction } from './redux/action/user';
@@ -18,7 +20,11 @@ import Booking from './Pages/Booking'
 import AdminUser from './Pages/AdminUser'
 import AdminMovie from './Pages/AdminMovie'
 import Login from './Pages/Login'
+import Registry from './Pages/Registry'
+import MovieDetail from './Pages/movieDetail'
 import ShowTimeMobile from './Component/ShowTimeMobile';
+import Profile from './Pages/Profile'
+import Aa from './Pages/Aa'
 // // lazyLoad page loading
 // const Home = lazy(() => {
 //   return new Promise((resolve) => {
@@ -80,6 +86,7 @@ import ShowTimeMobile from './Component/ShowTimeMobile';
 function App() {
   const dispatch = useDispatch();
   const isLogin = localStorage.getItem(userLogin);
+  // lấy useName từ local mỗi khi load
   const getUserName = () => {
     if (isLogin) {
       dispatch(LoginAction(JSON.parse(isLogin).taiKhoan))
@@ -109,11 +116,14 @@ function App() {
       <Fragment>
         <Switch>
           <HomeTemplate exact path="/" component={Home} />
-          <HomeTemplate exact path="/booking/:id" component={Booking} />
+          <BookingTemplate exact path="/booking/:id" component={Booking} />
           <HomeTemplate exact path="/admin" component={AdminUser} />
           <HomeTemplate exact path="/admin/movie" component={AdminMovie} />
           <HomeTemplate exact path="/login" component={Login} />
+          <Route exact path="/registry" component={Registry} />
+          <Route exact path="/profile" component={Profile} />
           <HomeTemplate exact path="/ShowTimeMobile" component={ShowTimeMobile} />
+          <HomeTemplate exact path="/MovieDetail/:id" component={MovieDetail} />
         </Switch>
       </Fragment>
     </BrowserRouter>

@@ -1,11 +1,13 @@
 import React, { Fragment } from 'react'
 import { Route } from 'react-router-dom';
-import Header from '../../Layout/Header'
+// import Header from '../../Layout/Header'
 import Footer from '../../Layout/Footer'
+import NavBar from '../../Layout/NavBar';
 const HomeLayout = (props) => {
     return (
         <>
-            <Header />
+            {/* <Header /> */}
+            <NavBar/>
             {props.children}
             <Footer />
         </>

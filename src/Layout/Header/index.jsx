@@ -7,7 +7,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuIcon from '@material-ui/icons/Menu';
-import { HashLink as Link } from 'react-router-hash-link';
+import { Link } from 'react-router-dom';
 import './style.scss';
 import { useSelector } from 'react-redux';
 const useStyles = makeStyles((theme) => ({
@@ -76,7 +76,8 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'center',
     },
 }));
-export default function Header(props) {
+
+export default function Header() {
     const taiKhoan = useSelector((state) => state.userReducer.taiKhoan);
     const renderUserName = () => {
         if (taiKhoan !== '') {
@@ -237,6 +238,19 @@ export default function Header(props) {
             {renderMobileLogout()}
         </Menu>
     );
+    //tạo funtion smooth scroll đến ID
+    const smoothScrollTo = (target) => {
+        if (window.location.pathname === '/') {
+            let a = document.getElementById(target);
+            const { top } = a.getBoundingClientRect();
+            window.scrollTo({
+                top: top + window.pageYOffset,
+                behavior: "smooth"
+            })
+        } else {
+            document.location.href=`/#${target}`;
+        }
+    }
     return (
         <section id="header" className={classes.grow}>
             <AppBar position="static" className="appBar">
@@ -245,14 +259,14 @@ export default function Header(props) {
                         <Link to="/"><img src="/img/web-logo.png" alt="weblogo" width="50px" /></Link>
                     </IconButton>
                     <div className={classes.sectionDesktop + ' ' + classes.menuMid} >
-                        <IconButton disableRipple className={classes.button_mid}>
-                            <Link className="textLink" to="/#listMovie" smooth>Lịch chiếu</Link>
+                        <IconButton disableRipple onClick={() => { smoothScrollTo('listMovie') }} className={classes.button_mid}>
+                            <p className="textLink">Lịch chiếu</p>
                         </IconButton>
-                        <IconButton disableRipple className={classes.button_mid}>
-                            <Link className="textLink" to="/#showTime" smooth>Cụm rạp</Link>
+                        <IconButton disableRipple onClick={() => { smoothScrollTo('showTime') }} className={classes.button_mid}>
+                            <p className="textLink">Cụm rạp</p>
                         </IconButton>
-                        <IconButton disableRipple className={classes.button_mid}>
-                            <Link className="textLink" to="/#apps" smooth>Ứng dụng</Link>
+                        <IconButton disableRipple onClick={() => { smoothScrollTo('apps') }} className={classes.button_mid}>
+                            <p className="textLink">Ứng dụng</p>
                         </IconButton>
                     </div>
                     <div className={classes.sectionDesktop + ' ' + classes.menuRight}>

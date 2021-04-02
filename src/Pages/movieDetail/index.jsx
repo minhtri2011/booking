@@ -2,8 +2,8 @@ import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { movieServices } from '../../Services/movie';
-import MovieDetailHeader from '../../Component/movieDetailHeader';
-import MovieDetailShowTime from '../../Component/movieDetailShowTime';
+import MovieDetailHeader from './../../Component/MovieDetailHeader';
+import MovieDetailShowTime from './../../Component/MovieDetailShowTime';
 
 export default function MovieDetail(props) {
     let [movie, setMovie] = useState({});
@@ -14,9 +14,6 @@ export default function MovieDetail(props) {
             console.log(err);
         })
     })
-    useEffect(() => {
-        window.scrollTo(0,0)
-    }, [])
     return (
         <div>
             <MovieDetailHeader movie={movie}/>

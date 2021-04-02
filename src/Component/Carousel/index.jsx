@@ -66,10 +66,20 @@ const Carousel = props => {
     const handleClose = () => {
         setOpen(false);
     };
-
+    // kiểm tra néu ở trang chủ và có id carousel mói tiến hành add class để không lỗi khi chuyển hướng sang trang khác
+    if (window.location.pathname === '/') {
+        var nav = document.querySelector('#carousel');
+        if (nav) {
+            window.addEventListener('scroll', function () {
+                var nav = document.querySelector('#carousel');
+                console.log(nav);
+                nav.classList.toggle('scrollAction', window.scrollY > 60);
+            })
+        }
+    }
 
     return (
-        <section className='carousel'>
+        <section id='carousel'>
             <Slider {...settings}>
                 <div className="carousel__slide">
                     <div className="carousel__slide-background">
@@ -99,7 +109,7 @@ const Carousel = props => {
                     <img src="https://s3img.vcdn.vn/123phim/2021/03/palm-springs-16146820863959.jpg" alt="" />
                 </div>
             </Slider>
-            <SearchBar/>
+            <SearchBar />
             <Modal
                 aria-labelledby="transition-modal-title"
                 aria-describedby="transition-modal-description"

@@ -7,13 +7,13 @@ import Accordion from '@material-ui/core/Accordion';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import { today } from '../../Config/setting';
 // import { object } from 'yup';
 export default function ShowTime() {
     let [movie, setMovie] = useState([]);
     let [cinemaInfo, setCinema] = useState([]);
     let [cinemaChoice, setCinemaChoice] = useState([]);
     let [movieChoice, setmovieChoice] = useState([]);
-    // useEffect(() => console.log(collapse), [collapse])
     //lấy data movie
     useEffect(() => {
         movieServices.getMovieSchedule().then(res => {
@@ -54,20 +54,11 @@ export default function ShowTime() {
         }
     }
 
-
-    //thiết lập ngày render giao diện
-
-    // let getToDayTime = new Date();
-    // let today = (`${getToDayTime.getFullYear()}-${getToDayTime.getMonth() + 1}-${getToDayTime.getDate()}`);
-
-    //lấy ngày 2019-01-01 làm mẫu vì api không cập nhật từng ngày
-    let today = "2019-01-01";
-    let todayHour = '01';
     // let todayHour = getToDayTime.getHours();
 
     //lọc danh sách cùng ngày nhưng hơn giờ hiện tại
     let getToDayListTime = (value) => {
-        return value.filter(item => item.ngayChieuGioChieu.slice(0, 10) === today && item.ngayChieuGioChieu.slice(11, 13) > todayHour)
+        return value.filter(item => item.ngayChieuGioChieu.slice(0, 10) === today)
     }
     //thực hiện lọc film và push vào một mảng mới để dễ xử lí
     let filterListTime = (value) => {
@@ -104,9 +95,17 @@ export default function ShowTime() {
                     </AccordionSummary>
                     <AccordionDetails className={`showListTimeInfo`}>
                         {lich.filterList?.map((listDateTime, index) => {
-                            return <Link className="timeBooking" key={index} to={`/booking/${listDateTime.maLichChieu}`}>
-                                <span className="timeBooking-start">{listDateTime.ngayChieuGioChieu.slice(11, 16)}</span> ~ {parseFloat(listDateTime.ngayChieuGioChieu.slice(11, 13)) + 2}:{listDateTime.ngayChieuGioChieu.slice(14, 16)}
-                            </Link>
+                            if (new Date(listDateTime.ngayChieuGioChieu).getHours() > new Date().getHours()) {
+                                return <Link className="timeBooking" key={index} to={`/booking/${listDateTime.maLichChieu}`}>
+                                    <span className="timeBooking-start">{listDateTime.ngayChieuGioChieu.slice(11, 16)}</span>
+                                    <span className="timeBooking-end">~ {parseFloat(listDateTime.ngayChieuGioChieu.slice(11, 13)) + 2}:{listDateTime.ngayChieuGioChieu.slice(14, 16)}</span>
+                                </Link>
+                            } else {
+                                return <div className="disableTimeBooking" key={index}>
+                                    <span className="disableTimeBooking-start">{listDateTime.ngayChieuGioChieu.slice(11, 16)}</span>
+                                    <span className="disableTimeBooking-end">~ {parseFloat(listDateTime.ngayChieuGioChieu.slice(11, 13)) + 2}:{listDateTime.ngayChieuGioChieu.slice(14, 16)}</span>
+                                </div>
+                            }
                         })}
                     </AccordionDetails>
                 </Accordion>
@@ -150,58 +149,60 @@ export default function ShowTime() {
     }
 
     return (
-        <section className="showTime" id="showTime">
-            <div className="item_left">
-                {cinemaInfo.map((cinema, index) => {
-                    return (
-                        <button className={cinema.maHeThongRap === cinemaChoice ? "active" : ''} onClick={() => { handleChange(cinema) }} key={index}>
-                            <img className="logo_cinema" src={cinema.logo} alt={cinema.logo} />
-                        </button>
-                    )
-                })}
-            </div>
-            <div className="item_center">
-                {
-                    movie
-                        .filter(cinema => cinema.maHeThongRap === cinemaChoice)
-                        .map((cinema, index) => {
-                            return (
-                                <div key={index}>
-                                    {cinema.lstCumRap
-                                        .map((branch, index) => {
-                                            return (
-                                                <div className={branch.maCumRap === movieChoice ? "cinema_button active" : "cinema_button"} onClick={() => { handleChangeListMovie(branch.maCumRap); }} key={index}>
-                                                    <img className="img_cinema" src="/img/bhd-star-bitexco-15379520642437.jpg" alt="bhd-star-bitexco-15379520642437.jpg" />
-                                                    <div className="content_item_center">
-                                                        <div className="content">
-                                                            <div className="nameBranch">
-                                                                <span>{renderTenCumRap(branch.tenCumRap)}</span>
-                                                            </div>
-                                                            <p className="address">{branch.diaChi}</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            )
-                                        })}
-                                </div>
-                            )
-                        })
-                }
-            </div>
-            <div id="item_right" className="item_right">
-                {movie?.map((cinema, index) => {
-                    return <div key={index}>
-                        {cinema.lstCumRap
-                            .filter(branch => branch.maCumRap === movieChoice)
-                            .map((branch, index) => {
+        <section id="showTime">
+            <div className="showTime_content">
+                <div className="item_left">
+                    {cinemaInfo.map((cinema, index) => {
+                        return (
+                            <button className={cinema.maHeThongRap === cinemaChoice ? "active" : ''} onClick={() => { handleChange(cinema) }} key={index}>
+                                <img className="logo_cinema" src={cinema.logo} alt={cinema.logo} />
+                            </button>
+                        )
+                    })}
+                </div>
+                <div className="item_center">
+                    {
+                        movie
+                            .filter(cinema => cinema.maHeThongRap === cinemaChoice)
+                            .map((cinema, index) => {
                                 return (
                                     <div key={index}>
-                                        {renderMovie(branch)}
+                                        {cinema.lstCumRap
+                                            .map((branch, index) => {
+                                                return (
+                                                    <div className={branch.maCumRap === movieChoice ? "cinema_button active" : "cinema_button"} onClick={() => { handleChangeListMovie(branch.maCumRap); }} key={index}>
+                                                        <img className="img_cinema" src="/img/bhd-star-bitexco-15379520642437.jpg" alt="bhd-star-bitexco-15379520642437.jpg" />
+                                                        <div className="content_item_center">
+                                                            <div className="content">
+                                                                <div className="nameBranch">
+                                                                    <span>{renderTenCumRap(branch.tenCumRap)}</span>
+                                                                </div>
+                                                                <p className="address">{branch.diaChi}</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                )
+                                            })}
                                     </div>
                                 )
-                            })}
-                    </div>
-                })}
+                            })
+                    }
+                </div>
+                <div className="item_right">
+                    {movie?.map((cinema, index) => {
+                        return <div key={index}>
+                            {cinema.lstCumRap
+                                .filter(branch => branch.maCumRap === movieChoice)
+                                .map((branch, index) => {
+                                    return (
+                                        <div key={index}>
+                                            {renderMovie(branch)}
+                                        </div>
+                                    )
+                                })}
+                        </div>
+                    })}
+                </div>
             </div>
         </section>
     )
