@@ -58,7 +58,8 @@ export default function ShowTime() {
 
     //lọc danh sách cùng ngày nhưng hơn giờ hiện tại
     let getToDayListTime = (value) => {
-        return value.filter(item => item.ngayChieuGioChieu.slice(0, 10) === today)
+        return value.filter(item => new Date(item.ngayChieuGioChieu).toLocaleDateString('en-GB') === new Date(today).toLocaleDateString('en-GB') && new Date(item.ngayChieuGioChieu).getHours() > new Date().getHours())
+        // return value.filter(item => item.ngayChieuGioChieu.slice(0, 10) === today)
     }
     //thực hiện lọc film và push vào một mảng mới để dễ xử lí
     let filterListTime = (value) => {

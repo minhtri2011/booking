@@ -23,7 +23,8 @@ import Login from './Pages/Login'
 import Registry from './Pages/Registry'
 import MovieDetail from './Pages/movieDetail'
 import ShowTimeMobile from './Component/ShowTimeMobile';
-import Profile from './Pages/Profile'
+import Profile from './Pages/Profile';
+// import './scss/main.scss';
 import Aa from './Pages/Aa'
 // // lazyLoad page loading
 // const Home = lazy(() => {

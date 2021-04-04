@@ -1,0 +1,52 @@
+#navBarMobile {
+    opacity: 0.5;
+    visibility: hidden;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.541);
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    transition: all.5s ease-in-out;
+    -webkit-transition: all.5s ease-in-out;
+    -moz-transition: all.5s ease-in-out;
+    -ms-transition: all.5s ease-in-out;
+    -o-transition: all.5s ease-in-out;
+    .menuNavMobile {
+        position: absolute;
+        right: -100%;
+        top: 0;
+        width: 0vw;
+        height: 100vh;
+        background-color: #fff;
+        transition: all 0.8s ease-in-out;
+        -webkit-transition: all 0.8s ease-in-out;
+        -moz-transition: all 0.8s ease-in-out;
+        -ms-transition: all 0.8s ease-in-out;
+        -o-transition: all 0.8s ease-in-out;
+        ul {
+            list-style-type: none;
+            li {
+                padding-left: 1rem;
+                text-decoration: none;
+                line-height: 60px;
+                height: 60px;
+                font-size: 1.4rem;
+                width: 100%;
+                &:nth-child(1) {
+                    box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14),
+                        0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+                }
+            }
+        }
+    }
+}
+.toggle {
+    visibility: visible !important;
+    opacity: 1 !important;
+    transition-property: left;
+    .menuNavMobile {
+        right: 0% !important;
+        width: 60vw !important;
+    }
+}

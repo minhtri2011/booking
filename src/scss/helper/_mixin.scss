@@ -1,54 +1,46 @@
 @mixin mediaQueryMax($type) {
-    @if $type==getBreakpoints('extra-large') {
-        @media screen and (max-width: getBreakpoints('extra-large')) {
+    @if $type==getBreakpoints("extra-large") {
+        @media screen and (max-width: getBreakpoints("extra-large")) {
             @content;
         }
-    }
-    @else if $type==getBreakpoints('large') {
-        @media screen and (max-width: getBreakpoints('large')) {
+    } @else if $type==getBreakpoints("large") {
+        @media screen and (max-width: getBreakpoints("large")) {
             @content;
         }
-    }
-    @else if $type==getBreakpoints('medium') {
-        @media screen and (max-width: getBreakpoints('medium')) {
+    } @else if $type==getBreakpoints("medium") {
+        @media screen and (max-width: getBreakpoints("medium")) {
             @content;
         }
-    }
-    @else if $type==getBreakpoints('small'){
-        @media screen and (max-width: getBreakpoints('small')) {
+    } @else if $type==getBreakpoints("small") {
+        @media screen and (max-width: getBreakpoints("small")) {
             @content;
         }
-    }
-    @else {
-        @media screen and (max-width: getBreakpoints('extra-small')) {
+    } @else {
+        @media screen and (max-width: getBreakpoints("extra-small")) {
             @content;
         }
     }
 }
 
 @mixin mediaQueryMin($type) {
-    @if $type==getBreakpoints('extra-large') {
-        @media screen and (min-width: getBreakpoints('extra-large')) {
+    @if $type==getBreakpoints("extra-large") {
+        @media screen and (min-width: getBreakpoints("extra-large")) {
             @content;
         }
-    }
-    @else if $type==getBreakpoints('large') {
-        @media screen and (min-width: getBreakpoints('large')) {
+    } @else if $type==getBreakpoints("large") {
+        @media screen and (min-width: getBreakpoints("large")) {
             @content;
         }
-    }
-    @else if $type==getBreakpoints('medium') {
-        @media screen and (min-width: getBreakpoints('medium')) {
+    } @else if $type==getBreakpoints("medium") {
+        @media screen and (min-width: getBreakpoints("medium")) {
             @content;
         }
-    }
-    @else if $type==getBreakpoints('small'){
-        @media screen and (min-width: getBreakpoints('small')) {
+    } @else if $type==getBreakpoints("small") {
+        @media screen and (min-width: getBreakpoints("small")) {
             @content;
         }
-    }
-    @else {
-        @media screen and (min-width: getBreakpoints('extra-small')) {
+    } @else {
+        @media screen and (min-width: getBreakpoints("extra-small")) {
             @content;
         }
     }

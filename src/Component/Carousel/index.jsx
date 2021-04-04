@@ -66,18 +66,13 @@ const Carousel = props => {
     const handleClose = () => {
         setOpen(false);
     };
-    // kiểm tra néu ở trang chủ và có id carousel mói tiến hành add class để không lỗi khi chuyển hướng sang trang khác
-    if (window.location.pathname === '/') {
+    // tạo sự kiện scroll đến 60px sẽ thêm padding tương ứng với chiều cao của navBar để không có hiện tượng giật màn hình khi scroll
+    window.addEventListener('scroll', function () {
         var nav = document.querySelector('#carousel');
         if (nav) {
-            window.addEventListener('scroll', function () {
-                var nav = document.querySelector('#carousel');
-                console.log(nav);
-                nav.classList.toggle('scrollAction', window.scrollY > 60);
-            })
+            nav.classList.toggle('scrollAction', window.scrollY > 60);
         }
-    }
-
+    })
     return (
         <section id='carousel'>
             <Slider {...settings}>
