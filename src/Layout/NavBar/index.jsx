@@ -10,11 +10,11 @@ export default function NavBar() {
     // tạo hiệu ứng sticky nav bar 
     window.addEventListener('scroll', function () {
         var nav = document.querySelector('#navBar');
-        nav.classList.toggle('sticky', window.scrollY > 60);
+        if (nav) { nav.classList.toggle('sticky', window.scrollY > 60); }
     })
     window.addEventListener('scroll', function () {
         var nav = document.querySelector('#navBar');
-        nav.classList.toggle('active', window.scrollY > 250);
+        if (nav) { nav.classList.toggle('active', window.scrollY > 250); }
     })
 
     window.addEventListener('click', (e) => {

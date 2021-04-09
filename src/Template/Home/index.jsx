@@ -7,7 +7,7 @@ const HomeLayout = (props) => {
     return (
         <>
             {/* <Header /> */}
-            <NavBar/>
+            <NavBar />
             {props.children}
             <Footer />
         </>
@@ -19,4 +19,4 @@ export const HomeTemplate = (props) => (
             <props.component {...propsComponent} />
         </HomeLayout>
     )} />
-) 
+)

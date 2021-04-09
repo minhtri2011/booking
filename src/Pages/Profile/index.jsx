@@ -1,177 +1,122 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, Fragment } from 'react';
-import PropTypes from 'prop-types';
-import AppBar from '@material-ui/core/AppBar';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import Box from '@material-ui/core/Box';
-import './style.scss';
-import { makeStyles } from '@material-ui/core/styles';
-import Modal from '@material-ui/core/Modal';
-import Backdrop from '@material-ui/core/Backdrop';
-import Grow from '@material-ui/core/Grow';
-import { useState } from 'react';
-import { userServices } from '../../Services/user';
+import React, { useEffect, useState } from 'react';
 import { userLogin } from '../../Config/setting';
-import Moment from 'react-moment';
-function TabPanel(props) {
-    const { children, value, index, ...other } = props;
-    return (
-        <div
-            role="tabpanel"
-            hidden={value !== index}
-            id={`simple-tabpanel-${index}`}
-            aria-labelledby={`simple-tab-${index}`}
-            {...other}
-        >
-            {value === index && (
-                <Box p={3}>
-                    <Fragment>{children}</Fragment>
-                </Box>
-            )}
-        </div>
-    );
-}
-const useStyles = makeStyles((theme) => ({
-    modal: {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-}));
-
-TabPanel.propTypes = {
-    children: PropTypes.node,
-    index: PropTypes.any.isRequired,
-    value: PropTypes.any.isRequired,
-};
-
-function a11yProps(index) {
-    return {
-        id: `simple-tab-${index}`,
-        'aria-controls': `simple-tabpanel-${index}`,
-    };
-}
+import { userServices } from '../../Services/user';
+import { Link } from 'react-router-dom';
+import Accordion from '@material-ui/core/Accordion';
+import AccordionSummary from '@material-ui/core/AccordionSummary';
+import AccordionDetails from '@material-ui/core/AccordionDetails';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import './style.scss';
+import { Pagination } from '../../Component/Pagination';
+import { Modal } from '../../Component/Modal';
+import VisibilityIcon from '@material-ui/icons/Visibility';
+import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 
 export default function Profile() {
-    const [value, setValue] = React.useState(0);
-    let [listChair, setListChair] = useState([]);
     let [user, setUser] = useState([]);
-    let getUserFromLocal = JSON.parse(localStorage.getItem(userLogin)).taiKhoan;
-    const nameUser = {
-        taiKhoan: getUserFromLocal
-    }
-    // let maLoaiNguoiDung = JSON.parse(localStorage.getItem(userLogin)).maLoaiNguoiDung;
-    // let maNhom = JSON.parse(localStorage.getItem(userLogin)).maNhom;
+    const getUserFromLocal = JSON.parse(localStorage.getItem(userLogin)).taiKhoan;
+    let nameUser = { taiKhoan: getUserFromLocal }
     useEffect(() => {
         userServices.getUserInfo(nameUser).then(res => {
             setUser(res.data);
         }).catch(err => {
             console.log(err);
         })
-    }, [nameUser])
-    const handleChange = (event, newValue) => {
-        setValue(newValue);
-    };
-    // modal
-    const classes = useStyles();
-    const [open, setOpen] = React.useState(false);
-
-    const handleClose = () => {
-        setOpen(false);
-    };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
+    const handleToggleModal = () => {
+        let domModal = document.querySelector('.modal')
+        domModal.classList.toggle('toggleModal')
+    }
+    window.addEventListener('click', (e) => {
+        let domModal = document.querySelector('.inputModal');
+        let domBtn = document.querySelector('.btn-changeInfo');
+        if (domModal && domBtn) {
+            let domModalContent = domModal.querySelector('.modal');
+            if (domModalContent.classList.contains('toggleModal') && !domModalContent.contains(e.target) && !domBtn.contains(e.target)) {
+                domModalContent.classList.toggle('toggleModal');
+            }
+        }
+    })
+    const showPass = () => {
+        let domInput = document.querySelector('.inputText');
+        if (domInput.type === 'password') {
+            return domInput.type = 'text';
+        } return domInput.type = 'password'
+    }
     return (
-        <div className="profileTabs">
-            <AppBar position="static">
-                <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
-                    <Tab label="Thông tin cá nhân" {...a11yProps(0)} />
-                    <Tab label="Lịch sử đặt vé" {...a11yProps(1)} />
-                </Tabs>
-            </AppBar>
-            <TabPanel value={value} index={0}>
-                <div className="user_info">
-                    <div className="info_left">
-                        <p>Họ tên: {user.hoTen}</p>
-                        <p>Email: {user.email}</p>
-                        <p>Số điện thoại: {user.soDT}</p>
-                    </div>
-                    <div className="info_right">
-                        <p>Tài khoản: {user.taiKhoan}</p>
-                        <p>Mật khẩu: {user.matKhau}</p>
-                    </div>
+        <div id='profile'>
+            <div className="personalInformation">
+                <Link className='btn_comback' to='/'><p>CineX</p></Link>
+                <div className="avtImg">
+                    <img src="./img/profile/avt.jfif" alt="" />
                 </div>
-            </TabPanel>
-            <TabPanel value={value} index={1}>
-                <table className="table">
-                    <thead className="thead">
-                        <tr>
-                            <td>Stt</td>
-                            <td>Tên phim</td>
-                            <td>Ngày đặt</td>
-                            <td className="mid">Ghế đã đặt</td>
-                            <td className="mid">Thời lượng phim</td>
-                            <td>Giá vé</td>
-                        </tr>
-                    </thead>
-                    <tbody className="tbody">
-                        {user.thongTinDatVe?.map((movie, index) => {
-                            return <tr className="item" key={index}>
-                                <td>{index + 1}</td>
-                                <td>{movie.tenPhim}</td>
-                                <td><Moment format="DD-MM-YYYY LT">{movie.ngayDat}</Moment></td>
-                                <td>
-                                    <button className="detail_btn" type="button" onClick={
-                                        () => {
-                                            setOpen(true);
-                                            setListChair(movie.danhSachGhe);
-                                        }
-                                    }>
-                                        Chi tiết
-                                    </button>
-                                </td>
-                                <td className="mid">{movie.thoiLuongPhim} phút</td>
-                                <td>{movie.giaVe}</td>
-                            </tr>
+                <div className="nameUser">
+                    <p>{user.hoTen}</p>
+                </div>
+                <div className="inforUser">
+                    <p>Số điện thoại: <span>{user.soDT}</span></p>
+                    <p>Email: <span>{user.email}</span></p>
+                </div>
+                <button className='btn-changeInfo' onClick={() => handleToggleModal()}>Đổi thông tin</button>
+                <div className="inputModal">
+                    <Modal>
+                        <p className='updateInfo'>Cập nhật thông tin cá nhân</p>
+                        <form>
+                            <label htmlFor="account">Tài khoản:</label>
+                            <input name='account' type="text" disabled defaultValue={user.taiKhoan} />
+                            <label htmlFor="account">Họ tên:</label>
+                            <input name='account' type="text" defaultValue={user.hoTen} />
+                            <label htmlFor="account">Mật khẩu:</label>
+                            <div className="showPass">
+                                <input className='inputText' name='account' type="password" autoComplete="off" defaultValue={user.matKhau} />
+                                <input className='showPassBtn' onClick={() => showPass()} type="checkbox" />
+                                <div className='checkmark'>
+                                    <div className="checked"><VisibilityIcon /></div>
+                                    <div className="unchecked"><VisibilityOffIcon /></div>
+                                </div>
+                            </div>
+                            <label htmlFor="account">Nhập lại mật khẩu:</label>
+                            <input name='account' type="password" autoComplete="off" defaultValue={user.matKhau} />
+                            <label htmlFor="account">Email:</label>
+                            <input name='account' type="text" defaultValue={user.email} />
+                            <label htmlFor="account">Số điện thoại:</label>
+                            <input name='account' type="text" defaultValue={user.soDT} />
+                            <button>cập nhật</button>
+                        </form>
+                    </Modal>
+                </div>
+            </div>
+            <div className="ticketBookingHistory">
+                <p className='title'>Lịch sử đặt vé</p>
+                <Pagination itemPerPage={10}>
+                    {user.thongTinDatVe
+                        ?.sort((a, b) => a.ngayDat < b.ngayDat ? 1 : -1)
+                        ?.map((item, index) => {
+                            return <Accordion key={index}>
+                                <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                                    <div className='title_accordion' key={index}>
+                                        <p>Tên phim: <span>{item.tenPhim}</span></p>
+                                        <p>Giá vé: <span>{item.giaVe}</span></p>
+                                        <p>Ngày đặt vé:
+                                        <span> {new Date(item.ngayDat).toLocaleDateString('en-GB')}</span>
+                                            <span> {new Date(item.ngayDat).toLocaleTimeString('en-US', { hour12: true })}</span></p>
+                                    </div>
+                                </AccordionSummary>
+                                <AccordionDetails style={{ padding: '30px' }}>
+                                    {item.danhSachGhe.map((historyBooking, index) => {
+                                        return <div className='content_accordion' key={index}>
+                                            <p>{historyBooking.tenHeThongRap}</p>
+                                            <p>{historyBooking.tenRap}</p>
+                                            <p>Ghế {historyBooking.tenGhe}</p>
+                                        </div>
+                                    })}
+                                </AccordionDetails>
+                            </Accordion>
                         })}
-                    </tbody>
-                </table>
-            </TabPanel>
-            {/* modal history */}
-            <Modal
-                aria-labelledby="transition-modal-title"
-                aria-describedby="transition-modal-description"
-                className={classes.modal}
-                open={open}
-                onClose={handleClose}
-                closeAfterTransition
-                BackdropComponent={Backdrop}
-                BackdropProps={{
-                    timeout: 500,
-                }}
-            >
-                <Grow in={open}>
-                    <div className="modalPopup">
-                        <table >
-                            <thead>
-                                <tr>
-                                    <td>Tên hệ thống rạp</td>
-                                    <td>Tên ghế</td>
-                                    <td>Tên rạp</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {listChair.map((chair, index) => {
-                                    return <tr key={index}>
-                                        <td>{chair.tenHeThongRap}</td>
-                                        <td>{chair.tenRap}</td>
-                                        <td>{chair.tenGhe}</td>
-                                    </tr>
-                                })}
-                            </tbody>
-                        </table>
-                    </div>
-                </Grow>
-            </Modal>
-        </div >
-    );
+                </Pagination>
+            </div>
+
+        </div>
+    )
 }

@@ -28,8 +28,8 @@ export default function SearchBar() {
     }, []);
     //firstRender dùng để không tự khởi chạy hàm useEfect lấy danh sách rạp, ngăn hiện lỗi lúc chưa set searchID
     const firstRender = useRef(false);
+    
     useEffect(() => {
-
         if (firstRender.current && searchID !== '') {
             movieServices.getMovieDetail(searchID).then(res => {
                 // tạo hiệu ứng tìm kiếm và hiện list option khi hoàn tất push data lên state cinema
@@ -82,9 +82,10 @@ export default function SearchBar() {
             setID();
             setSearch(
                 {
-                    ...search,
                     Phim: name,
                     Rap: 'Đang tìm rạp',
+                    NgayXem: '',
+                    XuatChieu: '',
                 }
             );
         }
@@ -96,9 +97,13 @@ export default function SearchBar() {
             arrItem.push(i);
         })
         setDate(arrItem)
+        setID();
+        setTime();
         setSearch({
             ...search,
             Rap: item.tenCumRap,
+            NgayXem: '',
+            XuatChieu: '',
         })
         setTimeout(() => {
             document.querySelector(".selectShowTimes").classList.add('open');
@@ -109,11 +114,13 @@ export default function SearchBar() {
         setSearch({
             ...search,
             NgayXem: day,
+            XuatChieu: '',
         });
         setTime(dateOfWeek);
         setTimeout(() => {
             document.querySelector(".selectTime").classList.add('open');
         }, 1);
+        setID();
     }
     const handleClickSearchTime = (gio, item) => {
         setSearch({
@@ -206,7 +213,6 @@ export default function SearchBar() {
                     <p>{weekdays}</p>
                     <span>{dayOfWeeks}</span>
                 </li>
-                // return <li  key={index}>{item}</li>
             })
         }
     }
@@ -214,16 +220,18 @@ export default function SearchBar() {
         if (!time || time.length === 0) {
             return <li>Vui lòng chọn phim, rạp và ngày xem</li>
         } else {
-            return date.map((item, index) => {
-                let days = new Date(item.ngayChieuGioChieu).toLocaleString('en-GB');
-                if (time === days.slice(0, days.indexOf(','))) {
+            return date
+                .filter(item => time === (getDateTimeAPI(item.ngayChieuGioChieu)).slice(0, (getDateTimeAPI(item.ngayChieuGioChieu)).indexOf(',')))
+                .map((item, index) => {
                     let getTime = new Date(item.ngayChieuGioChieu).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-                    return <li onClick={() => handleClickSearchTime(getTime, item)} key={index}>
+                    return <li key={index} onClick={() => handleClickSearchTime(getTime, item)} >
                         {getTime}
                     </li>
-                }
-            })
+                })
         }
+    }
+    const getDateTimeAPI = (value) => {
+        return new Date(value).toLocaleString('en-GB')
     }
     const renderBtnBuyTicket = () => {
         if (!getID || getID.length === 0) {

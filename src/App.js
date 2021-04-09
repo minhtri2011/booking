@@ -25,7 +25,6 @@ import MovieDetail from './Pages/movieDetail'
 import ShowTimeMobile from './Component/ShowTimeMobile';
 import Profile from './Pages/Profile';
 // import './scss/main.scss';
-import Aa from './Pages/Aa'
 // // lazyLoad page loading
 // const Home = lazy(() => {
 //   return new Promise((resolve) => {
