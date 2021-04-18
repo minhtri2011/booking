@@ -34,16 +34,6 @@ export class Services {
             data: account
         })
     }
-    updateUser = (user) => {
-        return axios({
-            url: `${domain}/QuanLyNguoiDung/CapNhatThongTinNguoiDung`,
-            method: 'PUT',
-            data: user,
-            header: {
-                'Authorization': 'Bearer ' + localStorage.getItem(token),
-            }
-        })
-    }
     deleteUser = (user) => {
         return axios({
             url: `${domain}/QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=${user}`,

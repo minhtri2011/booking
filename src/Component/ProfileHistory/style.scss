@@ -1,0 +1,100 @@
+@import "../../scss/main.scss";
+#profile {
+    .profileHistory {
+        scrollbar-width: thin;
+        scrollbar-color: #c2bebe #e8e3e3;
+        /* Works on Chrome, Edge, and Safari */
+        &::-webkit-scrollbar {
+            width: 5px;
+        }
+        &::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        &::-webkit-scrollbar-thumb {
+            background-color: rgb(156, 156, 156);
+        }
+        width: 75vw;
+        max-height: 100vh;
+        overflow-y: auto;
+        .title {
+            font-size: 2rem;
+            font-weight: bolder;
+            padding: 50px 20px 30px;
+        }
+        .pagination {
+            padding: 0 30px;
+            .MuiAccordion-root {
+                &:nth-child(2n-1) {
+                    background-color: rgba(255, 153, 57, 0.493);
+                }
+                .MuiAccordionSummary-root {
+                    .MuiAccordionSummary-content {
+                        .title_accordion {
+                            display: grid;
+                            grid-template-columns: repeat(3, 1fr);
+                            width: 100%;
+                            align-items: center;
+                            p {
+                                font-weight: 600;
+                                font-size: 1rem;
+                                line-height: 1.5rem;
+                                span {
+                                    font-weight: normal;
+                                }
+                            }
+                        }
+                    }
+                }
+                .content_accordion {
+                    width: 100%;
+                    display: flex;
+                    // grid-template-columns: repeat(3, 1fr);
+                    p {
+                        padding: 0 10px;
+                    }
+                }
+            }
+            .paginationButton {
+                padding: 20px;
+                justify-content: center;
+                align-items: center;
+                display: flex;
+                .btn_pagination {
+                    cursor: pointer;
+                    background-color: white;
+                    border: 2px solid black;
+                    border-radius: 5px;
+                    font-weight: bolder;
+                    margin-right: 10px;
+                    height: 35px;
+                    width: 35px;
+                    outline: none;
+                    -webkit-border-radius: 5px;
+                    -moz-border-radius: 5px;
+                    -ms-border-radius: 5px;
+                    -o-border-radius: 5px;
+                    font-size: 1rem;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    svg {
+                        height: 80%;
+                        width: 80%;
+                    }
+                }
+                .active {
+                    background-color: #000000;
+                    color: white;
+                    cursor: default;
+                }
+            }
+        }
+    }
+}
+@include mediaQueryMax(getBreakpoints("large")) {
+    #profile {
+        .profileHistory {
+            width: 100vw;
+        }
+    }
+}

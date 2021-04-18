@@ -1,0 +1,171 @@
+@import "../../scss/main.scss";
+#profile {
+    .profileInfo {
+        width: 25vw;
+        min-height: 100vh;
+        padding: 5px;
+        // background-color: rgb(250, 151, 71);
+        background-color: rgba(255, 153, 0, 0.6);
+        box-shadow: -105px 30px 40px 100px rgba(0, 0, 0, 0.53);
+        -webkit-box-shadow: -105px 30px 40px 100pxrgba (0, 0, 0, 0.53);
+        -moz-box-shadow: -105px 30px 40px 100px rgba(0, 0, 0, 0.53);
+        border-radius: 0 50px 50px 0;
+        -webkit-border-radius: 0 50px 50px 0;
+        -moz-border-radius: 0 50px 50px 0;
+        -ms-border-radius: 0 50px 50px 0;
+        -o-border-radius: 0 50px 50px 0;
+        .headerProfile {
+            display: flex;
+            justify-content: space-between;
+            .btn_comback {
+                text-decoration: none;
+                p {
+                    color: black;
+                    font-weight: bolder;
+                    font-size: 2.5rem;
+                    font-family: Damion;
+                    outline: none;
+                    border: none;
+                }
+            }
+            .btn_Menu {
+                width: 50px;
+                height: 50px;
+            }
+        }
+        
+        .info_Content {
+            @include transition(all .5s);
+            visibility: hidden;
+            max-height: 0;
+            .avtNameUser {
+                .avtImg {
+                    display: flex;
+                    justify-content: center;
+                    img {
+                        width: 150px;
+                        border-radius: 50%;
+                        -webkit-border-radius: 50%;
+                        -moz-border-radius: 50%;
+                        -ms-border-radius: 50%;
+                        -o-border-radius: 50%;
+                        -webkit-box-shadow: 9px 13px 50px -9px rgba(0, 0, 0, 0.53);
+                        -moz-box-shadow: 9px 13px 50px -9px rgba(0, 0, 0, 0.53);
+                        box-shadow: 9px 13px 50px -9px rgba(0, 0, 0, 0.53);
+                    }
+                }
+                .nameUser {
+                    display: flex;
+                    justify-content: center;
+                    p {
+                        font-size: 1.5rem;
+                        padding: 1rem;
+                    }
+                }
+            }
+            .infoUser {
+                .inforUser {
+                    p {
+                        font-size: 1rem;
+                        font-weight: bolder;
+                        line-height: 2rem;
+                        span {
+                            font-weight: normal;
+                        }
+                    }
+                }
+                .btn-changeInfo {
+                    font-size: 1.2rem;
+                    font-weight: bold;
+                    padding: 15px 25px;
+                    @include boxShadow(5px 5px 10px 0px rgba(0, 0, 0, 0.377));
+                    border: none;
+                    outline: none;
+                    cursor: pointer;
+                    margin: auto;
+                    left: 50%;
+                    border-radius: 10px;
+                    @include borderRadius(10px);
+                    display: block;
+                    margin: 20px auto;
+                    border: 3px solid #fff;
+                    background-color: #fff;
+                    border: 3px solid black;
+                    transition: all 0.2s;
+                    -webkit-transition: all 0.2s;
+                    -moz-transition: all 0.2s;
+                    -ms-transition: all 0.2s;
+                    -o-transition: all 0.2s;
+                    &:hover {
+                        background-color: #000000;
+                        border: 3px solid #fff;
+                        color: #fff;
+                    }
+                }
+            }
+        }
+        .active{
+            visibility: visible;
+            max-height: 100%;
+        }
+    }
+}
+@font-face {
+    font-family: Damion;
+    src: url("../../Font/Damion-Regular.ttf");
+}
+@include mediaQueryMax(getBreakpoints("large")) {
+    #profile {
+        .profileInfo {
+            width: 100vw;
+            min-height: 100%;
+            @include borderRadius(0);
+            @include boxShadow(0px -70px 90px 50px rgb(0, 0, 0));
+            .info_Content {
+                display: flex;
+                gap: 50px;
+                padding: 0 100px;
+                align-items: center;
+                .avtImg {
+                    justify-content: center;
+                    img {
+                        width: 150px;
+                    }
+                }
+            }
+        }
+    }
+}
+@include mediaQueryMax(getBreakpoints("medium")) {
+    #profile {
+        .profileInfo {
+            .info_Content {
+                // display: block;
+                padding: 0 10%;
+                .inforUser {
+                    text-align: center;
+                }
+            }
+        }
+    }
+}
+@include mediaQueryMax(getBreakpoints("extra-small")) {
+    #profile {
+        .profileInfo {
+            position: relative;
+            // @include transform(scale(.5));
+            .info_Content {
+                display: block;
+                padding: 0 10%;
+                .avtImg {
+                    img {
+                        width: 100px;
+                    }
+                }
+                .inforUser {
+                    text-align: center;
+                }
+            }
+        }
+    }
+}

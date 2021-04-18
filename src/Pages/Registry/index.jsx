@@ -93,7 +93,7 @@ export default function SignUp(props) {
                         <h1>Đăng ký</h1>
                         <div className="input_box">
                             <Field onChange={formikProps.handleChange} placeholder="Nhập tài khoản" type="text" name="taiKhoan" id="taiKKhoan" />
-                            <label htmlFor='taiKKhoan'>Tài khoản</label>
+                            <label htmlFor='taiKhoan'>Tài khoản</label>
                         </div>
                         <ErrorMessage name="taiKhoan" render={(msg) => <div className="errText">{msg}</div>} />
                         <div className="input_box">

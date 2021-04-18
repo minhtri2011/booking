@@ -7,4 +7,10 @@
 }
 html {
   scroll-behavior: smooth;
+  min-height: 100vh;
+  height: -webkit-fill-available;
+}
+body{
+  height: 100vh;
+  min-height: -webkit-fill-available;
 }

@@ -1,4 +1,6 @@
 import React, { Children, useState } from 'react';
+import FirstPageIcon from '@material-ui/icons/FirstPage';
+import LastPageIcon from '@material-ui/icons/LastPage';
 import './style.scss';
 export const Pagination = (props) => {
     let { itemPerPage } = props;
@@ -20,25 +22,25 @@ export const Pagination = (props) => {
     const renderPaginationButton = () => {
         let btnArray = [];
         if (pages > 1) {
-            btnArray.push(<button className={`btn_pagination ${currentPage === 1 ? 'active' : ''}`} key={1} onClick={() => setcurrentPage(1)}>{1}</button>);
+            // btnArray.push(<button className={`btn_pagination ${currentPage === 1 ? 'active' : ''}`} key={1} onClick={() => setcurrentPage(1)}>{1}</button>);
             if (pages > 5) {
-                if (currentPage - 2 > 1 && currentPage + 1 <= pages) {
-
-                    for (let i = (currentPage + 2 >= pages ? pages - 5 : currentPage - 2); i < (currentPage + 2 >= pages ? pages : currentPage + 3); i++) {
+                // if (currentPage - 2 > 1 && currentPage + 1 <= pages) {
+                if (currentPage - 2 > 1 && currentPage <= pages) {
+                    for (let i = (currentPage + 2 >= pages ? pages - 4 : currentPage - 2); i <= (currentPage + 2 >= pages ? pages : currentPage + 2); i++) {
                         btnArray.push(<button className={`btn_pagination ${currentPage === i ? 'active' : ''}`} onClick={() => setcurrentPage(i)} key={i}>{i}</button>);
                     }
                 } else {
-                    for (let i = 2; i <= 6; i++) {
+                    for (let i = 1; i <= 5; i++) {
                         btnArray.push(<button className={`btn_pagination ${currentPage === i ? 'active' : ''}`} onClick={() => setcurrentPage(i)} key={i}>{i}</button>);
                     }
                 }
             }
             else {
-                for (let i = 2; i <= pages - 1; i++) {
+                for (let i = 1; i <= pages; i++) {
                     btnArray.push(<button className={`btn_pagination ${currentPage === i ? 'active' : ''}`} onClick={() => setcurrentPage(i)} key={i}>{i}</button>);
                 }
             }
-            btnArray.push(<button className={`btn_pagination ${currentPage === pages ? 'active' : ''}`} key={pages} onClick={() => setcurrentPage(pages)}>{pages}</button>);
+            // btnArray.push(<button className={`btn_pagination ${currentPage === pages ? 'active' : ''}`} key={pages} onClick={() => setcurrentPage(pages)}>{pages}</button>);
 
         }
         return btnArray;
@@ -48,7 +50,10 @@ export const Pagination = (props) => {
         <div className='pagination'>
             {renderChildren()}
             <div className="paginationButton">
+                <button className={`btn_pagination`} onClick={() => setcurrentPage(1)}><FirstPageIcon /></button>
+                {/* <FirstPageIcon className={`btn_pagination`} onClick={() => setcurrentPage(1)} /> */}
                 {renderPaginationButton()}
+                <button className={`btn_pagination`} onClick={() => setcurrentPage(pages)}><LastPageIcon /></button>
             </div>
         </div>
     )
