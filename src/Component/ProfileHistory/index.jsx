@@ -4,13 +4,13 @@ import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { Pagination } from '../../Component/Pagination';
-import './style.scss';
 export default function ProfileHistory(props) {
-    const { user } = props
+    const { user } = props;
+    
     return (
         <div className="profileHistory">
             <p className='title'>Lịch sử đặt vé</p>
-            <Pagination itemPerPage={10}>
+            <Pagination itemPerPage={10} scrollToEle={'.profileHistory'}>
                 {user.thongTinDatVe
                     ?.sort((a, b) => a.ngayDat < b.ngayDat ? 1 : -1)
                     ?.map((item, index) => {
@@ -24,7 +24,7 @@ export default function ProfileHistory(props) {
                                         <span> {new Date(item.ngayDat).toLocaleTimeString('en-US', { hour12: true })}</span></p>
                                 </div>
                             </AccordionSummary>
-                            <AccordionDetails style={{ padding: '30px' }}>
+                            <AccordionDetails>
                                 {item.danhSachGhe.map((historyBooking, index) => {
                                     return <div className='content_accordion' key={index}>
                                         <p>{historyBooking.tenHeThongRap}</p>

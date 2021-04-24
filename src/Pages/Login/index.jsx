@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import './style.scss';
 import { token, userLogin } from '../../Config/setting';
 import { userServices } from '../../Services/user';
 import { Link } from 'react-router-dom';

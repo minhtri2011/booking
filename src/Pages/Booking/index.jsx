@@ -7,7 +7,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Zoom from '@material-ui/core/Zoom';
-import './style.scss';
 import { userLogin } from '../../Config/setting';
 import { userServices } from '../../Services/user';
 

@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useRef, useEffect, useState } from 'react';
-import './style.scss';
 import { movieServices } from '../../Services/movie'
 import { today } from '../../Config/setting';
 import { Link } from 'react-router-dom';

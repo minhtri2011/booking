@@ -1,0 +1,38 @@
+#profile {
+    .profileBar {
+        display: none;
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        width: 100vw;
+        background-color: #fff;
+        justify-content: center;
+        .icon {
+            margin: 0 5px;
+            height: 50px;
+            width: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            @include borderRadius(50%);
+            &:nth-child(2) {
+                background-color: #fff;
+                position: relative;
+                top: -15px;
+                &::after{
+                    position: absolute;
+                    z-index: 999;
+                    background-color: red;
+                    height: 70px;
+                    width: 70px;
+                    top: 0;
+                    left: 0;
+                    MuiSvgIcon-root{
+                        color: orange !important;
+                    }
+                }
+            }
+        }
+    }
+}

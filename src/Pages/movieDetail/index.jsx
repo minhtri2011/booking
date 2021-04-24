@@ -10,14 +10,15 @@ export default function MovieDetail(props) {
     useEffect(() => {
         movieServices.getMovieDetail(props.match.params.id).then(res => {
             setMovie(res.data);
+            console.log(res.data);
         }).catch(err => {
             console.log(err);
         })
-    })
+    },[])
     return (
-        <div>
+        <>
             <MovieDetailHeader movie={movie}/>
             <MovieDetailShowTime movie={movie}/>
-        </div>
+        </>
     )
 }

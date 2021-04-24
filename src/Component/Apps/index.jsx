@@ -1,6 +1,5 @@
 import React from 'react';
 import Slider from "react-slick";
-import './style.scss';
 export default function Apps() {
     const settings = {
         infinite: true,

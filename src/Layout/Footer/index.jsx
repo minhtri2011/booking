@@ -2,7 +2,6 @@ import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import { Container } from '@material-ui/core';
 import Hidden from '@material-ui/core/Hidden';
-import './style.scss';
 
 export default function CenteredGrid() {
     return (

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -16,7 +16,6 @@ import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 import Moment from 'react-moment';
 import Fade from '@material-ui/core/Fade';
 import { Link } from 'react-router-dom';
-import './style.scss';
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
     return (
@@ -71,7 +70,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function ListMovie() {
+function ListMovieMemo() {
 
     let [listMovie, setListMovie] = useState([]);
     const classes = useStyles();
@@ -187,7 +186,7 @@ export default function ListMovie() {
         }
         return content;
     }
-    const renderListMovie = useCallback(() => {
+    const renderListMovie = () => {
         return (listMovie
             .filter(movie => new Date(movie.ngayKhoiChieu) < new Date())
             .map((movie, index) => {
@@ -223,7 +222,7 @@ export default function ListMovie() {
                     </div>
                 )
             }))
-    }, [listMovie])
+    }
     const renderAndCheckMovie = () => {
         let checkLength = 0;
         listMovie.forEach(movie => {
@@ -240,7 +239,7 @@ export default function ListMovie() {
             return <p className='alertMovieNull'>Hiện tại chưa có phim sắp công chiếu</p>;
         }
     }
-    const renderListNewMovie = useCallback(() => {
+    const renderListNewMovie = () => {
         return (listMovie
             .filter(movie => new Date(movie.ngayKhoiChieu) > new Date())
             .map((movie, index) => {
@@ -264,7 +263,7 @@ export default function ListMovie() {
                     </div>
                 )
             }))
-    }, [listMovie])
+    }
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
@@ -315,3 +314,5 @@ export default function ListMovie() {
     );
 
 }
+export const ListMovie = React.memo(ListMovieMemo)
+// export default React.memo(ListMovie)

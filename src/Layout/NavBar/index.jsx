@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import { Link } from 'react-router-dom';
 import ArrowButtonMenu from '../../Component/ArrowButtonMenu';
-import './style.scss';
 import NavBarMobile from '../../Component/NavBarMobile';
 
 export default function NavBar() {

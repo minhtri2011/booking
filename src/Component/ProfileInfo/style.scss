@@ -1,22 +1,17 @@
-@import "../../scss/main.scss";
 #profile {
     .profileInfo {
         width: 25vw;
         min-height: 100vh;
         padding: 5px;
-        // background-color: rgb(250, 151, 71);
         background-color: rgba(255, 153, 0, 0.6);
-        box-shadow: -105px 30px 40px 100px rgba(0, 0, 0, 0.53);
-        -webkit-box-shadow: -105px 30px 40px 100pxrgba (0, 0, 0, 0.53);
-        -moz-box-shadow: -105px 30px 40px 100px rgba(0, 0, 0, 0.53);
-        border-radius: 0 50px 50px 0;
-        -webkit-border-radius: 0 50px 50px 0;
-        -moz-border-radius: 0 50px 50px 0;
-        -ms-border-radius: 0 50px 50px 0;
-        -o-border-radius: 0 50px 50px 0;
-        .headerProfile {
+        @include boxShadow(  0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22));
+        @include borderRadius(0 30px 0 0);
+        // box-shadow:;
+        .info_Header {
+            padding: 0 10px;
             display: flex;
             justify-content: space-between;
+            align-items: center;
             .btn_comback {
                 text-decoration: none;
                 p {
@@ -28,16 +23,12 @@
                     border: none;
                 }
             }
-            .btn_Menu {
-                width: 50px;
-                height: 50px;
+            .logoutIcon {
+                width: 30px;
+                height: 30px;
             }
         }
-        
         .info_Content {
-            @include transition(all .5s);
-            visibility: hidden;
-            max-height: 0;
             .avtNameUser {
                 .avtImg {
                     display: flex;
@@ -64,11 +55,12 @@
                 }
             }
             .infoUser {
-                .inforUser {
+                .info{
                     p {
                         font-size: 1rem;
                         font-weight: bolder;
                         line-height: 2rem;
+                        text-align: center;
                         span {
                             font-weight: normal;
                         }
@@ -104,10 +96,6 @@
                 }
             }
         }
-        .active{
-            visibility: visible;
-            max-height: 100%;
-        }
     }
 }
 @font-face {
@@ -132,28 +120,24 @@
                         width: 150px;
                     }
                 }
-            }
-        }
-    }
-}
-@include mediaQueryMax(getBreakpoints("medium")) {
-    #profile {
-        .profileInfo {
-            .info_Content {
-                // display: block;
-                padding: 0 10%;
-                .inforUser {
-                    text-align: center;
+                .infoUser {
+                    .info {
+                        p {
+                            text-align: left;
+                        }
+                    }
+                    .btn-changeInfo {
+                        margin: 20px 0;
+                    }
                 }
             }
         }
     }
 }
-@include mediaQueryMax(getBreakpoints("extra-small")) {
+@include mediaQueryMax(getBreakpoints("small")) {
     #profile {
         .profileInfo {
             position: relative;
-            // @include transform(scale(.5));
             .info_Content {
                 display: block;
                 padding: 0 10%;
@@ -162,8 +146,15 @@
                         width: 100px;
                     }
                 }
-                .inforUser {
-                    text-align: center;
+                .infoUser {
+                    .info {
+                        p {
+                            text-align: center;
+                        }
+                    }
+                    .btn-changeInfo {
+                        margin: 20px auto;
+                    }
                 }
             }
         }

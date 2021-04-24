@@ -1,68 +1,84 @@
-@import "../../scss/main.scss";
-.banner {
+.movieDetail {
   background: #005aa7; /* fallback for old browsers */
-  background: -webkit-linear-gradient(
-    to top,
-    #fffde4,
-    #005aa7
-  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-linear-gradient(to top, #fffde4, #005aa7); /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(
     to top,
     #fffde4,
     #005aa7
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
-  .MuiGrid-container {
-    padding: 50px 0;
-    width: 70%;
+  .detail {
+    padding: 100px 0;
+    display: grid;
+    grid-template-columns: 25% 50% 25%;
     margin: 0 auto;
-    .bannerLeft {
+    width: 70vw;
+    .movieImg {
+      padding-bottom: 160%;
+      position: relative;
+      display: block;
+      background-color: aqua;
+      overflow: hidden;
+      @include borderRadius(20px);
       img {
-        width: 70%;
+        display: block;
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        position: absolute;
+        top: 0;
+        left: 0;
       }
     }
-    .bannerRight {
-      justify-content: center;
-      align-items: center;
+    .movieName {
       display: flex;
-      h3 {
-        padding: 20px 0;
-        font-size: 2rem;
-      }
-      p {
-        padding: 10px 0;
-      }
-      p.rate {
-        display: flex;
-        align-items: center;
-      }
-      a {
-        button {
-          margin-right: 0 !important;
+      align-items: center;
+      justify-content: right;
+      &__content {
+        padding-left: 20px;
+        p {
+          line-height: 2.2rem;
+          &:nth-child(1) {
+            font-size: 1.5rem;
+          }
+          &:nth-child(2) {
+            display: inline-block;
+            // justify-content: center;
+            // align-items: center;
+            max-width: 80%;
+            span {
+              vertical-align: middle;
+              &:nth-child(1) {
+                margin-right: 10px;
+                font-size: 1rem;
+                color: white;
+                background-color: red;
+                padding: 5px 10px;
+                align-items: center;
+                font-weight: bold;
+                @include borderRadius(5px);
+              }
+              &:nth-child(2) {
+                display: inline-block;
+                font-size: 2rem;
+                display: inline;
+              }
+            }
+            font-size: 2rem;
+          }
+          &:nth-child(3) {
+            font-size: 1.1rem;
+          }
+        }
+        .btn {
+          margin-top: 20px;
         }
       }
-      button {
-        background-color: rgb(255, 40, 40);
-        color: white;
-        border: none;
-        margin-right: 10px;
-        cursor: pointer;
-        outline: none;
-        padding: 10px 25px;
-        border-radius: 5px;
-        -webkit-border-radius: 5px;
-        -moz-border-radius: 5px;
-        -ms-border-radius: 5px;
-        -o-border-radius: 5px;
-        transition: all 0.2s;
-        -webkit-transition: all 0.2s;
-        -moz-transition: all 0.2s;
-        -ms-transition: all 0.2s;
-        -o-transition: all 0.2s;
-        &:hover {
-          background-color: rgb(204, 35, 35);
-        }
-      }
+    }
+    .movieRating {
+      display: flex;
+      align-items: center;
+      justify-content: right;
     }
   }
 }

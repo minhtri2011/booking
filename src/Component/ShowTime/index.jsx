@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import './style.scss';
 import { movieServices } from '../../Services/movie';
 import { Link } from 'react-router-dom';
 import { Fragment } from 'react';

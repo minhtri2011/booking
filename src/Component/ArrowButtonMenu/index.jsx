@@ -1,5 +1,4 @@
 import React from 'react';
-import './style.scss';
 export default function ArrowButtonMenu() {
     // vô hiệu hoá scroll khi mở menu
     const openMobileMenu = () => {

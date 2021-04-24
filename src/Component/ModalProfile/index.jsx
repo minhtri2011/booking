@@ -2,7 +2,6 @@ import React from 'react'
 import { Modal } from '../Modal';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
-import './style.scss';
 import { groupID } from '../../Config/setting';
 import { userServices } from '../../Services/user';
 import Swal from 'sweetalert2';
@@ -10,19 +9,28 @@ import Swal from 'sweetalert2';
 export default function ModalProfile(props) {
     const { user, setUser } = props;
     const ChangePassSchema = Yup.object().shape({
-        oldPassWord: Yup.string().required('(*) Không được bỏ trống').matches(user.matKhau, '(*) sai mật khẩu'),
-        newPassWord: Yup.string().notOneOf([Yup.ref('oldPassWord'), null], '(*) Mật khẩu không được trùng').required('(*) Không được bỏ trống'),
-        reNewPassWord: Yup.string().oneOf([Yup.ref('newPassWord'), null], '(*) Mật khẩu không trùng khớp').required('(*) Không được bỏ trống')
+        oldPassWord: Yup.string()
+            .required('(*) Không được bỏ trống')
+            .matches(user.matKhau, '(*) sai mật khẩu'),
+        newPassWord: Yup.string()
+            .required('(*) Không được bỏ trống')
+            .notOneOf([user.matKhau], '(*) Không được nhập lại mật khẩu cũ'),
+        reNewPassWord: Yup.string()
+            .required('(*) Không được bỏ trống')
+            .oneOf([Yup.ref('newPassWord'), null], '(*) Mật khẩu không trùng khớp'),
     })
+
     const closeModal = () => {
         let domModal = document.querySelector('#inputModal');
         let domBtn = document.querySelector('.btn-changeInfo');
         if (domModal && domBtn) {
             let domModalContent = domModal.querySelector('.modal');
+            let formChangePass = document.getElementById('formChangePass');
+            formChangePass.reset();
             domModalContent.classList.toggle('toggleModal');
         }
     }
-    const handleSubmitForm = (value) => {
+    const handleSubmitForm = (value, resetForm) => {
         let arr = {
             taiKhoan: user.taiKhoan,
             matKhau: value.newPassWord,
@@ -35,19 +43,20 @@ export default function ModalProfile(props) {
         userServices.editUser(arr).then(res => {
             setUser({ ...user, matKhau: res.data.matKhau })
             closeModal();
+            resetForm();
             Swal.fire({
                 icon: 'success',
-                title: 'Your work has been saved',
+                title: 'Đổi mật khẩu thành công',
                 showConfirmButton: false,
-                timer: 1500
+                timer: 2000
             })
         }).catch(err => {
             console.log(err);
         })
     }
     return (
-        <Modal>
-            <div>
+        <Modal closeModal={closeModal}>
+            <div className='modal_Content'>
                 <h1>Đổi mật khẩu</h1>
                 <Formik
                     initialValues={{
@@ -56,12 +65,10 @@ export default function ModalProfile(props) {
                         reNewPassWord: ''
                     }}
                     validationSchema={ChangePassSchema}
-                    // validateOnChange={false}
-                    // validateOnBlur={false}
-                    onSubmit={(value) => handleSubmitForm(value)}
+                    onSubmit={(value, { resetForm }) => handleSubmitForm(value, resetForm)}
                 >
                     {({ errors, touched }) => (
-                        <Form>
+                        <Form id='formChangePass'>
                             <label htmlFor="oldPassWord">Nhập mật khẩu</label>
                             <Field autoComplete='off' type='password' name="oldPassWord" />
                             {errors.oldPassWord && touched.oldPassWord ? (

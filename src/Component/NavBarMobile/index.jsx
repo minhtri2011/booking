@@ -1,6 +1,6 @@
-import React from 'react'
+import React from 'react';
+import { Link } from 'react-router-dom';
 // import ArrowButtonMenu from '../ArrowButtonMenu';
-import './style.scss';
 export default function NavBarMobile() {
     // const clickToCloseMenu = (e) => {
     //     let getDom = document.querySelector('.menuNavMobile')
@@ -8,6 +8,7 @@ export default function NavBarMobile() {
     //         menuMobile.classList.remove('toggle');
     //     }
     // }
+    let getUserNameLocal = JSON.parse(localStorage.getItem('userLogin'));
     window.onclick = (e) => {
         let menuMobile = document.querySelector('#navBarMobile');
         let menuBtn = document.querySelector('#ArrowButtonMenu');
@@ -43,7 +44,10 @@ export default function NavBarMobile() {
         <div id='navBarMobile' >
             <div className="menuNavMobile">
                 <ul>
-                    <li>Minh Trí</li>
+                    <li>{getUserNameLocal ?
+                        <Link onClick={() => { document.body.style.overflowY = 'auto'; }} to='/profile'>{getUserNameLocal.taiKhoan}</Link> :
+                        <Link onClick={() => { document.body.style.overflowY = 'auto'; }} to='/login'>Đăng nhập</Link>
+                    }</li>
                     <li onClick={() => { smoothScrollTo('listMovie') }}>Lịch chiếu</li>
                     <li onClick={() => { smoothScrollTo('showTime') }}>Cụm rạp</li>
                     <li onClick={() => { smoothScrollTo('apps') }}>Tin tức</li>

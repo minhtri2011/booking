@@ -4,7 +4,6 @@ import { Tabs, Tab, TabPanel, TabList } from 'react-web-tabs';
 import Grid from '@material-ui/core/Grid';
 import Moment from 'react-moment';
 import { HashLink as Link } from 'react-router-hash-link';
-import './style.scss';
 
 const MovieDetailShowTime = (props) => {
     let { movie } = props;

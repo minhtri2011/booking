@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { Fragment, useEffect, Suspense, lazy } from 'react';
 // import logo from './logo.svg';
-import './App.scss';
+// import './App.scss';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { HomeTemplate } from './Template/Home';
 // import { AdminTemplate } from './Template/Admin';
@@ -9,7 +9,7 @@ import { BookingTemplate } from './Template/Booking';
 import { userLogin } from './Config/setting';
 import { useDispatch } from 'react-redux';
 import { LoginAction } from './redux/action/user';
-
+// import './scss/main.scss';
 // import { PropfileTemplate } from './Template/Profile';
 // import { AdminTemplate } from './Template/Admin';
 // import { BookingTemplate } from './Template/Booking';
@@ -24,7 +24,7 @@ import Registry from './Pages/Registry'
 import MovieDetail from './Pages/movieDetail'
 import ShowTimeMobile from './Component/ShowTimeMobile';
 import Profile from './Pages/Profile';
-// import './scss/main.scss';
+import './scss/main.scss';
 // // lazyLoad page loading
 // const Home = lazy(() => {
 //   return new Promise((resolve) => {

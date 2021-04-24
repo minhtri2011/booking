@@ -1,6 +1,5 @@
-@import './base/reset.scss';
-@import './helper/function';
-@import './helper/variable';
-@import './helper/mixin';
-
-// @import './../Component/Carousel/style.scss';
+@import "./base/reset";
+@import "./utils/index";
+@import "./components/index";
+@import "./pages/index";
+@import "./layout/index";

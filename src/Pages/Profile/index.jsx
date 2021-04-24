@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import ProfileBar from '../../Component/ProfileBar';
 import ProfileHistory from '../../Component/ProfileHistory';
 import ProfileInfo from '../../Component/ProfileInfo';
 import { userLogin } from '../../Config/setting';
 import { userServices } from '../../Services/user';
-import './style.scss';
 export default function Profile() {
     let [user, setUser] = useState([]);
     const getUserFromLocal = JSON.parse(localStorage.getItem(userLogin)).taiKhoan;
@@ -21,6 +21,7 @@ export default function Profile() {
         <div id='profile'>
             <ProfileInfo user={user} setUser={setUser}/>
             <ProfileHistory user={user} />
+            <ProfileBar/>
         </div>
     )
 }

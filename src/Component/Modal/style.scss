@@ -5,7 +5,6 @@
     -moz-border-radius: 10px;
     -ms-border-radius: 10px;
     -o-border-radius: 10px;
-    
     position: fixed;
     top: -200%;
     left: 50%;
@@ -20,6 +19,17 @@
     -moz-transition: opacity 0.3s ease-in-out, top 1s ease-in-out, transform 1s ease-in-out;
     -ms-transition: opacity 0.3s ease-in-out, top 1s ease-in-out, transform 1s ease-in-out;
     -o-transition: opacity 0.3s ease-in-out, top 1s ease-in-out, transform 1s ease-in-out;
+    .closeButton {
+        position: relative;
+        .closeIcon {
+            cursor: pointer;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 30px;
+            height: 30px;
+        }
+    }
 }
 .toggleModal {
     opacity: 1;

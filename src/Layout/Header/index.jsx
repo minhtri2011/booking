@@ -8,7 +8,6 @@ import Menu from '@material-ui/core/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuIcon from '@material-ui/icons/Menu';
 import { Link } from 'react-router-dom';
-import './style.scss';
 import { useSelector } from 'react-redux';
 const useStyles = makeStyles((theme) => ({
     button_mid: {
