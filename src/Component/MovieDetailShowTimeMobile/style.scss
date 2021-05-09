@@ -1,0 +1,113 @@
+.movieDetailShowTimeMobile {
+    margin: 200px auto 100px;
+    .noticeFilm {
+        text-align: center;
+    }
+    .dateOfWeek {
+        display: flex;
+        width: 90%;
+        margin: 0 auto;
+        overflow-x: auto;
+        scrollbar-width: thin;
+        scrollbar-color: #c2bebe #e8e3e3;
+        /* Works on Chrome, Edge, and Safari */
+        &::-webkit-scrollbar {
+            width: 3px;
+            height: 5px;
+        }
+        &::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        &::-webkit-scrollbar-thumb {
+            background-color: rgb(156, 156, 156);
+        }
+        .dateFilter {
+            width: 100px;
+            padding: 10px 0;
+            flex-shrink: 0;
+            text-align: center;
+        }
+        .active {
+            color: red;
+            font-weight: bold;
+        }
+    }
+    .showTime {
+        margin: auto;
+        .cinemaName {
+            .MuiAccordionSummary-content {
+                align-items: center;
+                img {
+                    width: 3.5rem;
+                }
+                span {
+                    font-size: 1.1rem;
+                    padding-left: 1rem;
+                }
+            }
+        }
+        .list {
+            &__Name {
+                p {
+                    font-weight: bold;
+                }
+            }
+            &__Detail {
+                display: block;
+
+                .listTime {
+                    display: flex;
+                    flex-wrap: wrap;
+                    .time {
+                        display: inline-block;
+                        margin-top: 1rem;
+                        cursor: pointer;
+                        font-size: 1rem;
+                        font-weight: 600;
+                        background-color: rgba(246, 246, 246, 0.6);
+                        border: 1px solid #e4e4e4;
+                        margin: 5px;
+                        text-decoration: none;
+                        padding: 0.5rem;
+                        color: #9b9b9b;
+                        border-radius: 5px;
+                        -webkit-border-radius: 5px;
+                        -moz-border-radius: 5px;
+                        -ms-border-radius: 5px;
+                        -o-border-radius: 5px;
+                        &:hover {
+                            color: rgb(255, 153, 0);
+                        }
+                        &-start {
+                            color: #108f3e;
+                        }
+                    }
+                    .disableTimeBooking {
+                        display: inline-block;
+                        margin-top: 1rem;
+                        font-size: 1rem;
+                        font-weight: 600;
+                        background-color: rgb(243, 243, 243);
+                        border: 1px solid #e4e4e4;
+                        margin: 5px;
+                        text-decoration: none;
+                        padding: 0.5rem;
+                        color: #9b9b9b;
+                        border-radius: 5px;
+                        -webkit-border-radius: 5px;
+                        -moz-border-radius: 5px;
+                        -ms-border-radius: 5px;
+                        -o-border-radius: 5px;
+                        cursor: default;
+                        &-start {
+                            color: #9b9b9b;
+                        }
+                        &-end {
+                            color: #9b9b9b;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

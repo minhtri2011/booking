@@ -1,0 +1,88 @@
+.scrollDownBtn {
+    span {
+        cursor: pointer;
+        position: relative;
+        &:nth-child(1) {
+            &::before {
+                animation: scrollDownBtnAnimation 2s linear infinite;
+                -webkit-animation: scrollDownBtnAnimation 2s linear infinite;
+                content: "";
+                position: absolute;
+                height: 5px;
+                width: 30px;
+                right: -5.5px;
+                background-color: $btn-color-primary;
+                @include borderRadius(5px);
+                @include transform(rotate(45deg));
+            }
+            &::after {
+                animation: scrollDownBtnAnimation2 2s linear infinite;
+                -webkit-animation: scrollDownBtnAnimation2 2s linear infinite;
+                content: "";
+                height: 5px;
+                width: 30px;
+                left: -5.5px;
+                position: absolute;
+                background-color: $btn-color-primary;
+                @include borderRadius(5px);
+                @include transform(rotate(-45deg));
+            }
+        }
+        &:nth-child(2) {
+            &::before {
+                content: "";
+                animation: scrollDownBtnAnimation 2s linear infinite;
+                -webkit-animation: scrollDownBtnAnimation 2s linear infinite;
+                animation-delay: 1s;
+                height: 5px;
+                width: 30px;
+                top: 0px;
+                right: -5.5px;
+                position: absolute;
+                background-color: $btn-color-primary;
+                @include borderRadius(5px);
+                @include transform(rotate(45deg));
+            }
+            &::after {
+                animation: scrollDownBtnAnimation2 2s linear infinite;
+                -webkit-animation: scrollDownBtnAnimation2 2s linear infinite;
+                animation-delay: 1s;
+                content: "";
+                height: 5px;
+                width: 30px;
+                top: 0;
+                left: -5.5px;
+                position: absolute;
+                background-color: $btn-color-primary;
+                @include borderRadius(5px);
+                @include transform(rotate(-45deg));
+            }
+        }
+    }
+}
+@keyframes scrollDownBtnAnimation {
+    0% {
+        width: 40px;
+        @include transform(translate(0px, 0px) rotate(45deg));
+    }
+    20% {
+        @include transform(translate(-10px, -50px) rotate(45deg));
+    }
+    20.1%,
+    100% {
+        background-color: white;
+    }
+}
+@keyframes scrollDownBtnAnimation2 {
+    0% {
+        width: 40px;
+        @include transform(translate(0px, 0px) rotate(-45deg));
+    }
+    20% {
+        @include transform(translate(10px, -50px) rotate(-45deg));
+    }
+    20.1%,
+    100% {
+        background-color: white;
+    }
+}

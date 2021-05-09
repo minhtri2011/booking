@@ -3,51 +3,62 @@ import { Link } from 'react-router-dom';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 import { userServices } from '../../Services/user';
-import Modal from '@material-ui/core/Modal';
 import { makeStyles } from '@material-ui/core/styles';
-import Backdrop from '@material-ui/core/Backdrop';
-import Fade from '@material-ui/core/Fade';
 
 const useStyles = makeStyles((theme) => ({
     modal: {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        textAlign:'center',
+        textAlign: 'center',
     },
     paper: {
         backgroundColor: theme.palette.background.paper,
         border: 'none !important',
-        outline:'none',
+        outline: 'none',
         boxShadow: theme.shadows[5],
         padding: theme.spacing(2, 4, 3),
-        borderRadius:'10px',
+        borderRadius: '10px',
     },
-    title:{
-        textAlign:'center',
-        padding:'10px',
+    title: {
+        textAlign: 'center',
+        padding: '10px',
     },
-    description:{
-        textAlign:'center',
+    description: {
+        textAlign: 'center',
     },
-    button:{
-        padding:'7px 20px',
-        borderRadius:'10px',
-        backgroundColor:'orangered',
-        display:'inline-block',
-        fontSize:'1rem',
-        margin:' 10px auto 0 0',
-        border:'none',
-        outline:'none',
-        color:'white',
+    button: {
+        padding: '7px 20px',
+        borderRadius: '10px',
+        backgroundColor: 'orangered',
+        display: 'inline-block',
+        fontSize: '1rem',
+        margin: ' 10px auto 0 0',
+        border: 'none',
+        outline: 'none',
+        color: 'white',
     }
 }));
 export default function SignUp(props) {
+    const Swal = require('sweetalert2');
     const handleSubmit = (values) => {
         userServices.signUp(values).then(res => {
-            props.history.replace('/login');
+            Swal.fire({
+                icon: 'success',
+                title: 'Tạo tài khoản thành công',
+                showConfirmButton: false,
+                timer: 2000
+            })
+            setTimeout(() => {
+                props.history.replace('/login');
+            }, 2000);
         }).catch(err => {
-            handleOpen(err.response.data)
+            Swal.fire({
+                icon: 'error',
+                title: err.response.data,
+                showConfirmButton: false,
+                timer: 2000
+            })
         })
     }
     const signUpUserSchema = yup.object().shape({
@@ -91,13 +102,13 @@ export default function SignUp(props) {
                     <Form className="form">
                         <h1>Đăng ký</h1>
                         <div className="input_box">
-                            <Field onChange={formikProps.handleChange} placeholder="Nhập tài khoản" type="text" name="taiKhoan" id="taiKKhoan" />
+                            <Field onChange={formikProps.handleChange} placeholder="Nhập tài khoản" type="text" name="taiKhoan" id="taiKhoan" />
                             <label htmlFor='taiKhoan'>Tài khoản</label>
                         </div>
                         <ErrorMessage name="taiKhoan" render={(msg) => <div className="errText">{msg}</div>} />
                         <div className="input_box">
-                            <Field onChange={formikProps.handleChange} placeholder="Nhập mật khẩu" type="password" name="matKhau" id="matKKhau" />
-                            <label htmlFor="matKKhau">Mật khẩu</label>
+                            <Field onChange={formikProps.handleChange} placeholder="Nhập mật khẩu" type="password" name="matKhau" id="matKhau" />
+                            <label htmlFor="matKhau">Mật khẩu</label>
                         </div>
                         <ErrorMessage name="matKhau" render={(msg) => <div className="errText">{msg}</div>} />
                         <div className="input_box">
@@ -121,26 +132,6 @@ export default function SignUp(props) {
                     </Form>
                 )}
             </Formik>
-            <Modal
-                aria-labelledby="transition-modal-title"
-                aria-describedby="transition-modal-description"
-                className={classes.modal}
-                open={open}
-                onClose={handleClose}
-                closeAfterTransition
-                BackdropComponent={Backdrop}
-                BackdropProps={{
-                    timeout: 500,
-                }}
-            >
-                <Fade in={open}>
-                    <div className={classes.paper}>
-                        <h3 className={classes.title} id="transition-modal-title">Thông báo</h3>
-                        <p className={classes.description} id="transition-modal-description">{err}</p>
-                        <button className={classes.button} onClick={handleClose}>Nhập lại</button>
-                    </div>
-                </Fade>
-            </Modal>
         </div>
     )
 }

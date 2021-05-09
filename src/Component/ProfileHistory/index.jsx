@@ -6,7 +6,11 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { Pagination } from '../../Component/Pagination';
 export default function ProfileHistory(props) {
     const { user } = props;
-    
+    const formatDateTime = (value) => {
+        const moment = require('moment');
+        const d = new Date(value);
+        return moment(d).format('DD/MM/YYYY - LT')
+    }
     return (
         <div className="profileHistory">
             <p className='title'>Lịch sử đặt vé</p>
@@ -20,8 +24,8 @@ export default function ProfileHistory(props) {
                                     <p>Tên phim: <span>{item.tenPhim}</span></p>
                                     <p>Giá vé: <span>{item.giaVe}</span></p>
                                     <p>Ngày đặt vé:
-                                        <span> {new Date(item.ngayDat).toLocaleDateString('en-GB')}</span>
-                                        <span> {new Date(item.ngayDat).toLocaleTimeString('en-US', { hour12: true })}</span></p>
+                                        <span> {formatDateTime(item.ngayDat)}</span>
+                                    </p>
                                 </div>
                             </AccordionSummary>
                             <AccordionDetails>

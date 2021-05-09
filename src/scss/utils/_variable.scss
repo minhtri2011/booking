@@ -1,9 +1,21 @@
 // breakpoint
-$breakpoints:( 'extra-large': 1200px, 'large': 992px, 'medium': 768px, 'small': 600px, 'extra-small': 480px);
+$breakpoints: (
+    "extra-large": 1200px,
+    "large": 992px,
+    "medium": 768px,
+    "small": 600px,
+    "extra-small": 480px,
+);
 
 //color
 // color button
-$btn-color-primary:#fb4226;
-$btn-color-primary-hover:#b42a14;
+$btn-color-primary: #fb4226;
+$btn-color-primary-hover: #b42a14;
 // color text
-$text-color-primary:#fff;
+$text-color-primary: #fff;
+$text-color-secondary: #000;
+$text-color-orange1: #fb4226;
+$text-color-green1: #7ed321;
+//color circular
+$circular-color-primary: #7ed321;
+$circular-color-secondary: #fb4226;

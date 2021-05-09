@@ -37,7 +37,7 @@ export default function NavBar() {
                 behavior: "smooth"
             })
         } else {
-            document.location.href = `/#${target}`;
+            document.location.href = `/?scr=${target}`;
         }
     }
     // check tài khoản trên redux, nếu có thì render tên TK, ngược lại sẽ render link chuyển hướng đến login page
@@ -79,7 +79,6 @@ export default function NavBar() {
                 <ul>
                     <li onClick={() => { smoothScrollTo('listMovie') }}>Lịch chiếu</li>
                     <li onClick={() => { smoothScrollTo('showTime') }}>Cụm rạp</li>
-                    <li onClick={() => { smoothScrollTo('apps') }}>Tin tức</li>
                     <li onClick={() => { smoothScrollTo('apps') }}>Ứng dụng</li>
                 </ul>
             </div>

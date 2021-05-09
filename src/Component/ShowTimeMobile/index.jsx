@@ -8,7 +8,7 @@ import AccordionDetails from '@material-ui/core/AccordionDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { today } from '../../Config/setting';
 
-export default function ShowTimeMobile() {
+export default function MovieDetailShowTimeMobile() {
     let [movie, setMovie] = useState([]);
     let [cinemaInfo, setCinema] = useState([]);
     //lấy data movie

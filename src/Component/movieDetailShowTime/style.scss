@@ -1,153 +1,229 @@
-.movieShowTime {
-  margin: 100px auto;
-  width: 60%;
-  border: 1px solid rgb(228, 228, 228);
-  .MuiGrid-container {
-    .miniLeft {
-      overflow-y: auto;
-      height: 400px;
-      padding: 0;
-      border-left: 1px solid rgb(228, 228, 228);
-      text-align: center;
-      button {
-        margin: 10px 0;
-        padding-bottom: 10px;
-        background-color: transparent;
-        text-align: left;
-        border: none;
-        outline: none;
-        border-bottom: 1px solid rgb(228, 228, 228);
-        width: 80%;
-        cursor: pointer;
-        opacity: 0.5;
-        transition: all 0.2s;
-        -webkit-transition: all 0.2s;
-        -moz-transition: all 0.2s;
-        -ms-transition: all 0.2s;
-        -o-transition: all 0.2s;
-        &:hover {
-          opacity: 1;
-        }
-        &:focus {
-          opacity: 1;
-        }
-        .btnMovie {
-          display: flex;
-          align-items: center;
+#movieDetailShowTime {
+  padding: 100px 0;
+  .appBarTabs {
+    background-color: white !important;
+    .MuiTabs-root {
+      .MuiTabs-fixed {
+        .MuiTabs-flexContainer {
+          justify-content: center;
+          box-shadow: none;
+          height: 5rem;
+          button {
+            font-weight: bold;
+            color: black;
+            font-size: 1.3rem;
+            padding: 1rem;
+            &:hover {
+              letter-spacing: 2px;
+            }
+            span {
+              transition: all 0.3s;
+              -webkit-transition: all 0.3s;
+              -moz-transition: all 0.3s;
+              -ms-transition: all 0.3s;
+              -o-transition: all 0.3s;
+            }
+            &:hover span {
+              padding: 0 0.5rem;
+              font-size: 1.7rem;
+            }
+            &.Mui-selected span,
+            &.Mui-selected,
+            button {
+              padding: 0.5rem;
+              font-size: 1.7rem;
+              cursor: default;
+              font-weight: 400;
+              color: red;
+            }
 
-          img {
-            margin-right: 10px;
-            width: 3rem;
+            &.MuiTab-root {
+              text-transform: none;
+            }
           }
-          p {
-            font-size: 1rem;
+        }
+
+        .MuiTabs-indicator {
+          visibility: hidden;
+          opacity: 0;
+        }
+      }
+    }
+
+    &.MuiPaper-elevation4 {
+      box-shadow: none;
+    }
+  }
+  .MuiBox-root {
+    width: 100%;
+    margin: auto;
+    padding-top: 0 !important;
+    box-sizing: border-box !important;
+    animation: opacityWhenChangeTab 1s;
+    -webkit-animation: opacityWhenChangeTab 1s;
+    @keyframes opacityWhenChangeTab {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+    .movieShowTime {
+      width: 75%;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 30% 70%;
+      border: 1px solid rgb(228, 228, 228);
+      .showTimeLeft {
+        .cinemaName {
+          opacity: 0.5;
+          display: flex;
+          justify-content: left;
+          align-items: center;
+          width: 100%;
+          padding: 20px;
+          cursor: pointer;
+          border-right: 1px solid rgb(228, 228, 228);
+          img {
+            width: 4rem;
+          }
+          span {
+            font-size: 1.2rem;
+            padding-left: 1rem;
+          }
+        }
+        .active {
+          opacity: 1;
+        }
+      }
+      .showTimeRight {
+        .dateBooking {
+          padding: 10px 0;
+          width: 100%;
+          box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.4);
+          display: flex;
+          overflow-x: auto;
+          scrollbar-width: thin;
+          scrollbar-color: #c2bebe #e8e3e3;
+          /* Works on Chrome, Edge, and Safari */
+          &::-webkit-scrollbar {
+            width: 3px;
+            height: 5px;
+          }
+          &::-webkit-scrollbar-track {
+            background: transparent;
+          }
+          &::-webkit-scrollbar-thumb {
+            background-color: rgb(156, 156, 156);
+          }
+          .dateFilter {
+            flex-basis: 150px;
+            flex-shrink: 0;
+            text-align: center;
+            cursor: pointer;
+            color: $text-color-secondary;
+            font-size: 1.2rem;
+            opacity: 0.7;
+            @include transition(all 0.2s);
+            &:hover {
+              color: $text-color-orange1;
+            }
+            time {
+              font-size: 1.5rem;
+            }
+          }
+          .active {
+            color: red;
+            opacity: 1;
+            font-weight: bold;
+          }
+        }
+        .bookingShowTime {
+          .list {
+            &__Name {
+              font-size: 1.5rem;
+            }
+            &__Detail {
+              display: block;
+              p {
+                display: block;
+                font-weight: bold;
+                font-size: 1.2rem;
+              }
+              .listTime {
+                display: flex;
+                flex-wrap: wrap;
+                .time {
+                  display: inline-block;
+                  margin-top: 1rem;
+                  cursor: pointer;
+                  font-size: 1rem;
+                  font-weight: 600;
+                  background-color: rgba(246, 246, 246, 0.6);
+                  border: 1px solid #e4e4e4;
+                  margin: 5px;
+                  text-decoration: none;
+                  padding: 0.5rem;
+                  color: #9b9b9b;
+                  border-radius: 5px;
+                  -webkit-border-radius: 5px;
+                  -moz-border-radius: 5px;
+                  -ms-border-radius: 5px;
+                  -o-border-radius: 5px;
+                  &:hover {
+                    color: rgb(255, 153, 0);
+                  }
+                  &-start {
+                    color: #108f3e;
+                  }
+                }
+                .disableTimeBooking {
+                  display: inline-block;
+                  margin-top: 1rem;
+                  font-size: 1rem;
+                  font-weight: 600;
+                  background-color: rgb(243, 243, 243);
+                  border: 1px solid #e4e4e4;
+                  margin: 5px;
+                  text-decoration: none;
+                  padding: 0.5rem;
+                  color: #9b9b9b;
+                  border-radius: 5px;
+                  -webkit-border-radius: 5px;
+                  -moz-border-radius: 5px;
+                  -ms-border-radius: 5px;
+                  -o-border-radius: 5px;
+                  cursor: default;
+                  &-start {
+                    color: #9b9b9b;
+                  }
+                  &-end {
+                    color: #9b9b9b;
+                  }
+                }
+              }
+            }
+          }
+          .alertFilm {
+            text-align: center;
+            padding: 3rem;
           }
         }
       }
     }
-    .miniRight {
-      padding: 0;
-      border-left: 1px solid rgb(219, 219, 219);
-      overflow-y: auto;
-      height: 400px;
-      p {
-        font-size: 1.5rem;
-        padding: 20px;
-        font-weight: 400;
-        color: rgb(255, 0, 0);
-      }
-      .time {
-        display: flex;
-        flex-wrap: wrap;
-        a.timeItem {
-          background-color: rgba(246, 246, 246, 0.5);
-          text-decoration: none;
-          cursor: pointer;
-          color: grey;
-          margin: 5px;
-          padding: 8px;
-          border: 1px solid #e4e4e4;
-          border-radius: 5px;
-          -webkit-border-radius: 5px;
-          -moz-border-radius: 5px;
-          -ms-border-radius: 5px;
-          -o-border-radius: 5px;
-          &:hover {
-            color: orange;
-          }
-        }
-      }
+    .noticeFilm {
+      margin: 2rem 0;
+      display: block;
+      text-align: center;
     }
   }
 }
 @include mediaQueryMax(getBreakpoints("extra-large")) {
-  .movieShowTime {
-    width: 80%;
-  }
-}
-@include mediaQueryMax(getBreakpoints("large")) {
-  .movieShowTime {
-    width: 90%;
-  }
-}
-@include mediaQueryMax(getBreakpoints("medium")) {
-  .movieShowTime {
-    margin: 100px auto;
-    width: 100%;
-  }
-}
-@include mediaQueryMax(getBreakpoints("small")) {
-  .movieShowTime {
-    margin: 50px auto;
-    .MuiGrid-container {
-      .miniLeft {
-        height: 100%;
-        .rwt__tablist {
-          width: 100%;
-          display: flex;
-          flex-wrap: wrap;
-          justify-content: center;
-          .rwt__tab {
-          width: 40%;
-          display: flex;
-          justify-content: center;
-          }
-        }
-      }
-      .miniRight {
-        padding: 0;
-        border-left: 1px solid rgb(219, 219, 219);
-        overflow-y: auto;
-        height: 400px;
-        text-align: center;
-        p {
-          font-size: 1.5rem;
-          padding: 20px;
-          font-weight: 400;
-          color: rgb(255, 0, 0);
-        }
-        .time {
-          display: flex;
-          flex-wrap: wrap;
-          justify-content: center;
-          a.timeItem {
-            background-color: rgba(246, 246, 246, 0.5);
-            text-decoration: none;
-            cursor: pointer;
-            color: grey;
-            margin: 5px;
-            padding: 8px;
-            border: 1px solid #e4e4e4;
-            border-radius: 5px;
-            -webkit-border-radius: 5px;
-            -moz-border-radius: 5px;
-            -ms-border-radius: 5px;
-            -o-border-radius: 5px;
-            &:hover {
-              color: orange;
-            }
-          }
-        }
+  #movieDetailShowTime {
+    .MuiBox-root {
+      .movieShowTime {
+        width: 100%;
       }
     }
   }

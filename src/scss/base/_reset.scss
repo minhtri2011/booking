@@ -1,16 +1,18 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap");
 *,
 *::after,
 *::before {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
 }
 html {
-  scroll-behavior: smooth;
   // min-height: 100vh;
+  // scroll-behavior: smooth;
   height: -webkit-fill-available;
 }
-body{
+body {
   // height: 100vh;
   min-height: -webkit-fill-available;
 }

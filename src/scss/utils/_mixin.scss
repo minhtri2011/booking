@@ -84,3 +84,8 @@
     -webkit-touch-callout: none; /* Disable Android and iOS callouts*/
     user-select: none;
 }
+@mixin flexCenter() {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

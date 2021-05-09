@@ -1,13 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-// import ArrowButtonMenu from '../ArrowButtonMenu';
 export default function NavBarMobile() {
-    // const clickToCloseMenu = (e) => {
-    //     let getDom = document.querySelector('.menuNavMobile')
-    //     if (!getDom.contains(e.target)) {
-    //         menuMobile.classList.remove('toggle');
-    //     }
-    // }
     let getUserNameLocal = JSON.parse(localStorage.getItem('userLogin'));
     window.onclick = (e) => {
         let menuMobile = document.querySelector('#navBarMobile');
@@ -37,7 +30,7 @@ export default function NavBarMobile() {
         } else {
             menuBtn.classList.toggle('toggle');
             menuMobile.classList.toggle('toggle');
-            document.location.href = `/#${target}`;
+            document.location.href = `/?src=${target}`;
         }
     }
     return (
@@ -49,8 +42,9 @@ export default function NavBarMobile() {
                         <Link onClick={() => { document.body.style.overflowY = 'auto'; }} to='/login'>Đăng nhập</Link>
                     }</li>
                     <li onClick={() => { smoothScrollTo('listMovie') }}>Lịch chiếu</li>
-                    <li onClick={() => { smoothScrollTo('showTime') }}>Cụm rạp</li>
-                    <li onClick={() => { smoothScrollTo('apps') }}>Tin tức</li>
+                    <li>
+                        <Link onClick={() => { document.body.style.overflowY = 'auto'; }} to='/showtimemobile'>Cụm rạp</Link>
+                    </li>
                     <li onClick={() => { smoothScrollTo('apps') }}>Ứng dụng</li>
                     <li>Dark mode</li>
                     <li>Đăng xuất</li>

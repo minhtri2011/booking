@@ -40,6 +40,8 @@
                 a{
                     text-decoration: none;
                     color: black;
+                }
+                &:nth-child(1){
                     font-weight: bold;
                 }
             }

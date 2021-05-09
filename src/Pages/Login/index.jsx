@@ -4,8 +4,9 @@ import { token, userLogin } from '../../Config/setting';
 import { userServices } from '../../Services/user';
 import { Link } from 'react-router-dom';
 import { LoginAction } from '../../redux/action/user';
+import Swal from 'sweetalert2';
 export default function Login(props) {
-
+    const Swal = require('sweetalert2');
     const dispatch = useDispatch();
     let [state, setState] = useState({
         values: {
@@ -35,10 +36,22 @@ export default function Login(props) {
             localStorage.setItem(userLogin, JSON.stringify(res.data));
             localStorage.setItem(token, res.data.accessToken);
             dispatch(LoginAction(res.data.taiKhoan));
-            props.history.replace('/');
+            Swal.fire({
+                icon: 'success',
+                title: 'Đổi mật khẩu thành công',
+                showConfirmButton: false,
+                timer: 2000
+            })
+            setTimeout(() => {
+                props.history.replace('/');
+            }, 2000);
         }).catch(err => {
-            console.log(err);
-            alert('Sai tài khoản hoặc mật khẩu');
+            Swal.fire({
+                icon: 'error',
+                title: err.response.data,
+                showConfirmButton: false,
+                timer: 2000
+            })
         })
     }
 
