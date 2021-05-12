@@ -1,32 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
 import ModalProfile from '../ModalProfile';
-import HistoryIcon from '@material-ui/icons/History';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 export default function ProfileInfo(props) {
     const { user, setUser } = props;
-    const handleToggleModal = () => {
-        let domModal = document.querySelector('.modal')
-        domModal.classList.toggle('toggleModal')
-    }
-    // click ngoài pham vi form sẽ đóng modal lại
-    window.addEventListener('click', (e) => {
-        let domModal = document.querySelector('#inputModal');
-        let domBtn = document.querySelector('.btn-changeInfo');
-        if (domModal && domBtn) {
-            let domModalContent = domModal.querySelector('.modal');
-            let formChangePass = document.getElementById('formChangePass');
-            if (domModalContent.classList.contains('toggleModal') && !domModalContent.contains(e.target) && !domBtn.contains(e.target)) {
-                domModalContent.classList.toggle('toggleModal');
-                // thực hiện reset form sau khi click out modal
-                formChangePass.reset();
-            }
-        }
-    })
-    const click = () => {
-        let dom = document.querySelector('.info_Content');
-        dom.classList.toggle('active');
-    }
+    const [openModal, setOpenModal] = useState(false);
     return (
         <div className="profileInfo">
             <div className="info_Header">
@@ -47,9 +25,10 @@ export default function ProfileInfo(props) {
                         <p>Số điện thoại: <span>{user.soDT}</span></p>
                         <p>Email: <span>{user.email}</span></p>
                     </div>
-                    <button className='btn-changeInfo' onClick={() => handleToggleModal()}>Đổi mật khẩu</button>
+                    {/* <button className='btn-changeInfo' onClick={() => handleToggleModal()}>Đổi mật khẩu</button> */}
+                    <button className='btn-changeInfo' onClick={() => setOpenModal(!openModal)}>Đổi mật khẩu</button>
                     <div id="inputModal">
-                        <ModalProfile user={user} setUser={setUser} />
+                        <ModalProfile user={user} setUser={setUser} openModal={openModal} setOpenModal={setOpenModal} />
                     </div>
                 </div>
             </div>

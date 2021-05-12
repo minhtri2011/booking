@@ -148,14 +148,19 @@ function AdminLayout(props) {
 }
 
 export const AdminTemplate = props => {
-    const Auth = JSON.parse(localStorage.getItem('userLogin')).maLoaiNguoiDung;
-    return (
-        <Route path={props.path} {...props.exact} render={(propsComponent) =>
-            (Auth === 'QuanTri') ? <AdminLayout>
-                <props.component {...propsComponent} />
-            </AdminLayout> : <Redirect to={{ pathname: '/' }} />
-        } />
-    )
+    const checkLogin = JSON.parse(localStorage.getItem('userLogin'));
+    if (checkLogin) {
+        const Auth = JSON.parse(localStorage.getItem('userLogin')).maLoaiNguoiDung;
+        return (
+            <Route path={props.path} {...props.exact} render={(propsComponent) =>
+                (Auth === 'khachHang') ? <Redirect to={{ pathname: '/' }} /> : <AdminLayout>
+                    <props.component {...propsComponent} />
+                </AdminLayout>
+            } />
+        )
+    } else {
+        return <Redirect to={{ pathname: '/' }} />
+    }
 }
 AdminLayout.propTypes = {
     /**

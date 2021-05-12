@@ -15,7 +15,6 @@ export default function NavBar() {
         var nav = document.querySelector('#navBar');
         if (nav) { nav.classList.toggle('active', window.scrollY > 250); }
     })
-
     window.addEventListener('click', (e) => {
         let menu = document.querySelector('#navBarMenu');
         const btnMenu = document.querySelector('#btnOpenMenu');
@@ -26,7 +25,6 @@ export default function NavBar() {
         }
 
     })
-
     // smooth scroll đến id đã chỉ định
     const smoothScrollTo = (target) => {
         if (window.location.pathname === '/') {
@@ -42,6 +40,8 @@ export default function NavBar() {
     }
     // check tài khoản trên redux, nếu có thì render tên TK, ngược lại sẽ render link chuyển hướng đến login page
     const taiKhoan = useSelector(state => state.userReducer.taiKhoan);
+    //check khách hàng hoặc admin trên localstorage
+    const checkTaiKhoan = JSON.parse(localStorage.getItem('userLogin'))
     // tạo đóng mở menu
     const toggleOpenMenu = () => {
         let menu = document.querySelector('#navBarMenu');
@@ -90,6 +90,11 @@ export default function NavBar() {
                             <button>Trang cá nhân</button>
                         </Link>
                     </div>
+                    {checkTaiKhoan && checkTaiKhoan.maLoaiNguoiDung === 'QuanTri' ? <div className='menu_btn'>
+                        <Link to='/admin'>
+                            <button>Quản trị</button>
+                        </Link>
+                    </div> : <></>}
                     <div className="menu_btn">
                         <button onClick={() => logOutUser()} >Đăng xuất</button>
                     </div>

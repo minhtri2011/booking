@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Modal } from '../Modal';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
@@ -7,7 +7,7 @@ import { userServices } from '../../Services/user';
 import Swal from 'sweetalert2';
 // import 'sweetalert2/src/sweetalert2.scss';
 export default function ModalProfile(props) {
-    const { user, setUser } = props;
+    const { user, setUser, openModal, setOpenModal } = props;
     const ChangePassSchema = Yup.object().shape({
         oldPassWord: Yup.string()
             .required('(*) Không được bỏ trống')
@@ -19,17 +19,16 @@ export default function ModalProfile(props) {
             .required('(*) Không được bỏ trống')
             .oneOf([Yup.ref('newPassWord'), null], '(*) Mật khẩu không trùng khớp'),
     })
-
-    const closeModal = () => {
-        let domModal = document.querySelector('#inputModal');
-        let domBtn = document.querySelector('.btn-changeInfo');
-        if (domModal && domBtn) {
-            let domModalContent = domModal.querySelector('.modal');
-            let formChangePass = document.getElementById('formChangePass');
-            formChangePass.reset();
-            domModalContent.classList.toggle('toggleModal');
-        }
-    }
+    // const closeModal = () => {
+    //     let domModal = document.querySelector('#inputModal');
+    //     let domBtn = document.querySelector('.btn-changeInfo');
+    //     if (domModal && domBtn) {
+    //         let domModalContent = domModal.querySelector('.modal');
+    //         let formChangePass = document.getElementById('formChangePass');
+    //         formChangePass.reset();
+    //         domModalContent.classList.toggle('toggleModal');
+    //     }
+    // }
     const handleSubmitForm = (value, resetForm) => {
         let arr = {
             taiKhoan: user.taiKhoan,
@@ -42,7 +41,8 @@ export default function ModalProfile(props) {
         }
         userServices.editUser(arr).then(res => {
             setUser({ ...user, matKhau: res.data.matKhau })
-            closeModal();
+            // closeModal();
+            setOpenModal(!openModal)
             resetForm();
             Swal.fire({
                 icon: 'success',
@@ -55,7 +55,7 @@ export default function ModalProfile(props) {
         })
     }
     return (
-        <Modal closeModal={closeModal}>
+        <Modal openModal={openModal} setOpenModal={setOpenModal}>
             <div className='modal_Content'>
                 <h1>Đổi mật khẩu</h1>
                 <Formik

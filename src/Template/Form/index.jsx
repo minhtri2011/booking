@@ -9,9 +9,9 @@ const FormLayout = (props) => {
     )
 }
 export const FormTemplate = props => {
-        var Auth = JSON.parse(localStorage.getItem('userLogin'));
+    var Auth = JSON.parse(localStorage.getItem('userLogin'));
     return <Route path={props.path} {...props.exact} render={(propsComponent) => (
-        (Auth===null) ?
+        (Auth === null) ?
             <FormLayout>
                 <props.component {...propsComponent} />
             </FormLayout>

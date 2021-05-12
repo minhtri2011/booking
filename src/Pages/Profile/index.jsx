@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import ProfileBar from '../../Component/ProfileBar';
 import ProfileHistory from '../../Component/ProfileHistory';
 import ProfileInfo from '../../Component/ProfileInfo';
 import { userLogin } from '../../Config/setting';
@@ -21,7 +20,6 @@ export default function Profile() {
         <div id='profile'>
             <ProfileInfo user={user} setUser={setUser}/>
             <ProfileHistory user={user} />
-            <ProfileBar/>
         </div>
     )
 }

@@ -34,6 +34,21 @@ export class Services {
             data: account
         })
     }
+
+    getUserPagination = (page, itemNumber,string) => {
+        if (string) {
+            return axios({
+                url: `${domain}/QuanLyNguoiDung/LayDanhSachNguoiDungPhanTrang?MaNhom=${groupID}&tuKhoa=${string}&soTrang=${page}&soPhanTuTrenTrang=${itemNumber}`,
+                method: 'GET',
+            })
+        } else {
+            return axios({
+                url: `${domain}/QuanLyNguoiDung/LayDanhSachNguoiDungPhanTrang?MaNhom=${groupID}&soTrang=${page}&soPhanTuTrenTrang=${itemNumber}`,
+                method: 'GET',
+            })
+        }
+
+    }
     deleteUser = (user) => {
         return axios({
             url: `${domain}/QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=${user}`,
@@ -62,7 +77,7 @@ export class Services {
     editUser = (user) => {
         return axios({
             method: "PUT",
-            url:`${domain}/QuanLyNguoiDung/CapNhatThongTinNguoiDung`,
+            url: `${domain}/QuanLyNguoiDung/CapNhatThongTinNguoiDung`,
             data: user,
             headers: {
                 'Authorization': 'Bearer ' + localStorage.getItem(token),

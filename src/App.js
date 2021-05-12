@@ -19,12 +19,15 @@ import Home from './Pages/Home'
 import Booking from './Pages/Booking'
 import AdminUser from './Pages/AdminUser'
 import AdminMovie from './Pages/AdminMovie'
+import AdminU from './Pages/AdminU'
 import Login from './Pages/Login'
 import Registry from './Pages/Registry'
 import MovieDetail from './Pages/movieDetail'
 import ShowTimeMobile from './Component/ShowTimeMobile';
 import Profile from './Pages/Profile';
 import './scss/main.scss';
+import { FormTemplate } from './Template/Form';
+import { AdminTemplate } from './Template/Admin';
 // // lazyLoad page loading
 // const Home = lazy(() => {
 //   return new Promise((resolve) => {
@@ -117,10 +120,11 @@ function App() {
         <Switch>
           <HomeTemplate exact path="/" component={Home} />
           <BookingTemplate exact path="/booking/:id" component={Booking} />
-          <HomeTemplate exact path="/admin" component={AdminUser} />
-          <HomeTemplate exact path="/admin/movie" component={AdminMovie} />
-          <HomeTemplate exact path="/login" component={Login} />
-          <Route exact path="/registry" component={Registry} />
+          <AdminTemplate exact path="/admin" component={AdminUser} />
+          <AdminTemplate exact path="/admin/movie" component={AdminMovie} />
+          <AdminTemplate exact path="/admin/m" component={AdminU} />
+          <FormTemplate exact path="/login" component={Login} />
+          <FormTemplate exact path="/registry" component={Registry} />
           <Route exact path="/profile" component={Profile} />
           <HomeTemplate exact path="/ShowTimeMobile" component={ShowTimeMobile} />
           <HomeTemplate exact path="/MovieDetail/:id" component={MovieDetail} />

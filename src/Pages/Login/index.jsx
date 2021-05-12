@@ -38,7 +38,7 @@ export default function Login(props) {
             dispatch(LoginAction(res.data.taiKhoan));
             Swal.fire({
                 icon: 'success',
-                title: 'Đổi mật khẩu thành công',
+                title: 'Đăng nhập thành công',
                 showConfirmButton: false,
                 timer: 2000
             })
