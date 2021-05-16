@@ -1,12 +1,11 @@
 #profile {
     .profileInfo {
-        width: 25vw;
-        min-height: 100vh;
+        height: 100%;
         padding: 5px;
-        background-color: rgba(255, 153, 0, 0.6);
-        @include boxShadow(  0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22));
-        @include borderRadius(0 30px 0 0);
-        // box-shadow:;
+        background-color: #fff;
+        z-index: 1;
+        @include boxShadow(5px 5px 15px rgba(0, 0, 0, 0.3));
+        @include borderRadius(0 30px 0 30px);
         .info_Header {
             padding: 0 10px;
             display: flex;
@@ -40,24 +39,22 @@
                         -moz-border-radius: 50%;
                         -ms-border-radius: 50%;
                         -o-border-radius: 50%;
-                        -webkit-box-shadow: 9px 13px 50px -9px rgba(0, 0, 0, 0.53);
-                        -moz-box-shadow: 9px 13px 50px -9px rgba(0, 0, 0, 0.53);
-                        box-shadow: 9px 13px 50px -9px rgba(0, 0, 0, 0.53);
+                        @include boxShadow(5px 5px 5px rgba(0, 0, 0, 0.3));
                     }
                 }
                 .nameUser {
                     display: flex;
                     justify-content: center;
                     p {
-                        font-size: 1.5rem;
-                        padding: 1rem;
+                        font-size: 1.4rem;
+                        padding: 1rem 0;
                     }
                 }
             }
             .infoUser {
-                .info{
+                .info {
                     p {
-                        font-size: 1rem;
+                        font-size: .9rem;
                         font-weight: bolder;
                         line-height: 2rem;
                         text-align: center;
@@ -70,7 +67,7 @@
                     font-size: 1.2rem;
                     font-weight: bold;
                     padding: 15px 25px;
-                    @include boxShadow(5px 5px 10px 0px rgba(0, 0, 0, 0.377));
+                    @include boxShadow(5px 5px 5px rgba(0, 0, 0, 0.2));
                     border: none;
                     outline: none;
                     cursor: pointer;
@@ -80,9 +77,8 @@
                     @include borderRadius(10px);
                     display: block;
                     margin: 20px auto;
-                    border: 3px solid #fff;
-                    background-color: #fff;
                     border: 3px solid black;
+                    background-color: #fff;
                     transition: all 0.2s;
                     -webkit-transition: all 0.2s;
                     -moz-transition: all 0.2s;
@@ -105,19 +101,12 @@
 @include mediaQueryMax(getBreakpoints("large")) {
     #profile {
         .profileInfo {
-            width: 100vw;
-            min-height: 100%;
-            @include borderRadius(0);
-            @include boxShadow(0px -70px 90px 50px rgb(0, 0, 0));
             .info_Content {
-                display: flex;
-                gap: 50px;
-                padding: 0 100px;
-                align-items: center;
-                .avtImg {
-                    justify-content: center;
-                    img {
-                        width: 150px;
+                .avtNameUser {
+                    .avtImg {
+                        img {
+                            width: 50%;
+                        }
                     }
                 }
                 .infoUser {
@@ -127,7 +116,28 @@
                         }
                     }
                     .btn-changeInfo {
-                        margin: 20px 0;
+                        margin: 20px auto;
+                    }
+                }
+            }
+        }
+    }
+}
+@include mediaQueryMax(getBreakpoints("medium")) {
+    #profile {
+        .profileInfo {
+            @include borderRadius(0);
+            @include boxShadow(none);
+            background-color: transparent;
+            .info_Content {
+                display: flex;
+                gap: 50px;
+                padding-left: 100px;
+                .avtNameUser {
+                    .avtImg {
+                        img {
+                            width: 100px;
+                        }
                     }
                 }
             }
@@ -140,7 +150,7 @@
             position: relative;
             .info_Content {
                 display: block;
-                padding: 0 10%;
+                padding: 0;
                 .avtImg {
                     img {
                         width: 100px;
@@ -153,6 +163,7 @@
                         }
                     }
                     .btn-changeInfo {
+                        padding:10px;
                         margin: 20px auto;
                     }
                 }

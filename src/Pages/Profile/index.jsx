@@ -18,8 +18,10 @@ export default function Profile() {
 
     return (
         <div id='profile'>
-            <ProfileInfo user={user} setUser={setUser}/>
-            <ProfileHistory user={user} />
+            <div className="profile__content">
+                <ProfileInfo user={user} setUser={setUser} />
+                <ProfileHistory user={user} />
+            </div>
         </div>
     )
 }

@@ -3,7 +3,6 @@ import { userServices } from '../../Services/user';
 import DeleteIcon from '@material-ui/icons/Delete';
 import SettingsIcon from '@material-ui/icons/Settings';
 import Swal from 'sweetalert2';
-import { Modal } from '../../Component/Modal';
 import ModalAdminUser from '../../Component/ModalAdminUser';
 export default function AdminU() {
     const [user, setUser] = useState([]);
@@ -12,6 +11,7 @@ export default function AdminU() {
     const [searchUser, setSearchUser] = useState();
     const [deleleUser, setDeleteUser] = useState(true);
     const [editUser, setEditUser] = useState();
+    const [openModal,setOpenModal]=useState(false);
 
     //lấy dữ liệu user
     useEffect(() => {
@@ -23,24 +23,6 @@ export default function AdminU() {
                 console.log(err);
             })
     }, [currentPage, itemPerPage, searchUser, deleleUser])
-    //thực hiện chức năng ẩn hiện cho modal
-    const closeModal = () => {
-        let domModal = document.querySelector('#adminM');
-        let domBtn = document.querySelector('.btn-addUser');
-        if (domModal && domBtn) {
-            let domModalContent = domModal.querySelector('.modal');
-            domModalContent.classList.toggle('toggleModal');
-        }
-    }
-    window.addEventListener('mouseup', (e) => {
-        let domModal = document.querySelector('#adminM');
-        if (domModal) {
-            let domModalContent = domModal.querySelector('.modal');
-            if(!domModalContent.contains(e.target)){
-                domModalContent.classList.remove('toggleModal');
-            }
-        }
-    })
     //xoá user
     const deleteUser = (user) => {
         userServices.deleteUser(user).then(res => {
@@ -63,7 +45,7 @@ export default function AdminU() {
     }
     const handleEditUser = (value) => {
         // setEditUser(value);
-        closeModal();
+        setOpenModal(true);
         // console.log(value);
     }
     //render nút chuyển trang
@@ -93,7 +75,7 @@ export default function AdminU() {
     return (
         <div id='adminM'>
             <h2>Quản lí người dùng</h2>
-            <button onClick={() => closeModal()} className="btn-addUser">tạo tài khoản</button>
+            <button onClick={() => {setOpenModal(true)}} className="btn-addUser">tạo tài khoản</button>
             <input type="text" />
             <table className="tableUser">
                 <thead>
@@ -114,7 +96,7 @@ export default function AdminU() {
             <div className="pagination">
                 {renderPaginationButton()}
             </div>
-            <ModalAdminUser closeModal={closeModal} editUser={editUser} />
+            <ModalAdminUser openModal={openModal} setOpenModal={setOpenModal} editUser={editUser} />
         </div>
     )
 }

@@ -1,46 +1,47 @@
-#inputModal {
+.infoUser {
     .modal {
-        box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.3);
-        background-color: #fff;
-        width: 400px;
-        .modal_Content {
-            padding: 30px 40px;
-            h1 {
-                text-align: center;
-                font-size: 1.9rem;
-                font-weight: bold;
-                padding: 1rem 0;
-            }
-            label {
-                display: block;
-                padding: 10px 0;
-                font-weight: bold;
-                font-size: 1rem;
-            }
-            input {
-                padding: 10px 5px;
-                font-size: 1rem;
-                width: 100%;
-                border: none;
-                border-bottom: 1px solid rgb(153, 153, 153);
-                outline: none;
-            }
-            .errorInput {
-                color: red;
-            }
-            button {
-                display: block;
-                margin: 30px auto 0;
-                font-size: 1.2rem;
-                font-weight: bold;
-                padding: 15px 25px;
-                outline: none;
-                cursor: pointer;
-                background-color: #fff;
-                border: 3px solid black;
-                @include boxShadow(5px 5px 10px 0px rgba(0, 0, 0, 0.377));
-                @include borderRadius(10px);
-                @include transition(all 0.2s);
+        .modal__body {
+            background-color: #fff;
+            width: 400px;
+            .modal_Content {
+                padding: 30px 40px;
+                h1 {
+                    text-align: center;
+                    font-size: 1.9rem;
+                    font-weight: bold;
+                    padding: 1rem 0;
+                }
+                label {
+                    display: block;
+                    padding: 10px 0;
+                    font-weight: bold;
+                    font-size: 1rem;
+                }
+                input {
+                    padding: 10px 5px;
+                    font-size: 1rem;
+                    width: 100%;
+                    border: none;
+                    border-bottom: 1px solid rgb(153, 153, 153);
+                    outline: none;
+                }
+                .errorInput {
+                    color: red;
+                }
+                button {
+                    display: block;
+                    margin: 30px auto 0;
+                    font-size: 1.2rem;
+                    font-weight: bold;
+                    padding: 15px 25px;
+                    outline: none;
+                    cursor: pointer;
+                    background-color: #fff;
+                    border: 3px solid black;
+                    @include boxShadow(5px 5px 10px 0px rgba(0, 0, 0, 0.377));
+                    @include borderRadius(10px);
+                    @include transition(all 0.2s);
+                }
             }
         }
     }

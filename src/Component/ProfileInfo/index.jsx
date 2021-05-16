@@ -25,11 +25,8 @@ export default function ProfileInfo(props) {
                         <p>Số điện thoại: <span>{user.soDT}</span></p>
                         <p>Email: <span>{user.email}</span></p>
                     </div>
-                    {/* <button className='btn-changeInfo' onClick={() => handleToggleModal()}>Đổi mật khẩu</button> */}
-                    <button className='btn-changeInfo' onClick={() => setOpenModal(!openModal)}>Đổi mật khẩu</button>
-                    <div id="inputModal">
-                        <ModalProfile user={user} setUser={setUser} openModal={openModal} setOpenModal={setOpenModal} />
-                    </div>
+                    <button className='btn-changeInfo' onClick={() => setOpenModal(true)}>Đổi mật khẩu</button>
+                    <ModalProfile user={user} setUser={setUser} openModal={openModal} setOpenModal={setOpenModal} />
                 </div>
             </div>
         </div>

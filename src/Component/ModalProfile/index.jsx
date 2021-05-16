@@ -19,16 +19,6 @@ export default function ModalProfile(props) {
             .required('(*) Không được bỏ trống')
             .oneOf([Yup.ref('newPassWord'), null], '(*) Mật khẩu không trùng khớp'),
     })
-    // const closeModal = () => {
-    //     let domModal = document.querySelector('#inputModal');
-    //     let domBtn = document.querySelector('.btn-changeInfo');
-    //     if (domModal && domBtn) {
-    //         let domModalContent = domModal.querySelector('.modal');
-    //         let formChangePass = document.getElementById('formChangePass');
-    //         formChangePass.reset();
-    //         domModalContent.classList.toggle('toggleModal');
-    //     }
-    // }
     const handleSubmitForm = (value, resetForm) => {
         let arr = {
             taiKhoan: user.taiKhoan,
