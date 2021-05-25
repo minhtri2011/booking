@@ -1,10 +1,11 @@
 #profile {
     .profileHistory {
-        scrollbar-width: thin;
-        scrollbar-color: #c2bebe #e8e3e3;
-        background-color: #fff;
+        position: absolute;
+        height: 100%;
+        top: 0;
+        right: 0;
+        width: 75%;
         @include borderRadius(0 30px 0 0);
-        height: calc(100vh - 100px);
         .title {
             font-size: 2rem;
             font-weight: bolder;
@@ -12,12 +13,29 @@
         }
         .pagination {
             &::-webkit-scrollbar {
-                display: none;
+                width: 5px;
             }
-            height: calc(100vh - 220px);
+            /* Track */
+            &::-webkit-scrollbar-track {
+                background: whitesmoke;
+                @include borderRadius(50px);
+            }
+            /* Handle */
+            &::-webkit-scrollbar-thumb {
+                @include borderRadius(50px);
+                background: rgb(202, 202, 202);
+            }
+            /* Handle on hover */
+            &::-webkit-scrollbar-thumb:hover {
+                background: rgba(177, 177, 177, 0.5);
+            }
+            height: 70%;
             overflow: auto;
             padding: 0 30px;
             .MuiAccordion-root {
+                @include borderRadius(10px);
+                background: linear-gradient(to right bottom, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.5));
+                margin: 10px 0;
                 .MuiAccordionSummary-root {
                     .MuiAccordionSummary-content {
                         .title_accordion {
@@ -82,9 +100,18 @@
         }
     }
 }
+@include mediaQueryMax(getBreakpoints("extra-large")) {
+    #profile {
+        .profileHistory {
+            width: 70%;
+        }
+    }
+}
 @include mediaQueryMax(getBreakpoints("medium")) {
     #profile {
         .profileHistory {
+            position: inherit;
+            width: 100%;
             height: 100%;
             @include borderRadius(30px 30px 0 0);
             .pagination {

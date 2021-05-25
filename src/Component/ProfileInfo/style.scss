@@ -1,11 +1,15 @@
 #profile {
     .profileInfo {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 25%;
         height: 100%;
         padding: 5px;
-        background-color: #fff;
+        background: linear-gradient( to right bottom, rgba(255,255,255,.7), rgba(255,255,255,.5));
         z-index: 1;
         @include boxShadow(5px 5px 15px rgba(0, 0, 0, 0.3));
-        @include borderRadius(0 30px 0 30px);
+        @include borderRadius(30px 30px 0 30px);
         .info_Header {
             padding: 0 10px;
             display: flex;
@@ -98,6 +102,27 @@
     font-family: Damion;
     src: url("../../Font/Damion-Regular.ttf");
 }
+@include mediaQueryMax(getBreakpoints("extra-large")) {
+    #profile {
+        .profileInfo {
+            width: 30%;
+            .info_Content {
+                .avtNameUser {
+                    .avtImg {
+                        img {
+                            width: 50%;
+                        }
+                    }
+                }
+                .infoUser {
+                    .btn-changeInfo {
+                        margin: 20px auto;
+                    }
+                }
+            }
+        }
+    }
+}
 @include mediaQueryMax(getBreakpoints("large")) {
     #profile {
         .profileInfo {
@@ -110,11 +135,6 @@
                     }
                 }
                 .infoUser {
-                    .info {
-                        p {
-                            text-align: left;
-                        }
-                    }
                     .btn-changeInfo {
                         margin: 20px auto;
                     }
@@ -126,9 +146,11 @@
 @include mediaQueryMax(getBreakpoints("medium")) {
     #profile {
         .profileInfo {
+            position: inherit;
             @include borderRadius(0);
             @include boxShadow(none);
             background-color: transparent;
+            width: 100%;
             .info_Content {
                 display: flex;
                 gap: 50px;
