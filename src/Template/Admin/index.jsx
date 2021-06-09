@@ -5,13 +5,16 @@ import HomeIcon from '@material-ui/icons/Home';
 import PeopleIcon from '@material-ui/icons/People';
 import MovieIcon from '@material-ui/icons/Movie';
 import ScheduleIcon from '@material-ui/icons/Schedule';
-import { userLogin } from '../../Config/setting';
 import MenuIcon from '@material-ui/icons/Menu';
+import MenuOpenIcon from '@material-ui/icons/MenuOpen';
+import CloseIcon from '@material-ui/icons/Close';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import { userLogin } from '../../Config/setting';
 function AdminLayout(props) {
-    const getUserName = () => {
-        const getUser = JSON.parse(localStorage.getItem(userLogin)).hoTen;
-        return <span>{getUser}</span>
+
+    const toggleNavBar = () => {
+        const navBar = document.querySelector('.navBar');
+        navBar.classList.toggle('toggle');
     }
     const collapseNavBar = () => {
         const navBar = document.querySelector('.navBar');
@@ -20,43 +23,50 @@ function AdminLayout(props) {
     return (
         <div className="dashboard">
             <div className="content">
+                <div className="navBar__mobileBtn">
+                    <MenuIcon onClick={() => toggleNavBar()} />
+                </div>
                 <div className="navBar collapse">
                     <div className="navBar__btn">
-                        <MenuIcon onClick={()=>collapseNavBar()} />
+                        <MenuOpenIcon onClick={() => collapseNavBar()} />
                     </div>
                     <div className="navBar__logo">
-                        <Link to='/'><p>CineX</p></Link>
+                        <p>CineX</p>
                     </div>
                     <div className="navBar__link">
-                        <Link to='/'>
+                        <div className="navBar__text navBar__userName">
+                            <img src="/img/admin/adAvt.png" alt="avt" />
+                            <p>{JSON.parse(localStorage.getItem(userLogin)).hoTen}</p>
+                        </div>
+                        <div className="navBar__text" onClick={() => collapseNavBar()}>
+                            <MenuOpenIcon />
+                            <p>Thu gọn</p>
+                        </div>
+                        <Link className='navBar__text' to='/'>
                             <HomeIcon />
                             <p>Trang chủ</p>
-                        </Link>
-                        <Link to='/'>
+                        </Link >
+                        <Link className='navBar__text' to='/admin/m'>
                             <PeopleIcon />
                             <p>Quản lí user</p>
-                        </Link>
-                        <Link to='/'>
+                        </Link >
+                        <Link className='navBar__text' to='/'>
                             <MovieIcon />
                             <p>Quản lí phim</p>
-                        </Link>
-                        <Link to='/'>
+                        </Link >
+                        <Link className='navBar__text' to='/'>
                             <ScheduleIcon />
                             <p>Quản lí lịch chiếu phim</p>
-                        </Link>
-                        <Link to='/'>
+                        </Link >
+                        <Link className='navBar__text' to='/'>
                             <ExitToAppIcon />
                             <p>Đăng xuất</p>
-                        </Link>
+                        </Link >
                     </div>
                 </div>
                 <div className="data">
                     <div className="data__Content">
                         {props.children}
-                    </div>
-                    <div className="username">
-                        <img src="/img/admin/adAvt.png" alt="avt" />
-                        {getUserName()}
                     </div>
                 </div>
             </div>

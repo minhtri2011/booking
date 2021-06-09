@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { Modal } from '../Modal';
+import React from 'react'
+import { ModalPopup } from '../Modal';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { groupID } from '../../Config/setting';
@@ -45,9 +45,7 @@ export default function ModalProfile(props) {
         })
     }
     return (
-        <Modal openModal={openModal} setOpenModal={setOpenModal}>
-            <div className='modal_Content'>
-                <h1>Đổi mật khẩu</h1>
+        <ModalPopup openModal={openModal} setOpenModal={setOpenModal}>
                 <Formik
                     initialValues={{
                         oldPassWord: '',
@@ -59,6 +57,7 @@ export default function ModalProfile(props) {
                 >
                     {({ errors, touched }) => (
                         <Form id='formChangePass'>
+                            <h1>Đổi mật khẩu</h1>
                             <label htmlFor="oldPassWord">Nhập mật khẩu</label>
                             <Field autoComplete='off' type='password' name="oldPassWord" />
                             {errors.oldPassWord && touched.oldPassWord ? (
@@ -76,7 +75,6 @@ export default function ModalProfile(props) {
                         </Form>
                     )}
                 </Formik>
-            </div>
-        </Modal>
+        </ModalPopup>
     )
 }

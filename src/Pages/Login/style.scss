@@ -12,8 +12,6 @@
     background: -webkit-linear-gradient(left, #7579ff, #b224ef);
     .form{
       background-color: rgba(255,255,255,.95);
-      -webkit-box-shadow: 18px 14px 18px 1px rgba(0,0,0,0.56);
-      -moz-box-shadow: 18px 14px 18px 1px rgba(0,0,0,0.56);
       box-shadow: 18px 14px 18px 1px rgba(0,0,0,0.56);
       width: 350px;
       height: 500px;
@@ -55,12 +53,55 @@
             white-space: nowrap;
             text-overflow: ellipsis;
           }
-          &::placeholder{
+          &::-webkit-input-placeholder{
             visibility: hidden;
+            opacity: 0;
             color:rgb(185, 171, 171);
           }
+          &::-moz-placeholder{
+            visibility: hidden;
+            opacity: 0;
+            color:rgb(185, 171, 171);
+          }
+          &:-ms-input-placeholder{
+            visibility: hidden;
+            opacity: 0;
+            color:rgb(185, 171, 171);
+          }
+          &::-ms-input-placeholder{
+            visibility: hidden;
+            opacity: 0;
+            color:rgb(185, 171, 171);
+          }
+          &::placeholder{
+            visibility: hidden;
+            opacity: 0;
+            color:rgb(185, 171, 171);
+          }
+          
+          &:focus::-webkit-input-placeholder{
+            visibility: visible;
+            opacity: 1;
+          }
+          
+          &:focus::-moz-placeholder{
+            visibility: visible;
+            opacity: 1;
+          }
+          
+          &:focus:-ms-input-placeholder{
+            visibility: visible;
+            opacity: 1;
+          }
+          
+          &:focus::-ms-input-placeholder{
+            visibility: visible;
+            opacity: 1;
+          }
+          
           &:focus::placeholder{
             visibility: visible;
+            opacity: 1;
           }
           &:not(:placeholder-shown) + label, &:focus + label{
             color: black;
@@ -91,7 +132,10 @@
           width: 50%;
           transition: 0.2s;
           letter-spacing: 0.05em;
-          user-select: none;
+          -webkit-user-select: none;
+             -moz-user-select: none;
+              -ms-user-select: none;
+                  user-select: none;
         }
       }
     }
@@ -119,8 +163,6 @@
       -moz-transition: all 0.3s;
       -ms-transition: all 0.3s;
       -o-transition: all 0.3s;
-      -webkit-box-shadow: 6px 6px 10px 1px rgba(0,0,0,0.56);
-      -moz-box-shadow: 6px 6px 10px 1px rgba(0,0,0,0.56);
       box-shadow: 6px 6px 10px 1px rgba(0,0,0,0.56);
 
       &:hover{

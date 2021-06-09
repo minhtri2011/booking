@@ -1,28 +1,18 @@
 .modal {
-    z-index: 2;
-    position: fixed;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    opacity: 0;
-    visibility: hidden;
-    @include transition(opacity 0.3s ease-in-out,visibility 0.5s ease-in-out);
-    &__background {
-        background-color: rgba(0, 0, 0, 0.3);
-        width: 100vw;
-        height: 100vh;
-        z-index: 2;
-    }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1 !important;
     &__body {
-        box-shadow: -15px -15px 15px rgba(255, 255, 255, 0.2),
-        15px 15px 15px rgba(0, 0, 0, 0.3);
+        outline: none;
+        box-shadow: -15px -15px 15px rgba(255, 255, 255, 0.2), 15px 15px 15px rgba(0, 0, 0, 0.3);
         position: fixed;
         background-color: #fff;
-        left: 50%;
-        top: -200%;
+        // left: 50%;
+        // top: -200%;
         opacity: 0;
         @include borderRadius(10px);
-        @include transform(translate(-50%, -50%) scale(0.5));
+        // @include transform(translate(-50%, -50%) scale(0.5));
         @include transition(opacity 0.5s ease-in-out, top 1s ease-in-out, transform 1s ease-in-out);
         .closeButton {
             position: relative;
@@ -34,17 +24,6 @@
                 width: 30px;
                 height: 30px;
             }
-        }
-    }
-
-    &.toggleModal {
-        opacity: 1;
-        visibility: visible;
-        .modal__body {
-            top: 50%;
-            opacity: 1;
-            @include transform(translate(-50%, -50%) scale(1));
-            @include transition(transform 0.4s cubic-bezier(0.18, 0.89, 0.43, 1.19));
         }
     }
 }

@@ -1,0 +1,33 @@
+#addUserForm {
+    min-width: 300px;
+    padding: 2rem 1rem;
+    p {
+        margin: 1rem 0;
+        font-size: 1.5rem;
+        text-align: center;
+    }
+    label,
+    input {
+        display: block;
+        margin: 0.1rem;
+    }
+    input,
+    select {
+        width: 100%;
+        padding: 0.5rem;
+        border: 1px solid black;
+        border-radius: 5px;
+    }
+    button {
+        display: block;
+        width: 100%;
+        margin-top: .5rem;
+    }
+    .errorText{
+        font-size: .8rem;
+        color: red;
+        margin: 0;
+        padding: 0;
+        text-align: left;
+    }
+}
