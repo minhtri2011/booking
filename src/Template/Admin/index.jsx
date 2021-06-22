@@ -7,7 +7,6 @@ import MovieIcon from '@material-ui/icons/Movie';
 import ScheduleIcon from '@material-ui/icons/Schedule';
 import MenuIcon from '@material-ui/icons/Menu';
 import MenuOpenIcon from '@material-ui/icons/MenuOpen';
-import CloseIcon from '@material-ui/icons/Close';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { userLogin } from '../../Config/setting';
 function AdminLayout(props) {
@@ -38,7 +37,7 @@ function AdminLayout(props) {
                             <img src="/img/admin/adAvt.png" alt="avt" />
                             <p>{JSON.parse(localStorage.getItem(userLogin)).hoTen}</p>
                         </div>
-                        <div className="navBar__text" onClick={() => collapseNavBar()}>
+                        <div className="navBar__text navBar__colappse" onClick={() => collapseNavBar()}>
                             <MenuOpenIcon />
                             <p>Thu gọn</p>
                         </div>
@@ -46,15 +45,15 @@ function AdminLayout(props) {
                             <HomeIcon />
                             <p>Trang chủ</p>
                         </Link >
-                        <Link className='navBar__text' to='/admin/m'>
+                        <Link className='navBar__text' to='/admin'>
                             <PeopleIcon />
                             <p>Quản lí user</p>
                         </Link >
-                        <Link className='navBar__text' to='/'>
+                        <Link className='navBar__text' to='/admin/movie'>
                             <MovieIcon />
                             <p>Quản lí phim</p>
                         </Link >
-                        <Link className='navBar__text' to='/'>
+                        <Link className='navBar__text' to='/admin/movie2'>
                             <ScheduleIcon />
                             <p>Quản lí lịch chiếu phim</p>
                         </Link >

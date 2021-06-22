@@ -22,6 +22,26 @@
             display: none;
         }
         .navBar {
+            overflow-y: auto;
+            overflow-x: hidden;
+                &::-webkit-scrollbar {
+                    width: 5px;
+                    display: none;
+                }
+                /* Track */
+                &::-webkit-scrollbar-track {
+                    background: whitesmoke;
+                    @include borderRadius(50px);
+                }
+                /* Handle */
+                &::-webkit-scrollbar-thumb {
+                    @include borderRadius(50px);
+                    background: rgb(202, 202, 202);
+                }
+                /* Handle on hover */
+                &::-webkit-scrollbar-thumb:hover {
+                    background: rgba(177, 177, 177, 0.5);
+                }
             width: 300px;
             height: 90%;
             background-color: lavender;
@@ -30,6 +50,7 @@
             transition: border-radius 0.5s linear, margin-left 0.5s ease-in-out 0.5s, width 0.5s ease-in-out,
                 height 0.5s ease-in-out;
             background: linear-gradient(to right bottom, rgb(76, 0, 255), rgba(161, 21, 255, 1));
+            
             &__btn {
                 svg {
                     margin: 1rem 1rem 0 auto;
@@ -53,9 +74,9 @@
                     color: #fff;
                 }
             }
-            &__link {
-                .navBar__userName {
-                    display: none;
+            &__link {                
+                .navBar__userName,.navBar__colappse {
+                    display: none !important;
                 }
                 .navBar__text,
                 a {
@@ -195,8 +216,8 @@
                     }
                 }
                 &__link {
-                    .navBar__userName {
-                        display: flex;
+                    .navBar__userName,.navBar__colappse {
+                        display: flex !important;
                         justify-content: flex-start;
                         align-items: center;
                         img {
@@ -231,7 +252,7 @@
                     }
                     .navBar__link {
                         .navBar__userName {
-                            display: none;
+                            display: none !important;
                         }
                         .navBar__text {
                             a {

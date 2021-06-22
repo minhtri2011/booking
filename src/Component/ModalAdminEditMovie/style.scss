@@ -1,0 +1,152 @@
+.modal__body {
+    overflow: hidden;
+    .modalAddMovieForm {
+        display: flex;
+        gap: 1rem;
+        #addMovieForm {
+            padding: 2rem 1rem 2rem 0;
+            min-width: 300px;
+            p {
+                margin: 1rem 0;
+                font-size: 1.5rem;
+                text-align: center;
+            }
+            .MuiTextField-root {
+                display: block;
+                margin-top: 0.5rem;
+                .MuiInputBase-root {
+                    width: 100%;
+                    input {
+                        width: 100%;
+                    }
+                }
+            }
+            .errorText {
+                color: red;
+                font-size: 0.8rem;
+                text-align: left;
+                margin: 0.5rem 0 0;
+            }
+            .dropImgMobile {
+                display: none;
+                margin-top: .5rem;
+                justify-content: space-between;
+                .container {
+                    width: 50%;
+                    .dropzone {
+                        height: 100%;
+                        width: 100%;
+                        justify-content: center;
+                        align-items: center;
+                        p {
+                            margin: 0;
+                            font-size: 0.9rem;
+                            border: 1px dashed grey;
+                            color: rgb(126, 126, 126);
+                            padding: 1rem;
+                            background-color: rgba(211, 211, 211, 0.2);
+                            &:hover {
+                                color: rgb(0, 0, 0);
+                                background-color: rgba(211, 211, 211, 0.5);
+                            }
+                        }
+                    }
+                }
+                .imgDemo {
+                    width: 50%;
+                    justify-content: center;
+                    display: flex;
+                    div {
+                        img {
+                            height: 3rem;
+                            max-width: 100%;
+                        }
+                    }
+                }
+            }
+            .btn{
+                margin:.5rem 0 0 auto;
+                display: block;
+            }
+        }
+        .dropImg {
+            position: relative;
+            min-width: 300px;
+            .container {
+                z-index: 1;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                height: 100%;
+                width: 100%;
+                .dropzone {
+                    cursor: pointer;
+                    height: 100%;
+                    width: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    p {
+                        font-size: 0.9rem;
+                        border: 1px dashed grey;
+                        color: rgb(126, 126, 126);
+                        padding: 1rem;
+                        background-color: rgba(211, 211, 211, 0.2);
+                        &:hover {
+                            color: rgb(0, 0, 0);
+                            background-color: rgba(211, 211, 211, 0.5);
+                        }
+                    }
+                }
+            }
+            .imgDemo {
+                position: absolute;
+                height: 100%;
+                div {
+                    position: relative;
+                    z-index: -2;
+                    padding-bottom: 160%;
+                    width: 300px;
+                    height: 100%;
+                    img {
+                        position: absolute;
+                        height: 100%;
+                        width: 100%;
+                        left: 0;
+                        bottom: 0;
+                        object-fit: cover;
+                    }
+                }
+            }
+        }
+    }
+}
+@include mediaQueryMax(getBreakpoints("large")) {
+    .modal__body {
+        .modalAddMovieForm {
+            .dropImg {
+                display: none;
+            }
+            #addMovieForm {
+                padding: 2rem 1rem;
+                .dropImgMobile{
+                    display: flex;
+                }
+            }
+        }
+    }
+}
+
+@include mediaQueryMax(getBreakpoints("extra-small")) {
+    .modal__body{
+        .modalAddMovieForm{
+            overflow-y: auto;
+            #addMovieForm{
+                min-width: 270px;
+                height: 450px;
+                overflow-y: auto;
+            }
+        }
+    }
+}

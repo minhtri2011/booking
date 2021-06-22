@@ -27,6 +27,7 @@ export default function ModalAdminAddUser(props) {
             handleAddUser(values, resetForm);
         },
     })
+
     return (
         <ModalPopup openModal={openModal} setOpenModal={setOpenModal}>
             <form id='addUserForm' onSubmit={formik.handleSubmit} className="addUser">

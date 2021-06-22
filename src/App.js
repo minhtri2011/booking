@@ -18,8 +18,8 @@ import { LoginAction } from './redux/action/user';
 import Home from './Pages/Home'
 import Booking from './Pages/Booking'
 import AdminUser from './Pages/AdminUser'
+import AdminMovie2 from './Pages/AdminMovie2'
 import AdminMovie from './Pages/AdminMovie'
-import AdminU from './Pages/AdminU'
 import Login from './Pages/Login'
 import Registry from './Pages/Registry'
 import MovieDetail from './Pages/movieDetail'
@@ -122,7 +122,8 @@ function App() {
           <BookingTemplate exact path="/booking/:id" component={Booking} />
           <AdminTemplate exact path="/admin" component={AdminUser} />
           <AdminTemplate exact path="/admin/movie" component={AdminMovie} />
-          <AdminTemplate exact path="/admin/m" component={AdminU} />
+          <AdminTemplate exact path="/admin/movie2" component={AdminMovie2} />
+          {/* <AdminTemplate exact path="/admin/m" component={AdminUser} /> */}
           <FormTemplate exact path="/login" component={Login} />
           <FormTemplate exact path="/registry" component={Registry} />
           <Route exact path="/profile" component={Profile} />

@@ -8,6 +8,19 @@ export class Movie {
             url: `${domain}/QuanLyPhim/LayDanhSachPhim?maNhom=${groupID}`
         })
     }
+    getMovieListPagination = (name, page) => {
+        if (name) {
+            return axios({
+                method: 'GET',
+                url: `${domain}/QuanLyPhim/LayDanhSachPhimPhanTrang?maNhom=${groupID}&tenPhim=${name}&soTrang=${page}&soPhanTuTrenTrang=10`
+            })
+        } else {
+            return axios({
+                method: 'GET',
+                url: `${domain}/QuanLyPhim/LayDanhSachPhimPhanTrang?maNhom=${groupID}&soTrang=${page}&soPhanTuTrenTrang=10`
+            })
+        }
+    }
     getMovieDetail = (id) => {
         return axios({
             method: 'GET',
@@ -41,8 +54,7 @@ export class Movie {
     addMovie = (movie) => {
         return axios({
             method: "POST",
-            url:
-                `${domain}/QuanLyPhim/ThemPhimUploadHinh`,
+            url: `${domain}/QuanLyPhim/ThemPhimUploadHinh`,
             data: movie,
             headers: {
                 'Authorization': 'Bearer ' + localStorage.getItem(token),
