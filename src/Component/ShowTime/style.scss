@@ -210,8 +210,12 @@
   }
 }
 @include mediaQueryMax(getBreakpoints("extra-large")) {
-  .showTime {
-    width: 80%;
+  #showTime {
+    width: 90%;
+    margin: auto;
+    .showTime_content {
+      width: 100%;
+    }
     .item_center {
       .cinema_button {
         .content_item_center {
@@ -222,20 +226,29 @@
   }
 }
 @include mediaQueryMax(getBreakpoints("large")) {
-  .showTime {
-    width: 90%;
+  #showTime {
+    width: 100%;
     grid-template-columns: 10% 40% 50%;
-    .item_left {
-      button {
-        width: 4.5rem;
-        height: 4.5rem;
+    .showTime_content {
+      .item_left {
+        button {
+          width: 4.5rem;
+          height: 4.5rem;
+        }
       }
-    }
-    .item_right {
-      .list {
-        .listFilmInfo {
-          .movie_img {
-            width: 80px;
+      .item_center {
+        .cinema_button {
+          .content_item_center {
+            padding-left: 1rem;
+          }
+        }
+      }
+      .item_right {
+        .list {
+          .listFilmInfo {
+            .movie_img {
+              width: 80px;
+            }
           }
         }
       }

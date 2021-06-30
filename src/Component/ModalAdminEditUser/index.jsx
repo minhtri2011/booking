@@ -1,7 +1,7 @@
 import React from 'react';
 import { ModalPopup } from '../Modal';
 import { groupID } from '../../Config/setting';
-import { Field, Form, Formik, useFormik } from 'formik';
+import { Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import { userServices } from '../../Services/user';
 import Swal from 'sweetalert2';
@@ -30,6 +30,7 @@ export default function ModalAdminEditUser(props) {
         }).catch(err => {
             console.log(err.response.data);
             Swal.fire({
+                icon: 'error',
                 title: err.response.data,
                 showConfirmButton: false,
                 timer: 2000

@@ -14,7 +14,7 @@ export default function ProfileHistory(props) {
     return (
         <div className="profileHistory">
             <p className='title'>Lịch sử đặt vé</p>
-            <Pagination itemPerPage={10} scrollToEle={'.profileHistory'}>
+            {user.thongTinDatVe === '' ? <Pagination itemPerPage={10} scrollToEle={'.profileHistory'}>
                 {user.thongTinDatVe
                     ?.sort((a, b) => a.ngayDat < b.ngayDat ? 1 : -1)
                     ?.map((item, index) => {
@@ -40,6 +40,7 @@ export default function ProfileHistory(props) {
                         </Accordion>
                     })}
             </Pagination>
+                : <p className="userAlert">Người dùng chưa đặt vé</p>}
         </div>
 
     )

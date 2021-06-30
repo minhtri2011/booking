@@ -81,5 +81,15 @@ export class Movie {
             }
         })
     }
+    addShowTime = (data) => {
+        return axios({
+            method: "POST",
+            url: `${domain}/QuanLyDatVe/TaoLichChieu`,
+            data: data,
+            headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem(token),
+            }
+        })
+    }
 }
 export const movieServices = new Movie();

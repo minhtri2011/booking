@@ -9,9 +9,9 @@ const BookingLayout = (props) => {
     )
 }
 export const BookingTemplate = props => {
-        var Auth = JSON.parse(localStorage.getItem('userLogin'));
+    let Auth = JSON.parse(localStorage.getItem('userLogin'));
     return <Route path={props.path} {...props.exact} render={(propsComponent) => (
-        (Auth!==null) ?
+        (Auth !== null) ?
             <BookingLayout>
                 <props.component {...propsComponent} />
             </BookingLayout>

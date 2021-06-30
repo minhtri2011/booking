@@ -1,0 +1,192 @@
+#adminShowTime {
+    height: 100%;
+    .userAdminContent {
+        cursor: auto;
+        position: absolute;
+        width: 100%;
+        overflow-y: scroll;
+        height: 100%;
+        scrollbar-width: thin;
+        scrollbar-color: black #e8e3e3;
+        &::-webkit-scrollbar {
+            width: 5px;
+        }
+        &::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        &::-webkit-scrollbar-thumb {
+            cursor: pointer !important;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 50px;
+        }
+        .title {
+            padding: 2rem;
+        }
+        .tableMovie {
+            margin: auto;
+            width: 100%;
+            max-width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            thead {
+                tr {
+                    th {
+                        padding: 15px 10px 15px 0;
+                        border-bottom: 1px solid rgb(218, 218, 218);
+                    }
+                }
+            }
+            tbody {
+                td {
+                    max-width: 150px;
+                    word-wrap: break-word;
+                    font-size: 1rem;
+                    font-weight: normal;
+                    border-bottom: 1px solid rgb(218, 218, 218);
+                    padding: 1rem 0.5rem 1rem 0;
+                    white-space: normal;
+                    .imgMovie {
+                        width: 150px;
+                    }
+                    &.action {
+                        height: 100%;
+                        display: flexbox;
+                        align-items: center;
+                        .btn_delete {
+                            color: $btn-color-primary;
+                            cursor: pointer;
+                        }
+                        .btn_setting {
+                            margin-left: 5px;
+                            cursor: pointer;
+                            color: blue;
+                        }
+                    }
+                }
+            }
+        }
+        .pagination {
+            button {
+                padding: 0.5rem 0.7rem;
+                border-radius: 5px;
+                border: none;
+                outline: none;
+                background: linear-gradient(to right bottom, #4c00ff, #a115ff);
+                color: white;
+                margin-right: 0.5rem;
+                cursor: pointer;
+            }
+        }
+    }
+}
+@include mediaQueryMax(getBreakpoints("large")) {
+    #adminMovie {
+        .userAdminContent {
+            .tableMovie {
+                thead {
+                    display: none;
+                }
+                tbody {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 1rem;
+                    tr {
+                        width: calc(50% - 1rem);
+                        display: block;
+                        // margin-bottom: 1rem;
+                        background-color: #fff;
+                        border-radius: 10px;
+                        box-shadow: 5px 5px 5px rgba(12, 8, 8, 0.1), inset 5px 5px rgba(255, 255, 255, 0.2);
+                        td {
+                            max-width: 100%;
+                            display: block;
+                            padding: 1rem;
+                            border: none;
+                            text-align: right;
+                            &::before {
+                                content: attr(content) ": ";
+                                font-weight: bold;
+                                float: left;
+                            }
+                            &.action{
+                                height: auto;
+                            }
+                        }
+                    }
+                }
+            }
+            .pagination {
+                margin-top: 1rem;
+                button {
+                    margin: .2rem;
+                    padding: 0.5rem 0.7rem;
+                    border-radius: 5px;
+                    border: none;
+                    outline: none;
+                    background: linear-gradient(to right bottom, #4c00ff, #a115ff);
+                    color: white;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}
+@include mediaQueryMax(getBreakpoints("medium")) {
+    #adminMovie {
+        .userAdminContent {
+            .tableMovie {
+                tbody {
+                    padding-right: 0.5rem;
+                    tr {
+                        width: 100%;
+                        // td {
+                        //     max-width: 100%;
+                        //     text-align: right;
+                        //     &.action{
+                        //         display: block;
+                        //     }
+                        //     &::before {
+                        //         float: left ;
+                        //     }
+                        // }
+                    }
+                }
+            }
+        }
+    }
+}
+@include mediaQueryMax(getBreakpoints('small')){
+    #adminMovie{
+        .header {
+            &__searchBox {
+                width: 200px;
+            }
+        }
+    }
+}
+@include mediaQueryMax(getBreakpoints('extra-small')){
+    #adminMovie{
+        .header {
+            justify-content: flex-end;
+            padding: .5rem;
+            &__searchBox {
+                width: 200px;
+                padding: 0;
+            }
+            &__userName {
+                width: 100%;
+                display: none;
+                align-items: center;
+                img {
+                    width: 2rem;
+                    margin-right: 0.5rem;
+                }
+            }
+        }
+        .userAdminContent{
+            .tableMovie{
+                table-layout: fixed;
+            }
+        }
+    }
+}

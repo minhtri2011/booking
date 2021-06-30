@@ -1,24 +1,17 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { Fragment, useEffect, Suspense, lazy } from 'react';
+import React, { Fragment, useEffect } from 'react';
 // import logo from './logo.svg';
 // import './App.scss';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Switch } from 'react-router-dom';
 import { HomeTemplate } from './Template/Home';
-// import { AdminTemplate } from './Template/Admin';
 import { BookingTemplate } from './Template/Booking';
 import { userLogin } from './Config/setting';
 import { useDispatch } from 'react-redux';
 import { LoginAction } from './redux/action/user';
-// import './scss/main.scss';
-// import { PropfileTemplate } from './Template/Profile';
-// import { AdminTemplate } from './Template/Admin';
-// import { BookingTemplate } from './Template/Booking';
-// import { FormTemplate } from './Template/Form';
-// import Loading from './Pages/Loading';
 import Home from './Pages/Home'
 import Booking from './Pages/Booking'
 import AdminUser from './Pages/AdminUser'
-import AdminMovie2 from './Pages/AdminMovie2'
+import AdminShowTimes from './Pages/AdminShowTime'
 import AdminMovie from './Pages/AdminMovie'
 import Login from './Pages/Login'
 import Registry from './Pages/Registry'
@@ -28,64 +21,7 @@ import Profile from './Pages/Profile';
 import './scss/main.scss';
 import { FormTemplate } from './Template/Form';
 import { AdminTemplate } from './Template/Admin';
-// // lazyLoad page loading
-// const Home = lazy(() => {
-//   return new Promise((resolve) => {
-//     setTimeout(() => {
-//       resolve(import('./Pages/Home'))
-//     }, 2400);
-//   })
-// });
-// const Login = lazy(() => {
-//   return new Promise((resolve) => {
-//     setTimeout(() => {
-//       resolve(import('./Pages/Login'))
-//     }, 2400);
-//   })
-// });
-// const Registry = lazy(() => {
-//   return new Promise((resolve) => {
-//     setTimeout(() => {
-//       resolve(import('./Pages/Registry'))
-//     }, 2400);
-//   })
-// });
-// const MovieDetail = lazy(() => {
-//   return new Promise((resolve) => {
-//     setTimeout(() => {
-//       resolve(import('./Pages/movieDetail'))
-//     }, 2400);
-//   })
-// });
-// const Booking = lazy(() => {
-//   return new Promise((resolve) => {
-//     setTimeout(() => {
-//       resolve(import('./Pages/Booking'))
-//     }, 2400);
-//   })
-// });
-// const Profile = lazy(() => {
-//   return new Promise((resolve) => {
-//     setTimeout(() => {
-//       resolve(import('./Pages/Profile'))
-//     }, 2400);
-//   })
-// });
-// const AdminUser = lazy(() => {
-//   return new Promise((resolve) => {
-//     setTimeout(() => {
-//       resolve(import('./Pages/AdminUser'))
-//     }, 2400);
-//   })
-// });
-// const AdminMovie = lazy(() => {
-//   return new Promise((resolve) => {
-//     setTimeout(() => {
-//       resolve(import('./Pages/AdminMovie'))
-//     }, 2400);
-//   })
-// });
-
+import { PropfileTemplate } from './Template/Profile';
 function App() {
   const dispatch = useDispatch();
   const isLogin = localStorage.getItem(userLogin);
@@ -99,22 +35,6 @@ function App() {
     getUserName();
   }, [])
   return (
-    // <BrowserRouter>
-    //   <Fragment>
-    //     <Suspense fallback={<Loading />}>
-    //       <Switch>
-    //         <FormTemplate exact path="/login" component={Login} />
-    //         <FormTemplate exact path="/registry" component={Registry} />
-    //         <BookingTemplate exact path="/booking/:id" component={Booking} />
-    //         <HomeTemplate exact path="/" component={Home} />
-    //         <HomeTemplate exact path="/moviedetail/:id" component={MovieDetail} />
-    //         <PropfileTemplate exact path="/profile" component={Profile} />
-    //         <AdminTemplate exact path="/admin/movie" component={AdminMovie} />
-    //         <AdminTemplate exact path="/admin" component={AdminUser} />
-    //       </Switch>
-    //     </Suspense>
-    //   </Fragment>
-    // </BrowserRouter>
     <BrowserRouter>
       <Fragment>
         <Switch>
@@ -122,11 +42,10 @@ function App() {
           <BookingTemplate exact path="/booking/:id" component={Booking} />
           <AdminTemplate exact path="/admin" component={AdminUser} />
           <AdminTemplate exact path="/admin/movie" component={AdminMovie} />
-          <AdminTemplate exact path="/admin/movie2" component={AdminMovie2} />
-          {/* <AdminTemplate exact path="/admin/m" component={AdminUser} /> */}
+          <AdminTemplate exact path="/admin/movieShowTimes" component={AdminShowTimes} />
           <FormTemplate exact path="/login" component={Login} />
           <FormTemplate exact path="/registry" component={Registry} />
-          <Route exact path="/profile" component={Profile} />
+          <PropfileTemplate exact path="/profile" component={Profile} />
           <HomeTemplate exact path="/ShowTimeMobile" component={ShowTimeMobile} />
           <HomeTemplate exact path="/MovieDetail/:id" component={MovieDetail} />
         </Switch>

@@ -214,8 +214,6 @@
                     svg {
                       font-size: 0.6rem;
                     }
-                    p {
-                    }
                   }
                 }
               }
@@ -301,6 +299,25 @@
   #listMovie {
     .MuiBox-root {
       width: 100%;
+    }
+    .MuiTabs-root {
+      .MuiTabs-fixed {
+        .MuiTabs-flexContainer {
+          justify-content: center;
+          box-shadow: none;
+          height: 5rem;
+          button {
+            font-size: 1.2rem !important;
+            &.Mui-selected span,
+            &.Mui-selected,
+            button {
+              font-weight: bold !important;
+              font-size: 1.3rem !important;
+            }
+          }
+        }
+
+      }
     }
   }
 }

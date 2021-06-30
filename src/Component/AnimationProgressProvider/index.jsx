@@ -16,6 +16,7 @@ export default function AnimatedProgressProvider(props) {
         } else {
             setIsAnimated(!isAnimated);
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     return (

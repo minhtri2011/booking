@@ -1,0 +1,50 @@
+.searchBarShowTime {
+    display: flex;
+    justify-content: center;
+    .searchForm {
+        width: 50%;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+        .MuiFormControl-root {
+            width: calc(50% - 5px);
+            select {
+                width: 100%;
+            }
+            .MuiFormControl-root {
+                width: 100%;
+                input {
+                    // width: 100%;
+                    padding: 0.5rem;
+                    height: 100%;
+                }
+            }
+        }
+        .btn {
+            width: 100%;
+            padding: 1rem;
+        }
+    }
+}
+@include mediaQueryMax(getBreakpoints("extra-large")) {
+    .searchBarShowTime {
+        padding-right: 1.5rem;
+        display: flex;
+        justify-content: center;
+        .searchForm { 
+            width: 100%;
+        }
+    }
+}
+@include mediaQueryMax(getBreakpoints("medium")) {
+    .searchBarShowTime {
+        display: flex;
+        justify-content: center;
+        .searchForm { 
+            .MuiFormControl-root {
+                width: 100%;
+            }
+        }
+    }
+}

@@ -41,13 +41,19 @@ export default function NavBarMobile() {
                         <Link onClick={() => { document.body.style.overflowY = 'auto'; }} to='/profile'>{getUserNameLocal.taiKhoan}</Link> :
                         <Link onClick={() => { document.body.style.overflowY = 'auto'; }} to='/login'>Đăng nhập</Link>
                     }</li>
+                    <li>
+                        <Link onClick={() => { document.body.style.overflowY = 'auto'; }} to='/admin'>Quản trị</Link>
+                    </li>
                     <li onClick={() => { smoothScrollTo('listMovie') }}>Lịch chiếu</li>
                     <li>
                         <Link onClick={() => { document.body.style.overflowY = 'auto'; }} to='/showtimemobile'>Cụm rạp</Link>
                     </li>
                     <li onClick={() => { smoothScrollTo('apps') }}>Ứng dụng</li>
-                    <li>Dark mode</li>
-                    <li>Đăng xuất</li>
+                    <li onClick={() => {
+                        localStorage.clear();
+                        window.location.replace('/');
+                    }}
+                    >Đăng xuất</li>
                 </ul>
             </div>
         </div>

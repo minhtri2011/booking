@@ -57,10 +57,13 @@ function AdminLayout(props) {
                             <ScheduleIcon />
                             <p>Quản lí lịch chiếu phim</p>
                         </Link >
-                        <Link className='navBar__text' to='/'>
+                        <div className='navBar__text' onClick={()=>{
+                            localStorage.clear();
+                            window.location.replace('/');
+                        }}>
                             <ExitToAppIcon />
                             <p>Đăng xuất</p>
-                        </Link >
+                        </div >
                     </div>
                 </div>
                 <div className="data">

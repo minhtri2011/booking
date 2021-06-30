@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
 import ModalProfile from '../ModalProfile';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import ModalAdminAddUser from '../ModalAdminAddUser';
 export default function ProfileInfo(props) {
     const { user, setUser } = props;
     const [openModal, setOpenModal] = useState(false);
@@ -10,7 +9,11 @@ export default function ProfileInfo(props) {
         <div className="profileInfo">
             <div className="info_Header">
                 <Link className='btn_comback' to='/'><p>CineX</p></Link>
-                <ExitToAppIcon className='logoutIcon' />
+                <ExitToAppIcon className='logoutIcon' onClick={() => {
+                    localStorage.clear();
+                    window.location.replace('/');
+                }
+                } />
             </div>
             <div className="info_Content">
                 <div className="avtNameUser">
@@ -26,7 +29,7 @@ export default function ProfileInfo(props) {
                         <p>Số điện thoại: <span>{user.soDT}</span></p>
                         <p>Email: <span>{user.email}</span></p>
                     </div>
-                    <button className='btn-changeInfo' onClick={() => {setOpenModal(true)}}>Đổi mật khẩu</button>
+                    <button className='btn-changeInfo' onClick={() => { setOpenModal(true) }}>Đổi mật khẩu</button>
                     <ModalProfile user={user} setUser={setUser} openModal={openModal} setOpenModal={setOpenModal} />
                     {/* <ModalAdminAddUser setUser={setUser} openModal={openModal} setOpenModal={setOpenModal}/> */}
                 </div>

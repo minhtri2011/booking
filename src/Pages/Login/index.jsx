@@ -4,7 +4,6 @@ import { token, userLogin } from '../../Config/setting';
 import { userServices } from '../../Services/user';
 import { Link } from 'react-router-dom';
 import { LoginAction } from '../../redux/action/user';
-import Swal from 'sweetalert2';
 export default function Login(props) {
     const Swal = require('sweetalert2');
     const dispatch = useDispatch();
