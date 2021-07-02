@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect, useMemo } from 'react';
 import { movieServices } from '../../Services/movie';
-import Grid from '@material-ui/core/Grid';
+// import Grid from '@material-ui/core/Grid';
 import Countdown, { zeroPad } from 'react-countdown';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
@@ -9,7 +9,7 @@ import Backdrop from '@material-ui/core/Backdrop';
 import Zoom from '@material-ui/core/Zoom';
 import { userLogin } from '../../Config/setting';
 import { userServices } from '../../Services/user';
-
+import Swal from 'sweetalert2';
 const useStyles = makeStyles((theme) => ({
     modal: {
         display: 'flex',
@@ -22,6 +22,7 @@ export default function Booking(props) {
     const [open, setOpen] = React.useState(false);
     let [movie, setMovie] = useState([]);
     let [listChair, setListChair] = useState([]);
+    let [activeSideBar, setActiveSideBar] = useState(false);
     const handleOpen = () => {
         setOpen(true);
     };
@@ -36,14 +37,19 @@ export default function Booking(props) {
                 console.log(err);
             })
     }, [])
+
+    //dùng usememo để thời gian đếm ngược không bị render lại khi setstate 
+    const dateNow = useMemo(() => Date.now(), [])
+    //render danh sách ghế
     const renderListChair = () => {
         return movie.danhSachGhe?.map((chair, index) => {
-            return <div style={{ display: 'inline' }} key={index}>
+            return <div className="chair__item" key={index}>
                 {renderChair(chair.daDat, chair.loaiGhe, chair)}
                 {(index + 1) % 16 === 0 ? <br /> : ''}
             </div>
         })
     }
+    //render từng ghế và format lọc từng loại ghế
     const renderChair = (bookingChair, type, chair) => {
         if (type === 'Thuong') {
             if (bookingChair) {
@@ -79,21 +85,39 @@ export default function Booking(props) {
         }
 
     }
+    //tính năng chọn ghế
     const bookChair = (chair) => {
         let index = listChair.findIndex(book => book.stt === chair.stt);
-        if (index !== -1) {
-            listChair.splice(index, 1)
+        let arr = [];
+        if (listChair.length === 0) {
+            setListChair([...listChair, chair]);
         } else {
-            listChair = [...listChair, chair]
+            listChair.forEach(value => {
+                arr = [...arr, parseInt(value.stt)];
+            })
+            if (chair.stt - Math.max(...arr) > 1 || chair.stt - Math.min(...arr) < -1) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Chỉ được đặt dãy ghế gần nhau',
+                    showConfirmButton: false,
+                    timer: 2000
+                })
+            } else {
+                if (index !== -1) {
+                    listChair.splice(index, 1);
+                } else {
+                    listChair = [...listChair, chair];
+                }
+                setListChair([...listChair]);
+            }
         }
-        setListChair([...listChair]);
-    }
 
+    }
+    //render thông tin phim, địa chỉ và cụm rạp
     const renderMovie = () => {
-        // return movie.thongTinPhim?.map((info, index) => {
         return <div>
             <h3 className="border price">
-                {listChair.reduce((total, chair, index) => {
+                {listChair.reduce((total, chair) => {
                     return total += chair.giaVe;
                 }, 0).toLocaleString()} Đ
             </h3>
@@ -101,115 +125,138 @@ export default function Booking(props) {
             <p className="address">{movie.thongTinPhim?.tenCumRap}</p>
             <p className="address">{movie.thongTinPhim?.diaChi}</p>
             <p className="border">Khởi chiếu: {movie.thongTinPhim?.ngayChieu} - {movie.thongTinPhim?.gioChieu} - {movie.thongTinPhim?.tenRap}</p>
-            <p>Ghế:</p>
-            <p className="seatName">
+            {listChair.length > 0 ? <p className="seatName">
+                <span>Ghế: </span>
                 {listChair.map((chair, index) => {
                     return <span key={index}>G-{chair.tenGhe}, </span>
                 })}
-            </p>
+            </p> : <p>Bạn chưa đặt ghế</p>}
+
 
         </div>
     }
+    //format giờ đếm ngược của thư viện countdown
     const renderTime = ({ minutes, seconds }) => {
         return <span>{zeroPad(minutes, 2)}:{zeroPad(seconds, 2)}</span>;
     }
+    //thao tác khi đếm ngược hoàn thành, khách hàng có lựa chọn book vé hoặc chuyển về trang chủ
     const onComplete = () => {
-        handleOpen();
+        // handleOpen();
         setTimeout(() => {
             props.history.replace('/');
-        }, 3600);
+        }, 10000);
+        Swal.fire({
+            title: 'Đã quá hạn!',
+            text: "Bạn sẽ được chuyển hướng về trang chủ sau 10 giây",
+            icon: 'warning',
+            timer: 9500,
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Tiếp tục đặt vé',
+            cancelButtonText: 'Trang chủ',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.reload();
+            }else{
+                props.history.replace('/');
+            }
+        })
     }
-    const dateNow = useMemo(() => Date.now(), [])
+    //thao tách submit đặt ghế
     const booking = () => {
         let info = {
             "maLichChieu": props.match.params.id,
             "danhSachVe": listChair,
             "taiKhoanNguoiDung": JSON.parse(localStorage.getItem(userLogin)).taiKhoan
         }
-        userServices.buyTicket(info).then(res => {
-            alert('Đặt vé thành công');
-            window.location.replace('/');
-        }).catch(err => {
-            console.log(err);
-        })
+        if (listChair.length > 0) {
+            userServices.buyTicket(info).then(res => {
+                alert('Đặt vé thành công');
+                window.location.replace('/');
+            }).catch(err => {
+                console.log(err);
+            })
+        } else {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Bạn chưa đặt vé',
+                showConfirmButton: false,
+                timer: 2000
+            })
+        }
     }
     return (
-        // <div className="booking_page">
-        //     <div className="booking">
-        //         <Grid container spacing={0}>
-        //             <Grid item xs={12} md={9}>
-        //                 <div className="renderChair">
-        //                     <div className="headerRender">
-        //                         <div className="headerLeft">
-        //                             <p className="title">{movie.thongTinPhim?.tenCumRap}</p>
-        //                             <p className="content">Khởi chiếu: {movie.thongTinPhim?.ngayChieu} - {movie.thongTinPhim?.gioChieu} - {movie.thongTinPhim?.tenRap}</p>
-        //                         </div>
-        //                         <div className="headerRight">
-        //                             <p>Thời gian giữ ghế:</p>
-        //                             <p className="countDownNumber"><Countdown intervalDelay={0} renderer={renderTime} onComplete={onComplete} date={dateNow + 120000}></Countdown></p>
-        //                         </div>
-        //                     </div>
-        //                     <img src="/img/screen.png" alt="" />
-        //                     <div className="renderListChair">{renderListChair()}</div>
-        //                     <div className="seatCaption">
-        //                         <div className="normal_Chair"></div>
-        //                         <span>Ghế thường</span>
-        //                         <div className="vip_Chair"></div>
-        //                         <span>Ghế vip</span>
-        //                         <div className="booking_Chair">
-        //                             <span>x</span>
-        //                         </div>
-        //                         <span>Ghế đã chọn</span>
-        //                     </div>
-        //                 </div>
-        //             </Grid>
-        //             <Grid className="grid_right" item xs={12} md={3}>
-        //                 <div className="movie_info">{renderMovie()}</div>
-        //                 <button onClick={() => {
-        //                     booking()
-        //                 }} className="btn_booking">Đặt vé</button>
-        //             </Grid>
-        //         </Grid>
-        //     </div>
-
-        //     <Modal
-        //         aria-labelledby="transition-modal-title"
-        //         aria-describedby="transition-modal-description"
-        //         className={classes.modal}
-        //         open={open}
-        //         closeAfterTransition
-        //         BackdropComponent={Backdrop}
-        //         BackdropProps={{
-        //             timeout: 500,
-        //         }}
-        //     >
-        //         <Zoom in={open}>
-        //             <div className="classModal">
-        //                 <img width="500px" src="/img/bookingPage/loader_motion_for_product_UI.gif" alt="loader_motion_for_product_UI.gif" />
-        //                 <div className="textModal">
-        //                     <h2>Hết thời gian mua vé!</h2>
-        //                     <p>Đang chuyển hướng về trang chủ..</p>
-        //                 </div>
-        //             </div>
-        //         </Zoom>
-        //     </Modal>
-        // </div>
-        <div id="booking">
-            <div className="booking__content">
-                <div className="booking__header">
+        <div className="booking_page">
+            <div className="renderChair">
+                <div className="headerRender">
                     <div className="headerLeft">
                         <p className="title">{movie.thongTinPhim?.tenCumRap}</p>
-                        <p className="content">Khởi chiếu: {movie.thongTinPhim?.ngayChieu} - {movie.thongTinPhim?.gioChieu} - {movie.thongTinPhim?.tenRap}</p>
+                        <div className="content">
+                            <p>{movie.thongTinPhim?.tenRap}</p>
+                            <p>Ngày chiếu: <span>{movie.thongTinPhim?.ngayChieu}</span></p>
+                            <p>Giờ chiếu: <span>{movie.thongTinPhim?.gioChieu}</span></p>
+                        </div>
                     </div>
                     <div className="headerRight">
                         <p>Thời gian giữ ghế:</p>
-                        <p className="countDownNumber"><Countdown intervalDelay={0} renderer={renderTime} onComplete={onComplete} date={dateNow + 12000000}></Countdown></p>
+                        <p className="countDownNumber"><Countdown intervalDelay={0} renderer={renderTime} onComplete={onComplete} date={dateNow + 120000}></Countdown></p>
                     </div>
                 </div>
+                <img src="/img/screen.png" alt="" />
+                <div className="renderListChair">{renderListChair()}</div>
+                <div className="seatCaption">
+                    <div className="normal_Chair"></div>
+                    <span>Ghế thường</span>
+                    <div className="vip_Chair"></div>
+                    <span>Ghế vip</span>
+                    <div className="booking_Chair">
+                        <span>x</span>
+                    </div>
+                    <span>Ghế đã chọn</span>
+                </div>
+                <div className="buttonMobile">
+                    <p className="price">{listChair.reduce((total, chair) => {
+                        return total += chair.giaVe;
+                    }, 0).toLocaleString()} Đ</p>
+                    {listChair.length > 0 ?
+                        <button onClick={() => setActiveSideBar(!activeSideBar)}>Đặt vé</button>
+                        :
+                        <button disabled className="disabled" >Đặt vé</button>
+                    }
+                </div>
             </div>
-            <div className="booking__tab">
+            <div className={`booking__panel ${activeSideBar ? 'active' : ''}`}>
+                <div className="movie_info">{renderMovie()}</div>
+                <div className="bookingBtn">
+                    <button onClick={() => setActiveSideBar(!activeSideBar)} className="btn_booking">Hủy</button>
+                    <button onClick={() => {
+                        booking()
+                    }} className="btn_booking" >Đặt vé</button>
+                </div>
+            </div>
 
-            </div>
+            <Modal
+                aria-labelledby="transition-modal-title"
+                aria-describedby="transition-modal-description"
+                className={classes.modal}
+                open={open}
+                closeAfterTransition
+                BackdropComponent={Backdrop}
+                BackdropProps={{
+                    timeout: 500,
+                }}
+            >
+                <Zoom in={open}>
+                    <div className="classModal">
+                        <img width="500px" src="/img/bookingPage/loader_motion_for_product_UI.gif" alt="loader_motion_for_product_UI.gif" />
+                        <div className="textModal">
+                            <h2>Hết thời gian mua vé!</h2>
+                            <p>Đang chuyển hướng về trang chủ..</p>
+                        </div>
+                    </div>
+                </Zoom>
+            </Modal>
         </div>
     )
 }

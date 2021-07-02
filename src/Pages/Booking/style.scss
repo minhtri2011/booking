@@ -1,189 +1,395 @@
-// .booking_page {
-//   height: 100vh;
-//   width: 100%;
-//   // background-color: orangered;
-//   .booking {
-//     width: 100%;
-//     margin: 0 auto;
-//     .renderChair {
-//       @include disableUserSelect();
-//       text-align: center;
-//       height: 100vh;
-//       .headerRender {
-//         // background-color: yellow;
-//         display: flex;
-//         justify-content: space-between;
-//         text-align: center;
-//         width: 70%;
-//         margin: 0 auto;
-//         padding: 20px 0;
-//         .headerLeft {
-//           .title {
-//             color: red;
-//             font-size: 1rem;
-//             font-weight: 600;
-//           }
-//           .content {
-//             line-height: 2.5rem;
-//           }
-//         }
-//       }
-//       .seatCaption {
-//         display: flex;
-//         align-items: center;
-//         justify-content: center;
-//         .normal_Chair {
-//           width: 20px;
-//           height: 20px;
-//           background-color: rgb(136, 135, 135);
-//           margin: 20px 5px 20px 20px;
-//         }
-//         .vip_Chair {
-//           background-color: orangered !important;
-//           width: 20px;
-//           height: 20px;
-//           margin: 20px 5px 20px 20px;
-//         }
-//         .booking_Chair {
-//           background-color: rgb(136, 135, 135);
-//           width: 20px;
-//           height: 20px;
-//           margin: 20px 5px 20px 20px;
-//           span {
-//             font-size: 1rem;
-//             color: white;
-//             width: 20px;
-//             height: 20px;
-//           }
-//         }
-//       }
-//       .countDownNumber {
-//         color: red;
-//         font-size: 2rem;
-//       }
-//       img {
-//         width: 70%;
-//       }
-//       .chair {
-//         width: 2rem;
-//         height: 2rem;
-//         border: none;
-//         border-radius: 10%;
-//         background-color: rgb(136, 135, 135);
-//         color: #fff;
-//         margin: 3px;
-//         outline: none;
-//         cursor: pointer;
-//       }
-//       .booking_chair {
-//         background-color: rgb(0, 255, 64) !important;
-//       }
-//       .bookingChair {
-//         cursor: no-drop !important;
-//         background-color: rgb(233, 233, 233) !important;
-//         color: #fff;
-//       }
-//       .bookingVipChair {
-//         cursor: no-drop !important;
-//         background-color: rgb(255, 214, 81) !important;
-//         color: #fff;
-//       }
-//       .vipChair {
-//         width: 2rem;
-//         cursor: pointer;
-//         height: 2rem;
-//         border: none;
-//         border-radius: 10%;
-//         background-color: orangered;
-//         color: #fff;
-//         margin: 5px;
-//         outline: none;
-//       }
-//     }
-//   }
-//   .grid_right {
-//     background-color: #fff;
-//     box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-//     position: relative;
-//     .movie_info {
-//       height: 100%;
-//       padding: 0 30px;
-//       .price {
-//         color: rgb(0, 255, 0);
-//         text-align: center;
-//         font-size: 2rem;
-//         padding: 10px;
-//       }
-//       .border {
-//         border-bottom: 1px solid #e4e4e4;
-//         margin-bottom: 20px;
-//       }
-//       .movieName {
-//         font-size: 1.5rem;
-//         padding-bottom: 10px;
-//       }
-//       .seatName {
-//         color: red;
-//         font-weight: 600;
-//       }
-//       .address {
-//         font-size: 1rem;
-//         line-height: 20px;
-//       }
-//     }
-//     .btn_booking {
-//       position: absolute;
-//       bottom: 0;
-//       left: 0;
-//       padding: 20px;
-//       width: 100%;
-//       background-color: orangered;
-//       color: white;
-//       border: none;
-//       outline: none;
-//       cursor: pointer;
-//       font-weight: 400;
-//       font-size: 1.5rem;
-//     }
-//   }
-// }
-// .classModal {
-//   text-align: center;
-//   border: none;
-//   outline: none;
-//   border-radius: 15px !important;
-//   -webkit-border-radius: 15px !important;
-//   -moz-border-radius: 15px !important;
-//   -ms-border-radius: 15px !important;
-//   -o-border-radius: 15px !important;
-//   position: relative;
-//   img {
-//     position: relative;
-//     border-radius: 15px !important;
-//     -webkit-border-radius: 15px !important;
-//     -moz-border-radius: 15px !important;
-//     -ms-border-radius: 15px !important;
-//     -o-border-radius: 15px !important;
-//   }
-//   .textModal {
-//     position: absolute;
-//     bottom: 0%;
-//     left: 50%;
-//     transform: translateX(-50%);
-//     -webkit-transform: translateX(-50%);
-//     -moz-transform: translateX(-50%);
-//     -ms-transform: translateX(-50%);
-//     -o-transform: translateX(-50%);
-//     width: 100%;
-//     h2 {
-//       font-size: 1.8rem;
-//     }
-//     p {
-//       margin: 10px 0 50px 0;
-//       // margin-bottom: 50px;
-//     }
-//   }
-// }
+.booking_page {
+  height: 100vh;
+  width: 100%;
+  display: table;
+  .renderChair {
+    display: table-cell;
+    width: 80%;
+    @include disableUserSelect();
+    text-align: center;
+    height: 100vh;
+    .headerRender {
+      display: flex;
+      justify-content: space-between;
+      width: 70%;
+      margin: 0 auto;
+      padding: 20px 0;
+      text-align: left;
+      .headerLeft {
+        .title {
+          color: red;
+          font-size: 1rem;
+          font-weight: 600;
+        }
+        .content {
+          text-align: left;
+          // line-height: 2.5rem;
+          p {
+            color: red;
+            font-weight: bold;
+            span {
+              font-weight: normal;
+              color: black;
+            }
+          }
+        }
+      }
+    }
+    .renderListChair {
+      .chair__item {
+        display: inline;
+        .chair {
+          width: 2rem;
+          height: 2rem;
+          border: none;
+          border-radius: 10%;
+          background-color: rgb(136, 135, 135);
+          color: #fff;
+          margin: 3px;
+          outline: none;
+          cursor: pointer;
+        }
+        .vipChair {
+          width: 2rem;
+          cursor: pointer;
+          height: 2rem;
+          border: none;
+          border-radius: 10%;
+          background-color: orangered;
+          color: #fff;
+          margin: 5px;
+          outline: none;
+        }
+      }
+    }
+    .seatCaption {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .normal_Chair {
+        width: 20px;
+        height: 20px;
+        background-color: rgb(136, 135, 135);
+        margin: 20px 5px 20px 20px;
+      }
+      .vip_Chair {
+        background-color: orangered !important;
+        width: 20px;
+        height: 20px;
+        margin: 20px 5px 20px 20px;
+      }
+      .booking_Chair {
+        background-color: rgb(136, 135, 135);
+        width: 20px;
+        height: 20px;
+        margin: 20px 5px 20px 20px;
+        span {
+          font-size: 1rem;
+          color: white;
+          width: 20px;
+          height: 20px;
+        }
+      }
+    }
+    .countDownNumber {
+      color: red;
+      font-size: 2rem;
+    }
+    .buttonMobile {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      display: none;
+      .price{
+        width: 50%;
+        padding: 1rem;
+        color: green;
+        font-weight: bold;
+      }
+      button {
+        outline: none;
+        border: none;
+        width: 50%;
+        padding: 1rem;
+        color: $text-color-primary;
+        background-color: $btn-color-primary;
+        &.disabled{
+          background-color: grey !important;
+        }
+      }
+    }
+    img {
+      width: 70%;
+    }
+
+    .booking_chair {
+      background-color: rgb(0, 255, 64) !important;
+    }
+    .bookingChair {
+      cursor: no-drop !important;
+      background-color: rgb(233, 233, 233) !important;
+      color: #fff;
+    }
+    .bookingVipChair {
+      cursor: no-drop !important;
+      background-color: rgb(255, 214, 81) !important;
+      color: #fff;
+    }
+  }
+  // }
+  .booking__panel {
+    display: table-cell;
+    width: 20%;
+    background-color: #fff;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    position: relative;
+    .movie_info {
+      height: 100%;
+      padding: 0 30px;
+      .price {
+        color: rgb(0, 255, 0);
+        text-align: center;
+        font-size: 2rem;
+        padding: 10px;
+      }
+      .border {
+        border-bottom: 1px solid #e4e4e4;
+        margin-bottom: 20px;
+      }
+      .movieName {
+        font-size: 1.5rem;
+        padding-bottom: 10px;
+      }
+      .seatName {
+        color: red;
+        font-weight: 600;
+      }
+      .address {
+        font-size: 1rem;
+        line-height: 20px;
+      }
+    }
+    .btn_booking {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      padding: 20px;
+      width: 100%;
+      background-color: orangered;
+      color: white;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      font-weight: 400;
+      font-size: 1.5rem;
+      &:nth-child(1){
+        background-color: white;
+        color: $text-color-orange1;
+      }
+    }
+  }
+}
+.classModal {
+  text-align: center;
+  border: none;
+  outline: none;
+  border-radius: 15px !important;
+  -webkit-border-radius: 15px !important;
+  -moz-border-radius: 15px !important;
+  -ms-border-radius: 15px !important;
+  -o-border-radius: 15px !important;
+  position: relative;
+  img {
+    position: relative;
+    border-radius: 15px !important;
+    -webkit-border-radius: 15px !important;
+    -moz-border-radius: 15px !important;
+    -ms-border-radius: 15px !important;
+    -o-border-radius: 15px !important;
+  }
+  .textModal {
+    position: absolute;
+    bottom: 0%;
+    left: 50%;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    width: 100%;
+    h2 {
+      font-size: 1.8rem;
+    }
+    p {
+      margin: 10px 0 50px 0;
+      // margin-bottom: 50px;
+    }
+  }
+}
+@include mediaQueryMax(getBreakpoints("extra-large")) {
+  .booking_page {
+    .renderChair {
+      width: 70%;
+      .headerRender {
+        width: 90%;
+      }
+      .renderListChair {
+        .chair__item {
+          .chair {
+            width: 1.5rem;
+            height: 1.5rem;
+            .sttChair {
+              display: none !important;
+              margin: 3px;
+            }
+          }
+          .vipChair {
+            width: 1.5rem;
+            height: 1.5rem;
+            .sttChair {
+              display: none !important;
+              margin: 3px;
+            }
+          }
+        }
+      }
+      .seatCaption {
+        .normal_Chair {
+          width: 1.5rem;
+          height: 1.5rem;
+        }
+        .vip_Chair {
+          width: 1.5rem;
+          height: 1.5rem;
+        }
+        .booking_Chair {
+          background-color: #e9e9e9 !important;
+          width: 1.5rem;
+          height: 1.5rem;
+          span {
+            display: none !important;
+          }
+        }
+      }
+    }
+    .booking__panel {
+      width: 30%;
+    }
+  }
+}
+@include mediaQueryMax(getBreakpoints("large")) {
+  .booking_page {
+    .renderChair {
+      .chair {
+        width: 1.2rem;
+        height: 1.2rem;
+      }
+      .vipChair {
+        width: 1.2rem;
+        height: 1.2rem;
+      }
+      .seatCaption {
+        .normal_Chair {
+          width: 1.2rem;
+          height: 1.2rem;
+        }
+        .vip_Chair {
+          width: 1.2rem;
+          height: 1.2rem;
+        }
+        .booking_Chair {
+          width: 1.2rem;
+          height: 1.2rem;
+        }
+      }
+    }
+  }
+}
+@include mediaQueryMax(getBreakpoints("medium")) {
+  .booking_page {
+    display: inherit;
+    .renderChair {
+      display: block;
+      width: 100%;
+      .renderListChair {
+        overflow-y: auto;
+        width: 100%;
+        white-space: nowrap;
+        margin: 0 auto;
+        display: inline-flexbox;
+        justify-content: center;
+        .chair__item {
+          // display:block;
+          .chair {
+            text-align: center;
+            width: 1rem;
+            height: 1rem;
+          }
+          .vipChair {
+            width: 1rem;
+            height: 1rem;
+            margin: 3px;
+          }
+        }
+      }
+      .seatCaption {
+        .normal_Chair {
+          width: 1rem;
+          height: 1rem;
+        }
+        .vip_Chair {
+          width: 1rem;
+          height: 1rem;
+        }
+        .booking_Chair {
+          width: 1rem;
+          height: 1rem;
+        }
+      }
+      .buttonMobile {
+        display: flex;
+      }
+    }
+    .booking__panel {
+      width: 100%;
+      height: 100vh;
+      display: block;
+      position: fixed;
+      top: 0;
+      left: 0;
+      transition: transform 0.5s ease-in-out;
+      transform: translateX(100%);
+      &.active {
+        transform: translateX(0);
+      }
+      .bookingBtn {
+        display: flex;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        position: fixed;
+        .btn_booking {
+          left: auto;
+          bottom: auto;
+          position: initial;
+          width: 50%;
+          padding: 0.8rem;
+          font-size: 1.2rem;
+        }
+      }
+    }
+  }
+}
+@include mediaQueryMax(getBreakpoints("extra-small")) {
+  .booking_page {
+    .renderChair {
+      .headerRender {
+        width: 97%;
+      }
+    }
+  }
+}
 // @include mediaQueryMax(getBreakpoints("large")) {
 //   .booking_page {
 //     // background-color: orangered;
@@ -197,7 +403,7 @@
 //         .chair {
 //           width: 1rem;
 //           height: 1rem;
-//           .sttChair{
+//           .sttChair {
 //             display: none !important;
 //             margin: 3px;
 //           }
@@ -205,7 +411,7 @@
 //         .vipChair {
 //           width: 1rem;
 //           height: 1rem;
-//           .sttChair{
+//           .sttChair {
 //             display: none !important;
 //             margin: 3px;
 //           }
@@ -230,7 +436,7 @@
 //         }
 //       }
 //     }
-//     .grid_right {
+//     .booking__panel {
 //       background-color: #fff;
 //       box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
 //       position: relative;
@@ -290,7 +496,7 @@
 //         .chair {
 //           width: 1rem;
 //           height: 1rem;
-//           .sttChair{
+//           .sttChair {
 //             display: none !important;
 //             margin: 3px;
 //           }
@@ -298,7 +504,7 @@
 //         .vipChair {
 //           width: 1rem;
 //           height: 1rem;
-//           .sttChair{
+//           .sttChair {
 //             display: none !important;
 //             margin: 3px;
 //           }
@@ -331,8 +537,8 @@
 //     .booking {
 //       .renderChair {
 //         .chair {
-//           width: .65rem;
-//           height: .65rem;
+//           width: 0.65rem;
+//           height: 0.65rem;
 //           border: none;
 //           border-radius: 10%;
 //           background-color: rgb(136, 135, 135);
@@ -342,9 +548,9 @@
 //           cursor: pointer;
 //         }
 //         .vipChair {
-//           width: .65rem;
+//           width: 0.65rem;
 //           cursor: pointer;
-//           height: .65rem;
+//           height: 0.65rem;
 //           border: none;
 //           border-radius: 10%;
 //           background-color: orangered;
@@ -355,19 +561,19 @@
 //         .seatCaption {
 //           margin-top: 1.5rem;
 //           .normal_Chair {
-//             width: .65rem;
-//             height: .65rem;
+//             width: 0.65rem;
+//             height: 0.65rem;
 //             margin: 0 2px;
 //           }
 //           .vip_Chair {
-//             width: .65rem;
-//             height: .65rem;
+//             width: 0.65rem;
+//             height: 0.65rem;
 //             margin: 0 2px;
 //           }
 //           .booking_Chair {
 //             background-color: #e9e9e9 !important;
-//             width: .65rem;
-//             height: .65rem;
+//             width: 0.65rem;
+//             height: 0.65rem;
 //             margin: 0 2px;
 //             span {
 //               display: none !important;
@@ -391,21 +597,21 @@
 //     }
 //   }
 // }
-#booking{
-  background-color: $text-color-orange1;
-  height: 100vh;
-  width: 100%;
-  display: table;
-  .booking__content{
-    background-color: yellow;
-    display: table-cell;
-    width: 80%;
-    height: 100vh;
-  }
-  .booking__tab{
-    width: 20%;
-    height: 100vh;
-    background-color: aqua;
-    display: table-cell;
-  }
-}
+// // #booking{
+// //   background-color: $text-color-orange1;
+// //   height: 100vh;
+// //   width: 100%;
+// //   display: table;
+// //   .booking__content{
+// //     background-color: yellow;
+// //     display: table-cell;
+// //     width: 80%;
+// //     height: 100vh;
+// //   }
+// //   .booking__tab{
+// //     width: 20%;
+// //     height: 100vh;
+// //     background-color: aqua;
+// //     display: table-cell;
+// //   }
+// // }
