@@ -1,31 +1,15 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect, useMemo } from 'react';
 import { movieServices } from '../../Services/movie';
-// import Grid from '@material-ui/core/Grid';
 import Countdown, { zeroPad } from 'react-countdown';
-import { makeStyles } from '@material-ui/core/styles';
-import Modal from '@material-ui/core/Modal';
-import Backdrop from '@material-ui/core/Backdrop';
-import Zoom from '@material-ui/core/Zoom';
 import { userLogin } from '../../Config/setting';
 import { userServices } from '../../Services/user';
 import Swal from 'sweetalert2';
-const useStyles = makeStyles((theme) => ({
-    modal: {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-}));
 export default function Booking(props) {
-    const classes = useStyles();
-    const [open, setOpen] = React.useState(false);
+    // const [open, setOpen] = React.useState(false);
     let [movie, setMovie] = useState([]);
     let [listChair, setListChair] = useState([]);
     let [activeSideBar, setActiveSideBar] = useState(false);
-    const handleOpen = () => {
-        setOpen(true);
-    };
     useEffect(() => {
         window.scrollTo(0, 0)
     }, [])
@@ -235,28 +219,6 @@ export default function Booking(props) {
                     }} className="btn_booking" >Đặt vé</button>
                 </div>
             </div>
-
-            <Modal
-                aria-labelledby="transition-modal-title"
-                aria-describedby="transition-modal-description"
-                className={classes.modal}
-                open={open}
-                closeAfterTransition
-                BackdropComponent={Backdrop}
-                BackdropProps={{
-                    timeout: 500,
-                }}
-            >
-                <Zoom in={open}>
-                    <div className="classModal">
-                        <img width="500px" src="/img/bookingPage/loader_motion_for_product_UI.gif" alt="loader_motion_for_product_UI.gif" />
-                        <div className="textModal">
-                            <h2>Hết thời gian mua vé!</h2>
-                            <p>Đang chuyển hướng về trang chủ..</p>
-                        </div>
-                    </div>
-                </Zoom>
-            </Modal>
         </div>
     )
 }

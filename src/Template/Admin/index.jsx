@@ -53,7 +53,7 @@ function AdminLayout(props) {
                             <MovieIcon />
                             <p>Quản lí phim</p>
                         </Link >
-                        <Link className='navBar__text' to='/admin/movie2'>
+                        <Link className='navBar__text' to='/admin/movieShowTimes'>
                             <ScheduleIcon />
                             <p>Quản lí lịch chiếu phim</p>
                         </Link >
