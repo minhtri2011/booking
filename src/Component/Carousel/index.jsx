@@ -5,7 +5,7 @@ import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import Fade from '@material-ui/core/Fade';
-import SearchBar from '../SearchBar';
+import SearchBar from '../searchBar';
 const useStyles = makeStyles((theme) => ({
     modal: {
         display: 'flex',

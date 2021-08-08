@@ -1,7 +1,7 @@
 import React, { useLayoutEffect, useState, useEffect } from 'react';
 import { movieServices } from '../../Services/movie';
-import MovieDetailHeader from './../../Component/MovieDetailHeader';
-import MovieDetailShowTime from './../../Component/MovieDetailShowTime';
+import MovieDetailHeader from './../../Component/movieDetailHeader';
+import MovieDetailShowTime from './../../Component/movieDetailShowTime';
 import MovieDetailShowTimeMobile from './../../Component/MovieDetailShowTimeMobile';
 export default function MovieDetail(props) {
     let [movie, setMovie] = useState({});
